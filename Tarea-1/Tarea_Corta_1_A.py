@@ -2,6 +2,7 @@ import threading;
 import os;
 import socket;
 from datetime import date;
+from bitacora_service import BitacoraService 
 from Configuracion_A import config
 from Configuracion_B import config as configB
 import time
@@ -116,7 +117,8 @@ def archivo_listo(ruta, espera=0.5, intentos=5):
 
 def monitorear():
     global pendientes
-
+    bitacora = BitacoraService() 
+    
     conocidos = set(os.listdir(config.carpeta_compartida))
 
     while True:
@@ -155,6 +157,8 @@ def monitorear():
                     enviar_archivo(peer, info)
 
                 enviados_ok.add(nombre)
+
+            bitacora.registrar_agregado(nombre)
 
             pendientes -= enviados_ok
 
