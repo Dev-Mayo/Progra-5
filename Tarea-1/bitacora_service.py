@@ -41,7 +41,3 @@ class BitacoraService:
             print(f"❌ Error en bitácora: {e}")
 
 
-if __name__ == "__main__":
- 
-    bitacora = BitacoraService()
-    bitacora.registrar_agregado("archivo_de_prueba.txt")
