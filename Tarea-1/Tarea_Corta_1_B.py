@@ -2,6 +2,7 @@ import threading;
 import os;
 import socket;
 from datetime import date;
+from bitacora_service import BitacoraService
 from Configuracion_A import config as configA
 from Configuracion_B import config
 import time
@@ -99,7 +100,8 @@ def archivo_listo(ruta, espera=0.5, intentos=5):
 
     return False
 
-def monitorear():
+ def monitorear():\
+    bitacora = BitacoraService()
     conocidos = set(os.listdir(config.carpeta_compartida))
 
     while True:
@@ -123,6 +125,9 @@ def monitorear():
             for peer in config.IP_del_otro_equipo:
                 enviar_archivo(peer, info)
 
+        bitacora.registrar_agregado(nombre) 
+            print(f"[BITACORA] Registrado desde B: {nombre}")
+          
 
         conocidos = actuales
 
