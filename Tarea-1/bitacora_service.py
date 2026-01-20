@@ -38,6 +38,21 @@ class BitacoraService:
             print(f"✅ Log guardado: {mensaje}")
 
         except Exception as e:
-            print(f"❌ Error en bitácora: {e}")
+            self.registrar_error(e) # Paola: Llamada para registrar el error técnico
 
-
+    def registrar_error(self, excepcion: Exception): # Paola: Inicio del HU2 Punto 4
+        """
+        CUMPLIMIENTO PUNTO 4 - Historia 2: 
+        Registra la excepción ocurrida a nivel técnico.
+        """
+        try:
+            usuario = getpass.getuser()
+            tipo_error = type(excepcion).__name__
+            mensaje_tecnico = str(excepcion)
+            # Paola: Formato de error técnico para la bitácora
+            mensaje_final = f"ERROR | Usuario: {usuario} | Excepción: {tipo_error}: {mensaje_tecnico}"
+            
+            logging.error(mensaje_final)
+            print(f"❌ Error técnico registrado en bitácora: {mensaje_final}")
+        except Exception as e:
+            print(f"Error crítico en bitácora: {e}") # Paola: Fin del Punto 4

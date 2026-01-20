@@ -60,6 +60,7 @@ def escucharEstado():
             print("[SISTEMA] Comandos: p=pausar, r=reanudar")
 
 def recibir_archivo(conn, addr):
+    bitacora = BitacoraService() # Paola: Se instancia para capturar errores técnicos
     try:
         header = conn.recv(1024).decode()
         nombre, tamano = header.split("|")
@@ -79,6 +80,7 @@ def recibir_archivo(conn, addr):
         print(f"[RECIBIDO] {nombre} desde {addr}")
 
     except Exception as e:
+        bitacora.registrar_error(e) # Paola: Punto 4 - Registro de error técnico
         print("Error recibiendo archivo:", e)
 
     finally:
@@ -87,8 +89,10 @@ def recibir_archivo(conn, addr):
 
 
 def enviar_archivo(ip, archivo_obj):
+    bitacora = BitacoraService() # Paola: Se instancia para capturar errores técnicos
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.settimeout(10) # Paola: Timeout para disparar excepción si falla la conexión
         s.connect((ip, configB.puerto))
 
         s.send(f"{archivo_obj.nombre}|{archivo_obj.tamano}".encode())
@@ -98,6 +102,7 @@ def enviar_archivo(ip, archivo_obj):
         s.close()
         print(f"[ENVIADO] {archivo_obj.nombre} a {ip}")
     except Exception as e:
+        bitacora.registrar_error(e) # Paola: Punto 4 - Registro de error técnico
         print("Error enviando archivo", e)
 
 def archivo_listo(ruta, espera=0.5, intentos=5):
@@ -157,8 +162,8 @@ def monitorear():
                     enviar_archivo(peer, info)
 
                 enviados_ok.add(nombre)
-
-            bitacora.registrar_agregado(nombre)
+                # Paola: Registro de agregado incluyendo extensión (Punto 3)
+                bitacora.registrar_agregado(nombre) 
 
             pendientes -= enviados_ok
 
@@ -171,6 +176,3 @@ if __name__ == "__main__":
     threading.Thread(target=escucharEstado, daemon=True).start()
     print ("[SISTEMA] Ingrese 'p' para pausar y 'r' para reanudar la sincronización.")
     monitorear()
-
-
-
