@@ -19,6 +19,15 @@ class ServicioBitacora:
             filemode='a'
         )
 
+    def registrar_accion(self, mensaje):
+        try:
+            usuario = getpass.getuser()
+            entrada = f"INFO | Usuario: {usuario} | {mensaje}"
+            with self.lock:
+                logging.info(entrada)
+        except Exception as e:
+            self.registrar_error(e)
+
     def registrar_agregado(self, nombre_archivo):
         try:
             usuario = getpass.getuser()
@@ -37,7 +46,3 @@ class ServicioBitacora:
                 logging.error(mensaje_final)
         except:
             pass
-
-
-
-
