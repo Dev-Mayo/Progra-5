@@ -1,0 +1,6 @@
+{
+    "ruta_carpeta": "C:/CarpetaB",
+    "ips_remotas": "127.0.0.1",
+    "puerto_escucha": 5001,
+    "puerto_remoto": 5000
+}
