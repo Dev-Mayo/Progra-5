@@ -21,7 +21,7 @@ class GestorConfiguracion:
             "ruta_carpeta": ruta_defecto,
             "ips_remotas": "127.0.0.1",
             "puerto_escucha": 5000,
-            "puerto_remoto": 5001
+            "puerto_remoto": 5000
         }
 
     def guardar(self, llave, valor):
@@ -33,9 +33,5 @@ class GestorConfiguracion:
         return self.datos.get(llave)
 
     def obtener_lista_ips(self):
-        cadena = self.datos.get("ips_remotas", "")
+        cadena = str(self.datos.get("ips_remotas", ""))
         return [ip.strip() for ip in cadena.split(",") if ip.strip()]
-
-
-
-
