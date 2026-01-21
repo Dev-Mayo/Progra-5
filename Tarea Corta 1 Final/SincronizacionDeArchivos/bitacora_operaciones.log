@@ -1,0 +1,32 @@
+2026-01-21 05:20:28 | ERROR | Usuario: segur | Excepcion: ConnectionRefusedError: [WinError 10061] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
+2026-01-21 05:20:28 | ERROR | Usuario: segur | Excepcion: ConnectionRefusedError: [WinError 10061] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
+2026-01-21 05:20:50 | ERROR | Usuario: segur | Excepcion: ConnectionRefusedError: [WinError 10061] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
+2026-01-21 05:20:50 | ERROR | Usuario: segur | Excepcion: ConnectionRefusedError: [WinError 10061] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
+2026-01-21 05:31:31 | ERROR | Usuario: segur | Excepcion: str: Fallo envio a 127.0.0.1: [WinError 10061] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
+2026-01-21 05:31:32 | ERROR | Usuario: segur | Excepcion: str: Fallo envio a 127.0.0.1: [WinError 10061] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
+2026-01-21 05:43:26 | ERROR | Usuario: segur | Excepcion: str: Fallo envio a 127.0.0.1: [WinError 10061] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
+2026-01-21 05:43:27 | ERROR | Usuario: segur | Excepcion: str: Fallo envio a 127.0.0.1: [WinError 10061] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
+2026-01-21 05:44:14 | Usuario: segur | Se ha agregado el nuevo archivo A2.jpeg
+2026-01-21 05:44:15 | ERROR | Usuario: segur | Excepcion: str: Fallo envio a 127.0.0.1: [WinError 10061] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
+2026-01-21 05:50:39 | ERROR | Usuario: segur | Excepcion: str: Fallo envio a 127.0.0.1: [WinError 10061] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
+2026-01-21 05:51:51 | ERROR | Usuario: segur | Excepcion: str: Fallo envio a 127.0.0.1: [WinError 10061] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
+2026-01-21 05:52:31 | ERROR | Usuario: segur | Excepcion: str: Fallo envio a 127.0.0.1: [WinError 10061] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
+2026-01-21 06:18:47 | Usuario: segur | Se ha agregado el nuevo archivo A2.jpeg
+2026-01-21 06:18:47 | Usuario: segur | Se ha agregado el nuevo archivo A1.jpeg
+2026-01-21 06:18:49 | Usuario: segur | Se ha agregado el nuevo archivo A2.jpeg
+2026-01-21 06:18:49 | Usuario: segur | Se ha agregado el nuevo archivo A1.jpeg
+2026-01-21 07:04:44 | Usuario: segur | Se ha agregado el nuevo archivo Direccion.jpeg
+2026-01-21 07:04:45 | Usuario: segur | Se ha agregado el nuevo archivo Direccion.jpeg
+2026-01-21 07:12:33 | Usuario: segur | Se ha agregado el nuevo archivo Comprobante638965720273450942.pdf
+2026-01-21 15:10:22 | INFO | Usuario: segur | Servicio de sincronizacion INICIADO
+2026-01-21 15:12:07 | INFO | Usuario: segur | Servicio de sincronizacion INICIADO
+2026-01-21 15:18:43 | Usuario: segur | Se ha agregado el nuevo archivo Direccion.jpeg
+2026-01-21 15:18:43 | Usuario: segur | Se ha agregado el nuevo archivo Direccion.jpeg
+2026-01-21 15:20:20 | Usuario: segur | Se ha agregado el nuevo archivo Copia de Catalogo-de-bienes-servicios.xlsx
+2026-01-21 15:20:21 | Usuario: segur | Se ha agregado el nuevo archivo Copia de Catalogo-de-bienes-servicios.xlsx
+2026-01-21 15:21:00 | INFO | Usuario: segur | SISTEMA PAUSADO por el usuario
+2026-01-21 15:22:12 | Usuario: segur | Se ha agregado el nuevo archivo Exponenciales.png
+2026-01-21 15:22:53 | INFO | Usuario: segur | SISTEMA REANUDADO por el usuario
+2026-01-21 15:22:53 | Usuario: segur | Se ha agregado el nuevo archivo A1.jpeg
+2026-01-21 15:22:53 | Usuario: segur | Se ha agregado el nuevo archivo Exponenciales.png
+2026-01-21 15:22:54 | Usuario: segur | Se ha agregado el nuevo archivo A1.jpeg
