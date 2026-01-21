@@ -57,7 +57,7 @@ class InterfazMenu:
                 self.config.guardar("ips_remotas", ips)
             elif op == "3":
                 p_esc = input("Mi puerto de escucha: ")
-                p_rem = input("Puerto del compañero: ")
+                p_rem = input("Puerto del companero: ")
                 self.config.guardar("puerto_escucha", int(p_esc))
                 self.config.guardar("puerto_remoto", int(p_rem))
             elif op == "4":
