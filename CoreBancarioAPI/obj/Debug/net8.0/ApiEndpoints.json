@@ -1,0 +1,90 @@
+[
+  {
+    "ContainingType": "CoreBancarioAPI.CuentaEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapCuentaEndpoints\u003Eb__0_0",
+    "RelativePath": "core/balance/",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "identificacion",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "numeroCuenta",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "SRV15"
+    ],
+    "EndpointName": "ConsultarSaldo"
+  },
+  {
+    "ContainingType": "CoreBancarioAPI.MovimientoEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapMovimientoEndpoints\u003Eb__0_0",
+    "RelativePath": "core/transaction/",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "CoreBancarioService.Model.TransactionRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "SRV14"
+    ],
+    "EndpointName": "AplicarTransaccion"
+  },
+  {
+    "ContainingType": "CoreBancarioAPI.MovimientoEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapMovimientoEndpoints\u003Eb__0_1",
+    "RelativePath": "core/transactions/",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "identificacion",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "numeroCuenta",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "SRV16"
+    ],
+    "EndpointName": "ConsultarUltimosMovimientos"
+  }
+]

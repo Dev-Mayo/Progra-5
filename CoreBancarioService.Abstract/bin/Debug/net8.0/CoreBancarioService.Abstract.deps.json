@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "CoreBancarioService.Abstract/1.0.0": {
+        "dependencies": {
+          "CoreBancarioService.Model": "1.0.0"
+        },
+        "runtime": {
+          "CoreBancarioService.Abstract.dll": {}
+        }
+      },
+      "CoreBancarioService.Model/1.0.0": {
+        "runtime": {
+          "CoreBancarioService.Model.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CoreBancarioService.Abstract/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CoreBancarioService.Model/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -1,0 +1,15 @@
+D:\ProyectoProgra5\CoreBancarioService.Abstract\bin\Debug\net8.0\CoreBancarioService.Abstract.deps.json
+D:\ProyectoProgra5\CoreBancarioService.Abstract\bin\Debug\net8.0\CoreBancarioService.Abstract.dll
+D:\ProyectoProgra5\CoreBancarioService.Abstract\bin\Debug\net8.0\CoreBancarioService.Abstract.pdb
+D:\ProyectoProgra5\CoreBancarioService.Abstract\obj\Debug\net8.0\CoreBancarioService.Abstract.GeneratedMSBuildEditorConfig.editorconfig
+D:\ProyectoProgra5\CoreBancarioService.Abstract\obj\Debug\net8.0\CoreBancarioService.Abstract.AssemblyInfoInputs.cache
+D:\ProyectoProgra5\CoreBancarioService.Abstract\obj\Debug\net8.0\CoreBancarioService.Abstract.AssemblyInfo.cs
+D:\ProyectoProgra5\CoreBancarioService.Abstract\obj\Debug\net8.0\CoreBancarioService.Abstract.csproj.CoreCompileInputs.cache
+D:\ProyectoProgra5\CoreBancarioService.Abstract\obj\Debug\net8.0\CoreBancarioService.Abstract.dll
+D:\ProyectoProgra5\CoreBancarioService.Abstract\obj\Debug\net8.0\refint\CoreBancarioService.Abstract.dll
+D:\ProyectoProgra5\CoreBancarioService.Abstract\obj\Debug\net8.0\CoreBancarioService.Abstract.pdb
+D:\ProyectoProgra5\CoreBancarioService.Abstract\obj\Debug\net8.0\ref\CoreBancarioService.Abstract.dll
+D:\ProyectoProgra5\CoreBancarioService.Abstract\obj\Debug\net8.0\CoreBancarioService.Abstract.csproj.AssemblyReference.cache
+D:\ProyectoProgra5\CoreBancarioService.Abstract\bin\Debug\net8.0\CoreBancarioService.Model.dll
+D:\ProyectoProgra5\CoreBancarioService.Abstract\bin\Debug\net8.0\CoreBancarioService.Model.pdb
+D:\ProyectoProgra5\CoreBancarioService.Abstract\obj\Debug\net8.0\CoreBanc.6B807527.Up2Date

@@ -1,0 +1,120 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "CoreBancarioAPI",
+    "version": "1.0"
+  },
+  "paths": {
+    "/core/transaction": {
+      "post": {
+        "tags": [
+          "SRV14"
+        ],
+        "operationId": "AplicarTransaccion",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/core/balance": {
+      "get": {
+        "tags": [
+          "SRV15"
+        ],
+        "operationId": "ConsultarSaldo",
+        "parameters": [
+          {
+            "name": "identificacion",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numeroCuenta",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/core/transactions": {
+      "get": {
+        "tags": [
+          "SRV16"
+        ],
+        "operationId": "ConsultarUltimosMovimientos",
+        "parameters": [
+          {
+            "name": "identificacion",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numeroCuenta",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "TransactionRequest": {
+        "type": "object",
+        "properties": {
+          "numeroCuenta": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipoMovimiento": {
+            "type": "string",
+            "nullable": true
+          },
+          "monto": {
+            "type": "number",
+            "format": "double"
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
