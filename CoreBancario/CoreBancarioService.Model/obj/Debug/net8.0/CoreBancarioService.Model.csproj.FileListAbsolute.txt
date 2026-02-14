@@ -9,3 +9,15 @@ D:\ProyectoProgra5\CoreBancarioService.Model\obj\Debug\net8.0\CoreBancarioServic
 D:\ProyectoProgra5\CoreBancarioService.Model\obj\Debug\net8.0\refint\CoreBancarioService.Model.dll
 D:\ProyectoProgra5\CoreBancarioService.Model\obj\Debug\net8.0\CoreBancarioService.Model.pdb
 D:\ProyectoProgra5\CoreBancarioService.Model\obj\Debug\net8.0\ref\CoreBancarioService.Model.dll
+D:\ProyectoProgra5\CoreBancario\CoreBancarioService.Model\bin\Debug\net8.0\CoreBancarioService.Model.deps.json
+D:\ProyectoProgra5\CoreBancario\CoreBancarioService.Model\bin\Debug\net8.0\CoreBancarioService.Model.dll
+D:\ProyectoProgra5\CoreBancario\CoreBancarioService.Model\bin\Debug\net8.0\CoreBancarioService.Model.pdb
+D:\ProyectoProgra5\CoreBancario\CoreBancarioService.Model\obj\Debug\net8.0\CoreBancarioService.Model.GeneratedMSBuildEditorConfig.editorconfig
+D:\ProyectoProgra5\CoreBancario\CoreBancarioService.Model\obj\Debug\net8.0\CoreBancarioService.Model.AssemblyInfoInputs.cache
+D:\ProyectoProgra5\CoreBancario\CoreBancarioService.Model\obj\Debug\net8.0\CoreBancarioService.Model.AssemblyInfo.cs
+D:\ProyectoProgra5\CoreBancario\CoreBancarioService.Model\obj\Debug\net8.0\CoreBancarioService.Model.csproj.CoreCompileInputs.cache
+D:\ProyectoProgra5\CoreBancario\CoreBancarioService.Model\obj\Debug\net8.0\CoreBancarioService.Model.sourcelink.json
+D:\ProyectoProgra5\CoreBancario\CoreBancarioService.Model\obj\Debug\net8.0\CoreBancarioService.Model.dll
+D:\ProyectoProgra5\CoreBancario\CoreBancarioService.Model\obj\Debug\net8.0\refint\CoreBancarioService.Model.dll
+D:\ProyectoProgra5\CoreBancario\CoreBancarioService.Model\obj\Debug\net8.0\CoreBancarioService.Model.pdb
+D:\ProyectoProgra5\CoreBancario\CoreBancarioService.Model\obj\Debug\net8.0\ref\CoreBancarioService.Model.dll

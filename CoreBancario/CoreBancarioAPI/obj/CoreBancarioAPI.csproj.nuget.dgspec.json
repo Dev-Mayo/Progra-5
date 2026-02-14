@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ProyectoProgra5\\CoreBancarioAPI\\CoreBancarioAPI.csproj": {}
+    "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioAPI\\CoreBancarioAPI.csproj": {}
   },
   "projects": {
-    "D:\\ProyectoProgra5\\CoreBancarioAPI\\CoreBancarioAPI.csproj": {
+    "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioAPI\\CoreBancarioAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ProyectoProgra5\\CoreBancarioAPI\\CoreBancarioAPI.csproj",
+        "projectUniqueName": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioAPI\\CoreBancarioAPI.csproj",
         "projectName": "CoreBancarioAPI",
-        "projectPath": "D:\\ProyectoProgra5\\CoreBancarioAPI\\CoreBancarioAPI.csproj",
+        "projectPath": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioAPI\\CoreBancarioAPI.csproj",
         "packagesPath": "C:\\Users\\difue\\.nuget\\packages\\",
-        "outputPath": "D:\\ProyectoProgra5\\CoreBancarioAPI\\obj\\",
+        "outputPath": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,17 +32,17 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\ProyectoProgra5\\CoreBancarioService.Abstract\\CoreBancarioService.Abstract.csproj": {
-                "projectPath": "D:\\ProyectoProgra5\\CoreBancarioService.Abstract\\CoreBancarioService.Abstract.csproj"
+              "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\CoreBancarioService.Abstract.csproj": {
+                "projectPath": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\CoreBancarioService.Abstract.csproj"
               },
-              "D:\\ProyectoProgra5\\CoreBancarioService.BusinessLogic\\CoreBancarioService.BusinessLogic.csproj": {
-                "projectPath": "D:\\ProyectoProgra5\\CoreBancarioService.BusinessLogic\\CoreBancarioService.BusinessLogic.csproj"
+              "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.BusinessLogic\\CoreBancarioService.BusinessLogic.csproj": {
+                "projectPath": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.BusinessLogic\\CoreBancarioService.BusinessLogic.csproj"
               },
-              "D:\\ProyectoProgra5\\CoreBancarioService.DataAccess\\CoreBancarioService.DataAccess.csproj": {
-                "projectPath": "D:\\ProyectoProgra5\\CoreBancarioService.DataAccess\\CoreBancarioService.DataAccess.csproj"
+              "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.DataAccess\\CoreBancarioService.DataAccess.csproj": {
+                "projectPath": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.DataAccess\\CoreBancarioService.DataAccess.csproj"
               },
-              "D:\\ProyectoProgra5\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj": {
-                "projectPath": "D:\\ProyectoProgra5\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj"
+              "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj": {
+                "projectPath": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj"
               }
             }
           }
@@ -109,14 +109,14 @@
         }
       }
     },
-    "D:\\ProyectoProgra5\\CoreBancarioService.Abstract\\CoreBancarioService.Abstract.csproj": {
+    "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\CoreBancarioService.Abstract.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ProyectoProgra5\\CoreBancarioService.Abstract\\CoreBancarioService.Abstract.csproj",
+        "projectUniqueName": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\CoreBancarioService.Abstract.csproj",
         "projectName": "CoreBancarioService.Abstract",
-        "projectPath": "D:\\ProyectoProgra5\\CoreBancarioService.Abstract\\CoreBancarioService.Abstract.csproj",
+        "projectPath": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\CoreBancarioService.Abstract.csproj",
         "packagesPath": "C:\\Users\\difue\\.nuget\\packages\\",
-        "outputPath": "D:\\ProyectoProgra5\\CoreBancarioService.Abstract\\obj\\",
+        "outputPath": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -137,8 +137,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\ProyectoProgra5\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj": {
-                "projectPath": "D:\\ProyectoProgra5\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj"
+              "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj": {
+                "projectPath": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj"
               }
             }
           }
@@ -178,14 +178,14 @@
         }
       }
     },
-    "D:\\ProyectoProgra5\\CoreBancarioService.BusinessLogic\\CoreBancarioService.BusinessLogic.csproj": {
+    "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.BusinessLogic\\CoreBancarioService.BusinessLogic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ProyectoProgra5\\CoreBancarioService.BusinessLogic\\CoreBancarioService.BusinessLogic.csproj",
+        "projectUniqueName": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.BusinessLogic\\CoreBancarioService.BusinessLogic.csproj",
         "projectName": "CoreBancarioService.BusinessLogic",
-        "projectPath": "D:\\ProyectoProgra5\\CoreBancarioService.BusinessLogic\\CoreBancarioService.BusinessLogic.csproj",
+        "projectPath": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.BusinessLogic\\CoreBancarioService.BusinessLogic.csproj",
         "packagesPath": "C:\\Users\\difue\\.nuget\\packages\\",
-        "outputPath": "D:\\ProyectoProgra5\\CoreBancarioService.BusinessLogic\\obj\\",
+        "outputPath": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.BusinessLogic\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -206,11 +206,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\ProyectoProgra5\\CoreBancarioService.Abstract\\CoreBancarioService.Abstract.csproj": {
-                "projectPath": "D:\\ProyectoProgra5\\CoreBancarioService.Abstract\\CoreBancarioService.Abstract.csproj"
+              "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\CoreBancarioService.Abstract.csproj": {
+                "projectPath": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\CoreBancarioService.Abstract.csproj"
               },
-              "D:\\ProyectoProgra5\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj": {
-                "projectPath": "D:\\ProyectoProgra5\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj"
+              "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj": {
+                "projectPath": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj"
               }
             }
           }
@@ -256,14 +256,14 @@
         }
       }
     },
-    "D:\\ProyectoProgra5\\CoreBancarioService.DataAccess\\CoreBancarioService.DataAccess.csproj": {
+    "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.DataAccess\\CoreBancarioService.DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ProyectoProgra5\\CoreBancarioService.DataAccess\\CoreBancarioService.DataAccess.csproj",
+        "projectUniqueName": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.DataAccess\\CoreBancarioService.DataAccess.csproj",
         "projectName": "CoreBancarioService.DataAccess",
-        "projectPath": "D:\\ProyectoProgra5\\CoreBancarioService.DataAccess\\CoreBancarioService.DataAccess.csproj",
+        "projectPath": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.DataAccess\\CoreBancarioService.DataAccess.csproj",
         "packagesPath": "C:\\Users\\difue\\.nuget\\packages\\",
-        "outputPath": "D:\\ProyectoProgra5\\CoreBancarioService.DataAccess\\obj\\",
+        "outputPath": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -284,11 +284,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\ProyectoProgra5\\CoreBancarioService.Abstract\\CoreBancarioService.Abstract.csproj": {
-                "projectPath": "D:\\ProyectoProgra5\\CoreBancarioService.Abstract\\CoreBancarioService.Abstract.csproj"
+              "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\CoreBancarioService.Abstract.csproj": {
+                "projectPath": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\CoreBancarioService.Abstract.csproj"
               },
-              "D:\\ProyectoProgra5\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj": {
-                "projectPath": "D:\\ProyectoProgra5\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj"
+              "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj": {
+                "projectPath": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj"
               }
             }
           }
@@ -340,14 +340,14 @@
         }
       }
     },
-    "D:\\ProyectoProgra5\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj": {
+    "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ProyectoProgra5\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj",
+        "projectUniqueName": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj",
         "projectName": "CoreBancarioService.Model",
-        "projectPath": "D:\\ProyectoProgra5\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj",
+        "projectPath": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj",
         "packagesPath": "C:\\Users\\difue\\.nuget\\packages\\",
-        "outputPath": "D:\\ProyectoProgra5\\CoreBancarioService.Model\\obj\\",
+        "outputPath": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Model\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fwRfvIBItHA=",
+  "dgSpecHash": "qYeMochWTss=",
   "success": true,
-  "projectFilePath": "D:\\ProyectoProgra5\\CoreBancarioService.BusinessLogic\\CoreBancarioService.BusinessLogic.csproj",
+  "projectFilePath": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.BusinessLogic\\CoreBancarioService.BusinessLogic.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\difue\\.nuget\\packages\\azure.core\\1.46.1\\azure.core.1.46.1.nupkg.sha512",
     "C:\\Users\\difue\\.nuget\\packages\\azure.identity\\1.14.2\\azure.identity.1.14.2.nupkg.sha512",

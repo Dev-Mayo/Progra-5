@@ -1541,11 +1541,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\ProyectoProgra5\\CoreBancarioService.BusinessLogic\\CoreBancarioService.BusinessLogic.csproj",
+      "projectUniqueName": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.BusinessLogic\\CoreBancarioService.BusinessLogic.csproj",
       "projectName": "CoreBancarioService.BusinessLogic",
-      "projectPath": "D:\\ProyectoProgra5\\CoreBancarioService.BusinessLogic\\CoreBancarioService.BusinessLogic.csproj",
+      "projectPath": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.BusinessLogic\\CoreBancarioService.BusinessLogic.csproj",
       "packagesPath": "C:\\Users\\difue\\.nuget\\packages\\",
-      "outputPath": "D:\\ProyectoProgra5\\CoreBancarioService.BusinessLogic\\obj\\",
+      "outputPath": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.BusinessLogic\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1566,11 +1566,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\ProyectoProgra5\\CoreBancarioService.Abstract\\CoreBancarioService.Abstract.csproj": {
-              "projectPath": "D:\\ProyectoProgra5\\CoreBancarioService.Abstract\\CoreBancarioService.Abstract.csproj"
+            "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\CoreBancarioService.Abstract.csproj": {
+              "projectPath": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\CoreBancarioService.Abstract.csproj"
             },
-            "D:\\ProyectoProgra5\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj": {
-              "projectPath": "D:\\ProyectoProgra5\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj"
+            "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj": {
+              "projectPath": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj"
             }
           }
         }

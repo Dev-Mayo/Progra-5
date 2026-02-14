@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ProyectoProgra5\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj": {}
+    "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj": {}
   },
   "projects": {
-    "D:\\ProyectoProgra5\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj": {
+    "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ProyectoProgra5\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj",
+        "projectUniqueName": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj",
         "projectName": "CoreBancarioService.Model",
-        "projectPath": "D:\\ProyectoProgra5\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj",
+        "projectPath": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj",
         "packagesPath": "C:\\Users\\difue\\.nuget\\packages\\",
-        "outputPath": "D:\\ProyectoProgra5\\CoreBancarioService.Model\\obj\\",
+        "outputPath": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Model\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
