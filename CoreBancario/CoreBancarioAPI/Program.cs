@@ -5,6 +5,9 @@ using CoreBancarioService.BusinessLogic;
 using CoreBancarioService.DataAccess;
 using CoreBancarioService.DataAccess.Models;
 using CoreBancarioService.DataAccess.Repositories;
+using CoreBancarioService.Abstract.Security;
+using CoreBancarioService.BusinessLogic.Security;
+using CoreBancarioAPI.Validation;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +23,10 @@ builder.Services.AddDbContext<CoreBancarioContext>(options =>
 
 builder.Services.AddScoped<ITransactionService, TransactionService>();
 
+builder.Services.AddHttpClient<ITokenValidationService, TokenValidationService>(client =>
+{
+    client.BaseAddress = new Uri("https://localhost:7160");
+});
 
 builder.Services.AddScoped<ICuentaRepository, CuentaRepository>();
 builder.Services.AddScoped<IMovimientoRepository, MovimientoRepository>();
@@ -35,6 +42,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<TokenValidation>();
 
 app.MapCuentaEndpoints();
 app.MapMovimientoEndpoints();

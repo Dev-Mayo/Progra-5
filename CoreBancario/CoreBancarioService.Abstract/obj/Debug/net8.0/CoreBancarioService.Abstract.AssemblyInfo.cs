@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CoreBancarioService.Abstract")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+61bb68802e0980cd042749ecb848e70178f756d8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9aad225f8251f99bfab79644db2867afc099ef23")]
 [assembly: System.Reflection.AssemblyProductAttribute("CoreBancarioService.Abstract")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CoreBancarioService.Abstract")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
