@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36915.13 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagoMoviles.API", "PagoMoviles.API\PagoMoviles.API.csproj", "{E9FE393D-7597-42D6-AE3F-3E449398392F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagoMoviles.Entities", "PagoMoviles.Entities\PagoMoviles.Entities.csproj", "{8AE9235C-C039-4C56-8BBE-BBFDA890F942}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagoMoviles.DataAccess", "PagoMoviles.DataAccess\PagoMoviles.DataAccess.csproj", "{A3BF517E-B41C-4144-815A-91C20D3B0B8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagoMoviles.Abstract", "PagoMoviles.Abstract\PagoMoviles.Abstract.csproj", "{00FBFCAB-2A82-47D8-AB49-EF8E50087F1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagoMoviles.BusinessLogic", "PagoMoviles.BusinessLogic\PagoMoviles.BusinessLogic.csproj", "{9D4DCC6D-E3F6-E170-7954-29803C0D5A5D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E9FE393D-7597-42D6-AE3F-3E449398392F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9FE393D-7597-42D6-AE3F-3E449398392F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9FE393D-7597-42D6-AE3F-3E449398392F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9FE393D-7597-42D6-AE3F-3E449398392F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AE9235C-C039-4C56-8BBE-BBFDA890F942}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AE9235C-C039-4C56-8BBE-BBFDA890F942}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AE9235C-C039-4C56-8BBE-BBFDA890F942}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AE9235C-C039-4C56-8BBE-BBFDA890F942}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3BF517E-B41C-4144-815A-91C20D3B0B8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3BF517E-B41C-4144-815A-91C20D3B0B8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3BF517E-B41C-4144-815A-91C20D3B0B8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3BF517E-B41C-4144-815A-91C20D3B0B8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00FBFCAB-2A82-47D8-AB49-EF8E50087F1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00FBFCAB-2A82-47D8-AB49-EF8E50087F1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00FBFCAB-2A82-47D8-AB49-EF8E50087F1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00FBFCAB-2A82-47D8-AB49-EF8E50087F1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D4DCC6D-E3F6-E170-7954-29803C0D5A5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D4DCC6D-E3F6-E170-7954-29803C0D5A5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D4DCC6D-E3F6-E170-7954-29803C0D5A5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D4DCC6D-E3F6-E170-7954-29803C0D5A5D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ED510E31-B704-42A2-82EB-C7F6D7A20F1C}
+	EndGlobalSection
+EndGlobal
