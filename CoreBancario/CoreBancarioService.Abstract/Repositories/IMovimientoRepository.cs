@@ -18,10 +18,7 @@ namespace CoreBancarioService.Abstract.Repositories
     }
     public interface IUltimoMovimientoRepository
     {
-        IEnumerable<MovimientoResponse> ConsultarUltimosMovimientos(
-            string identificacion,
-            string numeroCuenta
-        );
+        Task<IEnumerable<MovimientoResponse>> ConsultarUltimosMovimientos(string identificacion, string numeroCuenta);
     }
 
 }

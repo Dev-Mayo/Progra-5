@@ -4186,23 +4186,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\segur\\.nuget\\packages\\": {},
-    "P:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\difue\\.nuget\\packages\\": {},
+    "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Datos\\Proyecto\\SistemaPagosMoviles\\LogService\\LogService.csproj",
+      "projectUniqueName": "D:\\ProyectoProgra5\\Bitacora\\LogService.csproj",
       "projectName": "LogService",
-      "projectPath": "C:\\Datos\\Proyecto\\SistemaPagosMoviles\\LogService\\LogService.csproj",
-      "packagesPath": "C:\\Users\\segur\\.nuget\\packages\\",
-      "outputPath": "C:\\Datos\\Proyecto\\SistemaPagosMoviles\\LogService\\obj\\",
+      "projectPath": "D:\\ProyectoProgra5\\Bitacora\\LogService.csproj",
+      "packagesPath": "C:\\Users\\difue\\.nuget\\packages\\",
+      "outputPath": "D:\\ProyectoProgra5\\Bitacora\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "P:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\segur\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\difue\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -4273,7 +4273,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

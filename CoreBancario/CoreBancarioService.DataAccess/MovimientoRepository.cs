@@ -45,15 +45,15 @@ namespace CoreBancarioService.DataAccess.Repositories
             _context = context;
         }
 
-        public IEnumerable<MovimientoResponse> ConsultarUltimosMovimientos(
-            string identificacion,
-            string numeroCuenta)
+        public async Task<IEnumerable<MovimientoResponse>> ConsultarUltimosMovimientos(
+    string identificacion,
+    string numeroCuenta)
         {
-            return _context.Database
+            return await _context.Database
                 .SqlQuery<MovimientoResponse>(
                     $"EXEC sp_ConsultarUltimosMovimientos @Identificacion={identificacion}, @NumeroCuenta={numeroCuenta}")
-                .AsEnumerable()
-                .ToList();
+                .ToListAsync();
         }
+
     }
 }

@@ -9,9 +9,7 @@ namespace CoreBancarioService.Abstract.Services
 {
     public interface IUltimoMovimientoService
     {
-        IEnumerable<MovimientoResponse> ConsultarUltimosMovimientos(
-            string identificacion,
-            string numeroCuenta
-        );
+        Task<IEnumerable<MovimientoResponse>> ConsultarUltimosMovimientos(string identificacion, string numeroCuenta);
+
     }
 }

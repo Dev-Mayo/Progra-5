@@ -1,13 +1,16 @@
 ﻿using CoreBancarioAPI;
+using CoreBancarioAPI.Validation;
+using CoreBancarioService.Abstract.Bitacora;
+using CoreBancarioService.Abstract.Bitacora.Bitacora;
 using CoreBancarioService.Abstract.Repositories;
+using CoreBancarioService.Abstract.Security;
 using CoreBancarioService.Abstract.Services;
 using CoreBancarioService.BusinessLogic;
+using CoreBancarioService.BusinessLogic.Bitacora;
+using CoreBancarioService.BusinessLogic.Security;
 using CoreBancarioService.DataAccess;
 using CoreBancarioService.DataAccess.Models;
 using CoreBancarioService.DataAccess.Repositories;
-using CoreBancarioService.Abstract.Security;
-using CoreBancarioService.BusinessLogic.Security;
-using CoreBancarioAPI.Validation;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,11 +31,19 @@ builder.Services.AddHttpClient<ITokenValidationService, TokenValidationService>(
     client.BaseAddress = new Uri("https://localhost:7160");
 });
 
+builder.Services.AddHttpClient<IBitacoraService, BitacoraService>(client =>
+{
+    client.BaseAddress = new Uri("https://localhost:7232");
+});
+
 builder.Services.AddScoped<ICuentaRepository, CuentaRepository>();
 builder.Services.AddScoped<IMovimientoRepository, MovimientoRepository>();
 builder.Services.AddScoped<IBalanceService, BalanceService>();
 builder.Services.AddScoped<IUltimoMovimientoService, UltimoMovimientoService>();
 builder.Services.AddScoped<IUltimoMovimientoRepository, UltimoMovimientoRepository>();
+builder.Services.AddHttpContextAccessor();
+
+
 
 var app = builder.Build();
 

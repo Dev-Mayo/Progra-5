@@ -48,19 +48,15 @@ public static class MovimientoEndpoints
         var movementsGroup = routes.MapGroup("/core/transactions")
                                    .WithTags("SRV16");
 
-        movementsGroup.MapGet("/", (
-            string identificacion,
-            string numeroCuenta,
-            IUltimoMovimientoRepository repository
-        // IAuthService authService pendiente 
-        ) =>
+        movementsGroup.MapGet("/", async (
+    string identificacion,
+    string numeroCuenta,
+    IUltimoMovimientoService service
+) =>
         {
-            // if (!authService.Validate(token))
-            //     return Results.Unauthorized();
-
             try
             {
-                var movimientos = repository.ConsultarUltimosMovimientos(
+                var movimientos = await service.ConsultarUltimosMovimientos(
                     identificacion,
                     numeroCuenta
                 );
