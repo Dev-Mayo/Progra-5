@@ -11,10 +11,13 @@ namespace ConfigService.Services
         public BitacoraClient(HttpClient http, IConfiguration cfg)
         {
             _http = http;
-            _auditBaseUrl = cfg["Audit:BaseUrl"] ?? "http://localhost"; // opcional
+            _auditBaseUrl = cfg["Audit:BaseUrl"] ?? throw new InvalidOperationException("Audit:BaseUrl no configurado");
         }
 
-        public async Task TryLogAsync(string usuario, string descripcion)
+        /// <summary>
+        /// Envía la bitácora a AuditService reenviando el Authorization que llega en la request original.
+        /// </summary>
+        public async Task TryLogAsync(HttpRequest originalRequest, string usuario, string descripcion)
         {
             var url = $"{_auditBaseUrl.TrimEnd('/')}/bitacora";
             var payload = new { Usuario = usuario, Descripcion = descripcion };
@@ -23,12 +26,26 @@ namespace ConfigService.Services
             {
                 var json = JsonSerializer.Serialize(payload);
                 using var content = new StringContent(json, Encoding.UTF8, "application/json");
-                using var resp = await _http.PostAsync(url, content);
-                // ignorar errores, SRV18 define 200/201; si falla, no bloquear
+
+                // Reenviar el header Authorization si existe
+                if (originalRequest.Headers.TryGetValue("Authorization", out var authValue) &&
+                    !string.IsNullOrWhiteSpace(authValue))
+                {
+                    // usa HttpRequestMessage para setear headers
+                    using var req = new HttpRequestMessage(HttpMethod.Post, url);
+                    req.Content = content;
+                    req.Headers.TryAddWithoutValidation("Authorization", authValue.ToString());
+                    using var resp = await _http.SendAsync(req);
+                    // No romper si Audit está caído
+                }
+                else
+                {
+                    // Si no hay Authorization, no intentamos (cumple SRV18: requiere token)
+                }
             }
             catch
             {
-                // Silent fail (asíncrono)
+                // Silencioso: no interrumpir el flujo de ConfigService
             }
         }
     }

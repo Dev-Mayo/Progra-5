@@ -32,8 +32,12 @@ namespace ConfigService.Controllers
 
             var lista = await _db.GetAllAsync();
 
-            // Bitácora: consulta
-            _ = _bitacora.TryLogAsync(_jwtReader.GetUserIdFromRequest(Request) ?? "desconocido", "El usuario consulta parametros");
+            // Bitácora: consulta (reenviando Authorization hacia AuditService)
+            _ = _bitacora.TryLogAsync(
+                Request,
+                _jwtReader.GetUserIdFromRequest(Request) ?? "desconocido",
+                "El usuario consulta parametros"
+            );
 
             return Ok(lista);
         }
@@ -54,7 +58,11 @@ namespace ConfigService.Controllers
                 return NotFound(new ErrorResponse("Parámetro no encontrado"));
 
             // Bitácora: consulta
-            _ = _bitacora.TryLogAsync(_jwtReader.GetUserIdFromRequest(Request) ?? "desconocido", $"El usuario consulta parametro {id}");
+            _ = _bitacora.TryLogAsync(
+                Request,
+                _jwtReader.GetUserIdFromRequest(Request) ?? "desconocido",
+                $"El usuario consulta parametro {id}"
+            );
 
             return Ok(item);
         }
@@ -85,7 +93,7 @@ namespace ConfigService.Controllers
             // Bitácora: crear con JSON del nuevo registro
             var usuario = _jwtReader.GetUserIdFromRequest(Request) ?? "desconocido";
             var descripcion = $"Crear parametro: {JsonSerializer.Serialize(dto)}";
-            _ = _bitacora.TryLogAsync(usuario, descripcion);
+            _ = _bitacora.TryLogAsync(Request, usuario, descripcion);
 
             var creado = await _db.GetByIdAsync(dto.ParametroId);
             return Created($"/parametro/{dto.ParametroId}", creado);
@@ -121,7 +129,7 @@ namespace ConfigService.Controllers
             // Bitácora: actualización con JSON antes/después
             var usuario = _jwtReader.GetUserIdFromRequest(Request) ?? "desconocido";
             var detalle = new { antes, despues };
-            _ = _bitacora.TryLogAsync(usuario, $"Actualizar parametro {id}: {JsonSerializer.Serialize(detalle)}");
+            _ = _bitacora.TryLogAsync(Request, usuario, $"Actualizar parametro {id}: {JsonSerializer.Serialize(detalle)}");
 
             return Ok(despues);
         }
@@ -147,7 +155,7 @@ namespace ConfigService.Controllers
 
             // Bitácora: eliminación con JSON del registro eliminado
             var usuario = _jwtReader.GetUserIdFromRequest(Request) ?? "desconocido";
-            _ = _bitacora.TryLogAsync(usuario, $"Eliminar parametro {id}: {JsonSerializer.Serialize(antes)}");
+            _ = _bitacora.TryLogAsync(Request, usuario, $"Eliminar parametro {id}: {JsonSerializer.Serialize(antes)}");
 
             // 200 OK según SRV: puedes usar 204 NoContent si prefieres
             return Ok(new { mensaje = "Eliminado" });

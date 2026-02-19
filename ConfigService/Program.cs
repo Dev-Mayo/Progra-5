@@ -1,3 +1,4 @@
+using Microsoft.OpenApi.Models;
 using ConfigService.Data;
 using ConfigService.Services;
 
@@ -12,7 +13,31 @@ namespace ConfigService
             // Controllers y Swagger
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+
+            builder.Services.AddSwaggerGen(c =>
+            {
+                // Definir esquema de seguridad tipo Bearer
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ConfigService", Version = "v1" });
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "JWT Authorization header usando el esquema Bearer. \r\n\r\n Escribe: 'Bearer {token}'",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
+            },
+            Array.Empty<string>()
+        }
+    });
+            });
 
             // ======== NUESTROS SERVICIOS (DI) ========
             builder.Services.AddSingleton<ConfigDb>();
