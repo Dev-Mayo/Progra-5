@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\ProyectoProgra5\\ProyectoWebAPI\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2639901-5348-4AE0-8094-C313D2B052BA}|ProyectoWebAPI\\ProyectoWebAPI.csproj|d:\\proyectoprogra5\\proyectowebapi\\proyectowebapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2639901-5348-4AE0-8094-C313D2B052BA}|ProyectoWebAPI\\ProyectoWebAPI.csproj|solutionrelative:proyectowebapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9719B5F1-AC8F-487B-8F25-65F508DE3197}|ProyectoWebAPI.BusinessLogic\\ProyectoWebAPI.BusinessLogic.csproj|d:\\proyectoprogra5\\proyectowebapi\\proyectowebapi.businesslogic\\roles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9719B5F1-AC8F-487B-8F25-65F508DE3197}|ProyectoWebAPI.BusinessLogic\\ProyectoWebAPI.BusinessLogic.csproj|solutionrelative:proyectowebapi.businesslogic\\roles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9719B5F1-AC8F-487B-8F25-65F508DE3197}|ProyectoWebAPI.BusinessLogic\\ProyectoWebAPI.BusinessLogic.csproj|d:\\proyectoprogra5\\proyectowebapi\\proyectowebapi.businesslogic\\pantalla.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9719B5F1-AC8F-487B-8F25-65F508DE3197}|ProyectoWebAPI.BusinessLogic\\ProyectoWebAPI.BusinessLogic.csproj|solutionrelative:proyectowebapi.businesslogic\\pantalla.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9719B5F1-AC8F-487B-8F25-65F508DE3197}|ProyectoWebAPI.BusinessLogic\\ProyectoWebAPI.BusinessLogic.csproj|d:\\proyectoprogra5\\proyectowebapi\\proyectowebapi.businesslogic\\entidadesbancarias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9719B5F1-AC8F-487B-8F25-65F508DE3197}|ProyectoWebAPI.BusinessLogic\\ProyectoWebAPI.BusinessLogic.csproj|solutionrelative:proyectowebapi.businesslogic\\entidadesbancarias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2639901-5348-4AE0-8094-C313D2B052BA}|ProyectoWebAPI\\ProyectoWebAPI.csproj|d:\\proyectoprogra5\\proyectowebapi\\proyectowebapi\\validation\\tokenvalidation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2639901-5348-4AE0-8094-C313D2B052BA}|ProyectoWebAPI\\ProyectoWebAPI.csproj|solutionrelative:proyectowebapi\\validation\\tokenvalidation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\ProyectoProgra5\\ProyectoWebAPI\\ProyectoWebAPI\\Program.cs",
+              "RelativeDocumentMoniker": "ProyectoWebAPI\\Program.cs",
+              "ToolTip": "D:\\ProyectoProgra5\\ProyectoWebAPI\\ProyectoWebAPI\\Program.cs",
+              "RelativeToolTip": "ProyectoWebAPI\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-19T04:53:59.073Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Roles.cs",
+              "DocumentMoniker": "D:\\ProyectoProgra5\\ProyectoWebAPI\\ProyectoWebAPI.BusinessLogic\\Roles.cs",
+              "RelativeDocumentMoniker": "ProyectoWebAPI.BusinessLogic\\Roles.cs",
+              "ToolTip": "D:\\ProyectoProgra5\\ProyectoWebAPI\\ProyectoWebAPI.BusinessLogic\\Roles.cs",
+              "RelativeToolTip": "ProyectoWebAPI.BusinessLogic\\Roles.cs",
+              "ViewState": "AgIAAIIAAAAAAAAAAAAcwJAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-19T04:52:46.214Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Pantalla.cs",
+              "DocumentMoniker": "D:\\ProyectoProgra5\\ProyectoWebAPI\\ProyectoWebAPI.BusinessLogic\\Pantalla.cs",
+              "RelativeDocumentMoniker": "ProyectoWebAPI.BusinessLogic\\Pantalla.cs",
+              "ToolTip": "D:\\ProyectoProgra5\\ProyectoWebAPI\\ProyectoWebAPI.BusinessLogic\\Pantalla.cs",
+              "RelativeToolTip": "ProyectoWebAPI.BusinessLogic\\Pantalla.cs",
+              "ViewState": "AgIAAH8AAAAAAAAAAAAcwI8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-19T04:51:54.977Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "EntidadesBancarias.cs",
+              "DocumentMoniker": "D:\\ProyectoProgra5\\ProyectoWebAPI\\ProyectoWebAPI.BusinessLogic\\EntidadesBancarias.cs",
+              "RelativeDocumentMoniker": "ProyectoWebAPI.BusinessLogic\\EntidadesBancarias.cs",
+              "ToolTip": "D:\\ProyectoProgra5\\ProyectoWebAPI\\ProyectoWebAPI.BusinessLogic\\EntidadesBancarias.cs",
+              "RelativeToolTip": "ProyectoWebAPI.BusinessLogic\\EntidadesBancarias.cs",
+              "ViewState": "AgIAAIIAAAAAAAAAAAAcwIkAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-19T04:51:02.836Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TokenValidation.cs",
+              "DocumentMoniker": "D:\\ProyectoProgra5\\ProyectoWebAPI\\ProyectoWebAPI\\Validation\\TokenValidation.cs",
+              "RelativeDocumentMoniker": "ProyectoWebAPI\\Validation\\TokenValidation.cs",
+              "ToolTip": "D:\\ProyectoProgra5\\ProyectoWebAPI\\ProyectoWebAPI\\Validation\\TokenValidation.cs",
+              "RelativeToolTip": "ProyectoWebAPI\\Validation\\TokenValidation.cs",
+              "ViewState": "AgIAABsAAAAA/v////8LwDMAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-18T22:27:56.831Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

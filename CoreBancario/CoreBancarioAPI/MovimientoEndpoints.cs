@@ -25,7 +25,7 @@ public static class MovimientoEndpoints
             {
                 return Results.NotFound(new ErrorResponse
                 {
-                    Codigo = "CUENTA_NO_EXISTE",
+                    Codigo = "404",
                     Mensaje = ex.Message
                 });
             }
@@ -33,7 +33,7 @@ public static class MovimientoEndpoints
             {
                 return Results.Conflict(new ErrorResponse
                 {
-                    Codigo = "SALDO_INSUFICIENTE",
+                    Codigo = "402",
                     Mensaje = ex.Message
                 });
             }
@@ -67,7 +67,7 @@ public static class MovimientoEndpoints
             {
                 return Results.NotFound(new ErrorResponse
                 {
-                    Codigo = "CUENTA_NO_EXISTE",
+                    Codigo = "404",
                     Mensaje = ex.Message
                 });
             }

@@ -40,7 +40,7 @@ public static class CuentaEndpoints
             {
                 return Results.NotFound(new ErrorResponse
                 {
-                    Codigo = "CUENTA_NO_EXISTE",
+                    Codigo = "404",
                     Mensaje = ex.Message
                 });
             }

@@ -3,23 +3,30 @@
   "WorkspaceRootPath": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9F6D435E-4F5F-4789-AAC1-5B6DD10927C3}|..\\CoreBancarioService.BusinessLogic\\CoreBancarioService.BusinessLogic.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.businesslogic\\ultimomovimientoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DCB6214D-2E8F-4731-B233-A38C3F5AF47B}|..\\CoreBancarioService.Abstract\\CoreBancarioService.Abstract.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.abstract\\repositories\\imovimientorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{BC18F7A5-364E-4A0F-932E-FBC24F90E04F}|CoreBancarioAPI.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioapi\\movimientoendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BC18F7A5-364E-4A0F-932E-FBC24F90E04F}|CoreBancarioAPI.csproj|solutionrelative:movimientoendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E42F08AD-31B3-467C-B3C2-1072FA61F089}|..\\CoreBancarioService.DataAccess\\CoreBancarioService.DataAccess.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.dataaccess\\movimientorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BC18F7A5-364E-4A0F-932E-FBC24F90E04F}|CoreBancarioAPI.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioapi\\cuentaendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC18F7A5-364E-4A0F-932E-FBC24F90E04F}|CoreBancarioAPI.csproj|solutionrelative:cuentaendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCB6214D-2E8F-4731-B233-A38C3F5AF47B}|..\\CoreBancarioService.Abstract\\CoreBancarioService.Abstract.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.abstract\\services\\itransactionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DCB6214D-2E8F-4731-B233-A38C3F5AF47B}|..\\CoreBancarioService.Abstract\\CoreBancarioService.Abstract.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.abstract\\services\\iultimomovimientoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9F6D435E-4F5F-4789-AAC1-5B6DD10927C3}|..\\CoreBancarioService.BusinessLogic\\CoreBancarioService.BusinessLogic.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.businesslogic\\transactionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9F6D435E-4F5F-4789-AAC1-5B6DD10927C3}|..\\CoreBancarioService.BusinessLogic\\CoreBancarioService.BusinessLogic.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.businesslogic\\ultimomovimientoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCB6214D-2E8F-4731-B233-A38C3F5AF47B}|..\\CoreBancarioService.Abstract\\CoreBancarioService.Abstract.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.abstract\\repositories\\imovimientorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E42F08AD-31B3-467C-B3C2-1072FA61F089}|..\\CoreBancarioService.DataAccess\\CoreBancarioService.DataAccess.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.dataaccess\\movimientorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9F6D435E-4F5F-4789-AAC1-5B6DD10927C3}|..\\CoreBancarioService.BusinessLogic\\CoreBancarioService.BusinessLogic.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.businesslogic\\bitacora\\bitacoraservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -67,11 +74,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 19,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "CuentaEndpoints.cs",
+              "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioAPI\\CuentaEndpoints.cs",
+              "RelativeDocumentMoniker": "CuentaEndpoints.cs",
+              "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioAPI\\CuentaEndpoints.cs*",
+              "RelativeToolTip": "CuentaEndpoints.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACoAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-19T21:52:10.055Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ITransactionService.cs",
+              "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\Services\\ITransactionService.cs",
+              "RelativeDocumentMoniker": "..\\CoreBancarioService.Abstract\\Services\\ITransactionService.cs",
+              "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\Services\\ITransactionService.cs",
+              "RelativeToolTip": "..\\CoreBancarioService.Abstract\\Services\\ITransactionService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAwAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-19T21:47:11.528Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "IMovimientoRepository.cs",
               "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\Repositories\\IMovimientoRepository.cs",
               "RelativeDocumentMoniker": "..\\CoreBancarioService.Abstract\\Repositories\\IMovimientoRepository.cs",
@@ -83,7 +116,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "MovimientoRepository.cs",
               "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.DataAccess\\MovimientoRepository.cs",
               "RelativeDocumentMoniker": "..\\CoreBancarioService.DataAccess\\MovimientoRepository.cs",
@@ -95,7 +128,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "IUltimoMovimientoService.cs",
               "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\Services\\IUltimoMovimientoService.cs",
               "RelativeDocumentMoniker": "..\\CoreBancarioService.Abstract\\Services\\IUltimoMovimientoService.cs",
@@ -103,36 +136,38 @@
               "RelativeToolTip": "..\\CoreBancarioService.Abstract\\Services\\IUltimoMovimientoService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-18T06:56:42.275Z"
+              "WhenOpened": "2026-02-18T06:56:42.275Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "UltimoMovimientoService.cs",
               "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.BusinessLogic\\UltimoMovimientoService.cs",
               "RelativeDocumentMoniker": "..\\CoreBancarioService.BusinessLogic\\UltimoMovimientoService.cs",
               "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.BusinessLogic\\UltimoMovimientoService.cs",
               "RelativeToolTip": "..\\CoreBancarioService.BusinessLogic\\UltimoMovimientoService.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAAAgwCEAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAABAAAAAAAAAAAAAAACEAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-18T06:22:29.975Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "TransactionService.cs",
               "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.BusinessLogic\\TransactionService.cs",
               "RelativeDocumentMoniker": "..\\CoreBancarioService.BusinessLogic\\TransactionService.cs",
               "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.BusinessLogic\\TransactionService.cs",
               "RelativeToolTip": "..\\CoreBancarioService.BusinessLogic\\TransactionService.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAowD8AAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAtwCMAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-18T06:19:42.447Z"
+              "WhenOpened": "2026-02-18T06:19:42.447Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "BalanceService.cs",
               "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.BusinessLogic\\BalanceService.cs",
               "RelativeDocumentMoniker": "..\\CoreBancarioService.BusinessLogic\\BalanceService.cs",
@@ -144,7 +179,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "BitacoraService.cs",
               "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.BusinessLogic\\Bitacora\\BitacoraService.cs",
               "RelativeDocumentMoniker": "..\\CoreBancarioService.BusinessLogic\\Bitacora\\BitacoraService.cs",
@@ -156,7 +191,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "BitacoraRepository.cs",
               "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.DataAccess\\BitacoraRepository.cs",
               "RelativeDocumentMoniker": "..\\CoreBancarioService.DataAccess\\BitacoraRepository.cs",
@@ -168,7 +203,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "IBitacoraRepository.cs",
               "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\Repositories\\IBitacoraRepository.cs",
               "RelativeDocumentMoniker": "..\\CoreBancarioService.Abstract\\Repositories\\IBitacoraRepository.cs",
@@ -180,7 +215,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "IBitacoraService.cs",
               "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\Bitacora\\IBitacoraService.cs",
               "RelativeDocumentMoniker": "..\\CoreBancarioService.Abstract\\Bitacora\\IBitacoraService.cs",
@@ -192,7 +227,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "BitacoraRequest.cs",
               "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Model\\BitacoraRequest.cs",
               "RelativeDocumentMoniker": "..\\CoreBancarioService.Model\\BitacoraRequest.cs",
@@ -204,7 +239,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 16,
               "Title": "TokenValidation.cs",
               "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioAPI\\Validation\\TokenValidation.cs",
               "RelativeDocumentMoniker": "Validation\\TokenValidation.cs",
@@ -216,7 +251,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "TokenValidationService.cs",
               "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.BusinessLogic\\Security\\TokenValidationService.cs",
               "RelativeDocumentMoniker": "..\\CoreBancarioService.BusinessLogic\\Security\\TokenValidationService.cs",
@@ -228,7 +263,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 17,
               "Title": "ITokenValidationService.cs",
               "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\Security\\ITokenValidationService.cs",
               "RelativeDocumentMoniker": "..\\CoreBancarioService.Abstract\\Security\\ITokenValidationService.cs",
@@ -240,7 +275,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioAPI\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -252,7 +287,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 18,
               "Title": "TransactionService.cs",
               "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancarioService.BusinessLogic\\TransactionService.cs",
               "RelativeDocumentMoniker": "..\\..\\CoreBancarioService.BusinessLogic\\TransactionService.cs",
@@ -264,7 +299,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 19,
               "Title": "ITransactionService.cs",
               "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancarioService.Abstract\\Services\\ITransactionService.cs",
               "RelativeDocumentMoniker": "..\\..\\CoreBancarioService.Abstract\\Services\\ITransactionService.cs",
@@ -276,15 +311,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "MovimientoEndpoints.cs",
               "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioAPI\\MovimientoEndpoints.cs",
               "RelativeDocumentMoniker": "MovimientoEndpoints.cs",
-              "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioAPI\\MovimientoEndpoints.cs",
-              "RelativeToolTip": "MovimientoEndpoints.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAgwEAAAAANAAAAAAAAAA==",
+              "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioAPI\\MovimientoEndpoints.cs*",
+              "RelativeToolTip": "MovimientoEndpoints.cs*",
+              "ViewState": "AgIAADcAAAAAAAAAAAAgwEUAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-31T23:33:54.943Z"
+              "WhenOpened": "2026-01-31T23:33:54.943Z",
+              "EditorCaption": ""
             }
           ]
         }
