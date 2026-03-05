@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CoreBancarioService.DataAccess.Models;
 
-public class Cuenta
+public class Cuenta 
 {
     public int CuentaId { get; set; }
 
@@ -14,6 +14,7 @@ public class Cuenta
     public decimal Saldo { get; set; }
 
     public bool? Estado { get; set; }
+    public string TipoCuenta { get; set; }
 
     public DateTime? FechaCreacion { get; set; }
 

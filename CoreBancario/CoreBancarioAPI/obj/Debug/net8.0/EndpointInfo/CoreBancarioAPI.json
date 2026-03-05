@@ -5,6 +5,29 @@
     "version": "1.0"
   },
   "paths": {
+    "/core/accounts": {
+      "post": {
+        "tags": [
+          "SA11"
+        ],
+        "operationId": "CrearCuenta",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CuentaRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/core/transaction": {
       "post": {
         "tags": [
@@ -93,6 +116,20 @@
   },
   "components": {
     "schemas": {
+      "CuentaRequest": {
+        "type": "object",
+        "properties": {
+          "clienteId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tipoCuenta": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "TransactionRequest": {
         "type": "object",
         "properties": {

@@ -3,68 +3,62 @@
   "WorkspaceRootPath": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BC18F7A5-364E-4A0F-932E-FBC24F90E04F}|CoreBancarioAPI.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioapi\\cuentaendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BC18F7A5-364E-4A0F-932E-FBC24F90E04F}|CoreBancarioAPI.csproj|solutionrelative:cuentaendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9F6D435E-4F5F-4789-AAC1-5B6DD10927C3}|..\\CoreBancarioService.BusinessLogic\\CoreBancarioService.BusinessLogic.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.businesslogic\\cuentaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC18F7A5-364E-4A0F-932E-FBC24F90E04F}|CoreBancarioAPI.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioapi\\cuentacoreendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC18F7A5-364E-4A0F-932E-FBC24F90E04F}|CoreBancarioAPI.csproj|solutionrelative:cuentacoreendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E42F08AD-31B3-467C-B3C2-1072FA61F089}|..\\CoreBancarioService.DataAccess\\CoreBancarioService.DataAccess.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.dataaccess\\models\\cuenta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9F6D435E-4F5F-4789-AAC1-5B6DD10927C3}|..\\CoreBancarioService.BusinessLogic\\CoreBancarioService.BusinessLogic.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.businesslogic\\transactionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E42F08AD-31B3-467C-B3C2-1072FA61F089}|..\\CoreBancarioService.DataAccess\\CoreBancarioService.DataAccess.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.dataaccess\\cuentarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3EAE11D1-2EE8-4A01-BB8E-6A1BCAF4753A}|..\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.model\\cuentaresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3EAE11D1-2EE8-4A01-BB8E-6A1BCAF4753A}|..\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.model\\cuentarequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9F6D435E-4F5F-4789-AAC1-5B6DD10927C3}|..\\CoreBancarioService.BusinessLogic\\CoreBancarioService.BusinessLogic.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.businesslogic\\balanceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCB6214D-2E8F-4731-B233-A38C3F5AF47B}|..\\CoreBancarioService.Abstract\\CoreBancarioService.Abstract.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.abstract\\services\\icuentaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BC18F7A5-364E-4A0F-932E-FBC24F90E04F}|CoreBancarioAPI.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioapi\\movimientoendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BC18F7A5-364E-4A0F-932E-FBC24F90E04F}|CoreBancarioAPI.csproj|solutionrelative:movimientoendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DCB6214D-2E8F-4731-B233-A38C3F5AF47B}|..\\CoreBancarioService.Abstract\\CoreBancarioService.Abstract.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.abstract\\services\\itransactionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DCB6214D-2E8F-4731-B233-A38C3F5AF47B}|..\\CoreBancarioService.Abstract\\CoreBancarioService.Abstract.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.abstract\\services\\iultimomovimientoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9F6D435E-4F5F-4789-AAC1-5B6DD10927C3}|..\\CoreBancarioService.BusinessLogic\\CoreBancarioService.BusinessLogic.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.businesslogic\\transactionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9F6D435E-4F5F-4789-AAC1-5B6DD10927C3}|..\\CoreBancarioService.BusinessLogic\\CoreBancarioService.BusinessLogic.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.businesslogic\\ultimomovimientoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DCB6214D-2E8F-4731-B233-A38C3F5AF47B}|..\\CoreBancarioService.Abstract\\CoreBancarioService.Abstract.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.abstract\\repositories\\icuentarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DCB6214D-2E8F-4731-B233-A38C3F5AF47B}|..\\CoreBancarioService.Abstract\\CoreBancarioService.Abstract.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.abstract\\repositories\\imovimientorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E42F08AD-31B3-467C-B3C2-1072FA61F089}|..\\CoreBancarioService.DataAccess\\CoreBancarioService.DataAccess.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.dataaccess\\movimientorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3EAE11D1-2EE8-4A01-BB8E-6A1BCAF4753A}|..\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.model\\transactionrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9F6D435E-4F5F-4789-AAC1-5B6DD10927C3}|..\\CoreBancarioService.BusinessLogic\\CoreBancarioService.BusinessLogic.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.businesslogic\\bitacora\\bitacoraservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9F6D435E-4F5F-4789-AAC1-5B6DD10927C3}|..\\CoreBancarioService.BusinessLogic\\CoreBancarioService.BusinessLogic.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.businesslogic\\excepciones\\clientenoexiste.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3EAE11D1-2EE8-4A01-BB8E-6A1BCAF4753A}|..\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.model\\bitacorarequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BC18F7A5-364E-4A0F-932E-FBC24F90E04F}|CoreBancarioAPI.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioapi\\cuentaendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC18F7A5-364E-4A0F-932E-FBC24F90E04F}|CoreBancarioAPI.csproj|solutionrelative:cuentaendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9F6D435E-4F5F-4789-AAC1-5B6DD10927C3}|..\\CoreBancarioService.BusinessLogic\\CoreBancarioService.BusinessLogic.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.businesslogic\\balanceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E42F08AD-31B3-467C-B3C2-1072FA61F089}|..\\CoreBancarioService.DataAccess\\CoreBancarioService.DataAccess.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.dataaccess\\bitacorarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3EAE11D1-2EE8-4A01-BB8E-6A1BCAF4753A}|..\\CoreBancarioService.Model\\CoreBancarioService.Model.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.model\\transactionresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BC18F7A5-364E-4A0F-932E-FBC24F90E04F}|CoreBancarioAPI.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BC18F7A5-364E-4A0F-932E-FBC24F90E04F}|CoreBancarioAPI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DCB6214D-2E8F-4731-B233-A38C3F5AF47B}|..\\CoreBancarioService.Abstract\\CoreBancarioService.Abstract.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.abstract\\repositories\\ibitacorarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DCB6214D-2E8F-4731-B233-A38C3F5AF47B}|..\\CoreBancarioService.Abstract\\CoreBancarioService.Abstract.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.abstract\\bitacora\\ibitacoraservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9F6D435E-4F5F-4789-AAC1-5B6DD10927C3}|..\\CoreBancarioService.BusinessLogic\\CoreBancarioService.BusinessLogic.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.businesslogic\\security\\tokenvalidationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BC18F7A5-364E-4A0F-932E-FBC24F90E04F}|CoreBancarioAPI.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioapi\\validation\\tokenvalidation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BC18F7A5-364E-4A0F-932E-FBC24F90E04F}|CoreBancarioAPI.csproj|solutionrelative:validation\\tokenvalidation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DCB6214D-2E8F-4731-B233-A38C3F5AF47B}|..\\CoreBancarioService.Abstract\\CoreBancarioService.Abstract.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.abstract\\security\\itokenvalidationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\ProyectoProgra5\\CoreBancarioService.BusinessLogic\\TransactionService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\ProyectoProgra5\\CoreBancarioService.Abstract\\Services\\ITransactionService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DCB6214D-2E8F-4731-B233-A38C3F5AF47B}|..\\CoreBancarioService.Abstract\\CoreBancarioService.Abstract.csproj|d:\\proyectoprogra5\\corebancario\\corebancarioservice.abstract\\services\\itransactionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -74,252 +68,238 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CuentaEndpoints.cs",
-              "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioAPI\\CuentaEndpoints.cs",
-              "RelativeDocumentMoniker": "CuentaEndpoints.cs",
-              "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioAPI\\CuentaEndpoints.cs",
-              "RelativeToolTip": "CuentaEndpoints.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAgwCoAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-19T21:52:10.055Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ITransactionService.cs",
-              "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\Services\\ITransactionService.cs",
-              "RelativeDocumentMoniker": "..\\CoreBancarioService.Abstract\\Services\\ITransactionService.cs",
-              "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\Services\\ITransactionService.cs",
-              "RelativeToolTip": "..\\CoreBancarioService.Abstract\\Services\\ITransactionService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAwAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-19T21:47:11.528Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 11,
               "Title": "IMovimientoRepository.cs",
               "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\Repositories\\IMovimientoRepository.cs",
               "RelativeDocumentMoniker": "..\\CoreBancarioService.Abstract\\Repositories\\IMovimientoRepository.cs",
               "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\Repositories\\IMovimientoRepository.cs",
               "RelativeToolTip": "..\\CoreBancarioService.Abstract\\Repositories\\IMovimientoRepository.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAtwBQAAAB2AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-18T06:59:59.212Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "MovimientoRepository.cs",
-              "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.DataAccess\\MovimientoRepository.cs",
-              "RelativeDocumentMoniker": "..\\CoreBancarioService.DataAccess\\MovimientoRepository.cs",
-              "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.DataAccess\\MovimientoRepository.cs",
-              "RelativeToolTip": "..\\CoreBancarioService.DataAccess\\MovimientoRepository.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAowCwAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-18T06:59:02.741Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "IUltimoMovimientoService.cs",
-              "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\Services\\IUltimoMovimientoService.cs",
-              "RelativeDocumentMoniker": "..\\CoreBancarioService.Abstract\\Services\\IUltimoMovimientoService.cs",
-              "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\Services\\IUltimoMovimientoService.cs",
-              "RelativeToolTip": "..\\CoreBancarioService.Abstract\\Services\\IUltimoMovimientoService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-18T06:56:42.275Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "UltimoMovimientoService.cs",
-              "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.BusinessLogic\\UltimoMovimientoService.cs",
-              "RelativeDocumentMoniker": "..\\CoreBancarioService.BusinessLogic\\UltimoMovimientoService.cs",
-              "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.BusinessLogic\\UltimoMovimientoService.cs",
-              "RelativeToolTip": "..\\CoreBancarioService.BusinessLogic\\UltimoMovimientoService.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAAACEAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-18T06:22:29.975Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "TransactionService.cs",
-              "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.BusinessLogic\\TransactionService.cs",
-              "RelativeDocumentMoniker": "..\\CoreBancarioService.BusinessLogic\\TransactionService.cs",
-              "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.BusinessLogic\\TransactionService.cs",
-              "RelativeToolTip": "..\\CoreBancarioService.BusinessLogic\\TransactionService.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAtwCMAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-18T06:19:42.447Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "BalanceService.cs",
-              "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.BusinessLogic\\BalanceService.cs",
-              "RelativeDocumentMoniker": "..\\CoreBancarioService.BusinessLogic\\BalanceService.cs",
-              "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.BusinessLogic\\BalanceService.cs",
-              "RelativeToolTip": "..\\CoreBancarioService.BusinessLogic\\BalanceService.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAowDYAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-18T06:17:23.667Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "BitacoraService.cs",
-              "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.BusinessLogic\\Bitacora\\BitacoraService.cs",
-              "RelativeDocumentMoniker": "..\\CoreBancarioService.BusinessLogic\\Bitacora\\BitacoraService.cs",
-              "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.BusinessLogic\\Bitacora\\BitacoraService.cs",
-              "RelativeToolTip": "..\\CoreBancarioService.BusinessLogic\\Bitacora\\BitacoraService.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAA1wDMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-18T06:07:58.298Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "BitacoraRepository.cs",
-              "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.DataAccess\\BitacoraRepository.cs",
-              "RelativeDocumentMoniker": "..\\CoreBancarioService.DataAccess\\BitacoraRepository.cs",
-              "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.DataAccess\\BitacoraRepository.cs",
-              "RelativeToolTip": "..\\CoreBancarioService.DataAccess\\BitacoraRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-18T06:04:04.518Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "IBitacoraRepository.cs",
-              "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\Repositories\\IBitacoraRepository.cs",
-              "RelativeDocumentMoniker": "..\\CoreBancarioService.Abstract\\Repositories\\IBitacoraRepository.cs",
-              "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\Repositories\\IBitacoraRepository.cs",
-              "RelativeToolTip": "..\\CoreBancarioService.Abstract\\Repositories\\IBitacoraRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-18T06:03:23.105Z"
+              "WhenOpened": "2026-03-04T05:44:29.21Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 14,
-              "Title": "IBitacoraService.cs",
-              "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\Bitacora\\IBitacoraService.cs",
-              "RelativeDocumentMoniker": "..\\CoreBancarioService.Abstract\\Bitacora\\IBitacoraService.cs",
-              "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\Bitacora\\IBitacoraService.cs",
-              "RelativeToolTip": "..\\CoreBancarioService.Abstract\\Bitacora\\IBitacoraService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA4AAAAAAAAAA==",
+              "Title": "CuentaEndpoints.cs",
+              "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioAPI\\CuentaEndpoints.cs",
+              "RelativeDocumentMoniker": "CuentaEndpoints.cs",
+              "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioAPI\\CuentaEndpoints.cs",
+              "RelativeToolTip": "CuentaEndpoints.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-18T06:02:10.744Z"
+              "WhenOpened": "2026-03-04T05:12:03.218Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "BitacoraRequest.cs",
-              "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Model\\BitacoraRequest.cs",
-              "RelativeDocumentMoniker": "..\\CoreBancarioService.Model\\BitacoraRequest.cs",
-              "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Model\\BitacoraRequest.cs",
-              "RelativeToolTip": "..\\CoreBancarioService.Model\\BitacoraRequest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwA8AAAAFAAAAAAAAAA==",
+              "DocumentIndex": 13,
+              "Title": "ClienteNoExiste.cs",
+              "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.BusinessLogic\\Excepciones\\ClienteNoExiste.cs",
+              "RelativeDocumentMoniker": "..\\CoreBancarioService.BusinessLogic\\Excepciones\\ClienteNoExiste.cs",
+              "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.BusinessLogic\\Excepciones\\ClienteNoExiste.cs",
+              "RelativeToolTip": "..\\CoreBancarioService.BusinessLogic\\Excepciones\\ClienteNoExiste.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-18T06:00:02.763Z"
+              "WhenOpened": "2026-03-04T05:09:47.403Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 16,
-              "Title": "TokenValidation.cs",
-              "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioAPI\\Validation\\TokenValidation.cs",
-              "RelativeDocumentMoniker": "Validation\\TokenValidation.cs",
-              "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioAPI\\Validation\\TokenValidation.cs",
-              "RelativeToolTip": "Validation\\TokenValidation.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAowAgAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-15T17:07:47.076Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "TokenValidationService.cs",
-              "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.BusinessLogic\\Security\\TokenValidationService.cs",
-              "RelativeDocumentMoniker": "..\\CoreBancarioService.BusinessLogic\\Security\\TokenValidationService.cs",
-              "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.BusinessLogic\\Security\\TokenValidationService.cs",
-              "RelativeToolTip": "..\\CoreBancarioService.BusinessLogic\\Security\\TokenValidationService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-15T17:05:26.815Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "ITokenValidationService.cs",
-              "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\Security\\ITokenValidationService.cs",
-              "RelativeDocumentMoniker": "..\\CoreBancarioService.Abstract\\Security\\ITokenValidationService.cs",
-              "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\Security\\ITokenValidationService.cs",
-              "RelativeToolTip": "..\\CoreBancarioService.Abstract\\Security\\ITokenValidationService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-15T17:03:49.369Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioAPI\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioAPI\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAyAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAewBsAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-31T23:42:12.093Z"
+              "WhenOpened": "2026-03-03T06:07:21.767Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 3,
               "Title": "TransactionService.cs",
-              "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancarioService.BusinessLogic\\TransactionService.cs",
-              "RelativeDocumentMoniker": "..\\..\\CoreBancarioService.BusinessLogic\\TransactionService.cs",
-              "ToolTip": "D:\\ProyectoProgra5\\CoreBancarioService.BusinessLogic\\TransactionService.cs",
-              "RelativeToolTip": "..\\..\\CoreBancarioService.BusinessLogic\\TransactionService.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAA1wAEAAAAAAAAAAAAAAA==",
+              "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.BusinessLogic\\TransactionService.cs",
+              "RelativeDocumentMoniker": "..\\CoreBancarioService.BusinessLogic\\TransactionService.cs",
+              "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.BusinessLogic\\TransactionService.cs",
+              "RelativeToolTip": "..\\CoreBancarioService.BusinessLogic\\TransactionService.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAowGYAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-31T23:39:05.436Z"
+              "WhenOpened": "2026-03-03T05:16:49.392Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 15,
+              "Title": "TransactionResponse.cs",
+              "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Model\\TransactionResponse.cs",
+              "RelativeDocumentMoniker": "..\\CoreBancarioService.Model\\TransactionResponse.cs",
+              "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Model\\TransactionResponse.cs",
+              "RelativeToolTip": "..\\CoreBancarioService.Model\\TransactionResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T05:05:38.137Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "TransactionRequest.cs",
+              "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Model\\TransactionRequest.cs",
+              "RelativeDocumentMoniker": "..\\CoreBancarioService.Model\\TransactionRequest.cs",
+              "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Model\\TransactionRequest.cs",
+              "RelativeToolTip": "..\\CoreBancarioService.Model\\TransactionRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T04:55:57.045Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
               "Title": "ITransactionService.cs",
-              "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancarioService.Abstract\\Services\\ITransactionService.cs",
-              "RelativeDocumentMoniker": "..\\..\\CoreBancarioService.Abstract\\Services\\ITransactionService.cs",
-              "ToolTip": "D:\\ProyectoProgra5\\CoreBancarioService.Abstract\\Services\\ITransactionService.cs",
-              "RelativeToolTip": "..\\..\\CoreBancarioService.Abstract\\Services\\ITransactionService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAwAAAAuAAAAAAAAAA==",
+              "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\Services\\ITransactionService.cs",
+              "RelativeDocumentMoniker": "..\\CoreBancarioService.Abstract\\Services\\ITransactionService.cs",
+              "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\Services\\ITransactionService.cs",
+              "RelativeToolTip": "..\\CoreBancarioService.Abstract\\Services\\ITransactionService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-31T23:34:32.905Z"
+              "WhenOpened": "2026-03-03T05:04:32.343Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 9,
               "Title": "MovimientoEndpoints.cs",
               "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioAPI\\MovimientoEndpoints.cs",
               "RelativeDocumentMoniker": "MovimientoEndpoints.cs",
               "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioAPI\\MovimientoEndpoints.cs",
               "RelativeToolTip": "MovimientoEndpoints.cs",
-              "ViewState": "AgIAADEAAAAAAAAAAAAgwEUAAAAhAAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAQwBEAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-31T23:33:54.943Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ICuentaRepository.cs",
+              "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\Repositories\\ICuentaRepository.cs",
+              "RelativeDocumentMoniker": "..\\CoreBancarioService.Abstract\\Repositories\\ICuentaRepository.cs",
+              "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\Repositories\\ICuentaRepository.cs",
+              "RelativeToolTip": "..\\CoreBancarioService.Abstract\\Repositories\\ICuentaRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-04T03:46:46.78Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CuentaRepository.cs",
+              "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.DataAccess\\CuentaRepository.cs",
+              "RelativeDocumentMoniker": "..\\CoreBancarioService.DataAccess\\CuentaRepository.cs",
+              "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.DataAccess\\CuentaRepository.cs",
+              "RelativeToolTip": "..\\CoreBancarioService.DataAccess\\CuentaRepository.cs",
+              "ViewState": "AgIAADoAAAAAAAAAAADwvzkAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T05:27:49.174Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CuentaResponse.cs",
+              "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Model\\CuentaResponse.cs",
+              "RelativeDocumentMoniker": "..\\CoreBancarioService.Model\\CuentaResponse.cs",
+              "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Model\\CuentaResponse.cs",
+              "RelativeToolTip": "..\\CoreBancarioService.Model\\CuentaResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T05:05:32.008Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ICuentaService.cs",
+              "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\Services\\ICuentaService.cs",
+              "RelativeDocumentMoniker": "..\\CoreBancarioService.Abstract\\Services\\ICuentaService.cs",
+              "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Abstract\\Services\\ICuentaService.cs",
+              "RelativeToolTip": "..\\CoreBancarioService.Abstract\\Services\\ICuentaService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAkAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T05:04:23.565Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CuentaService.cs",
+              "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.BusinessLogic\\CuentaService.cs",
+              "RelativeDocumentMoniker": "..\\CoreBancarioService.BusinessLogic\\CuentaService.cs",
+              "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.BusinessLogic\\CuentaService.cs",
+              "RelativeToolTip": "..\\CoreBancarioService.BusinessLogic\\CuentaService.cs",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAowFIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T05:03:58.044Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Cuenta.cs",
+              "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.DataAccess\\Models\\Cuenta.cs",
+              "RelativeDocumentMoniker": "..\\CoreBancarioService.DataAccess\\Models\\Cuenta.cs",
+              "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.DataAccess\\Models\\Cuenta.cs",
+              "RelativeToolTip": "..\\CoreBancarioService.DataAccess\\Models\\Cuenta.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T04:56:43.947Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CuentaRequest.cs",
+              "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Model\\CuentaRequest.cs",
+              "RelativeDocumentMoniker": "..\\CoreBancarioService.Model\\CuentaRequest.cs",
+              "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.Model\\CuentaRequest.cs",
+              "RelativeToolTip": "..\\CoreBancarioService.Model\\CuentaRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T04:55:43.767Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CuentaCoreEndpoints.cs",
+              "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioAPI\\CuentaCoreEndpoints.cs",
+              "RelativeDocumentMoniker": "CuentaCoreEndpoints.cs",
+              "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioAPI\\CuentaCoreEndpoints.cs",
+              "RelativeToolTip": "CuentaCoreEndpoints.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABMAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T04:46:04.239Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "BalanceService.cs",
+              "DocumentMoniker": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.BusinessLogic\\BalanceService.cs",
+              "RelativeDocumentMoniker": "..\\CoreBancarioService.BusinessLogic\\BalanceService.cs",
+              "ToolTip": "D:\\ProyectoProgra5\\CoreBancario\\CoreBancarioService.BusinessLogic\\BalanceService.cs",
+              "RelativeToolTip": "..\\CoreBancarioService.BusinessLogic\\BalanceService.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAgwD0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-04T05:05:07.516Z",
               "EditorCaption": ""
             }
           ]

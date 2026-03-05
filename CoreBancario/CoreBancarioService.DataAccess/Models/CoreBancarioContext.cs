@@ -83,6 +83,11 @@ public partial class CoreBancarioContext : DbContext
             entity.Property(e => e.Saldo)
                 .HasColumnType("decimal(15, 2)")
                 .HasColumnName("saldo");
+            entity.Property(e => e.TipoCuenta)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("TipoCuenta")
+                .IsRequired();
 
             entity.HasOne(d => d.Cliente).WithMany(p => p.Cuenta)
                 .HasForeignKey(d => d.ClienteId)

@@ -1,5 +1,31 @@
 [
   {
+    "ContainingType": "CoreBancarioAPI.CuentaCoreEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapCuentaCoreEndpoints\u003Eb__0_0",
+    "RelativePath": "core/accounts/",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "CoreBancarioService.Model.CuentaRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "SA11"
+    ],
+    "EndpointName": "CrearCuenta"
+  },
+  {
     "ContainingType": "CoreBancarioAPI.CuentaEndpoints\u002B\u003C\u003Ec",
     "Method": "\u003CMapCuentaEndpoints\u003Eb__0_0",
     "RelativePath": "core/balance/",

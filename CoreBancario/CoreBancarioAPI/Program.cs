@@ -25,6 +25,7 @@ builder.Services.AddDbContext<CoreBancarioContext>(options =>
 );
 
 builder.Services.AddScoped<ITransactionService, TransactionService>();
+builder.Services.AddScoped<ICuentaService, CuentaService>();
 
 builder.Services.AddHttpClient<ITokenValidationService, TokenValidationService>(client =>
 {
@@ -56,6 +57,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseMiddleware<TokenValidation>();
 
+app.MapCuentaCoreEndpoints();
 app.MapCuentaEndpoints();
 app.MapMovimientoEndpoints();
 

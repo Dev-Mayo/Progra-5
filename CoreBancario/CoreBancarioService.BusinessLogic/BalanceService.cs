@@ -62,11 +62,9 @@ namespace CoreBancarioService.BusinessLogic
 
                 return response;
             }
-            catch (SqlException ex) when (ex.Number == 50010)
+            catch (SqlException ex)
             {
-                throw new CuentaNoExisteException(
-                    "La cuenta no existe o no pertenece al cliente"
-                );
+                throw new CuentaNoExisteException(ex.Message);
             }
         }
 

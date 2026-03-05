@@ -49,10 +49,10 @@ public static class MovimientoEndpoints
                                    .WithTags("SRV16");
 
         movementsGroup.MapGet("/", async (
-    string identificacion,
-    string numeroCuenta,
-    IUltimoMovimientoService service
-) =>
+            string identificacion,
+            string numeroCuenta,
+            IUltimoMovimientoService service
+        ) =>
         {
             try
             {

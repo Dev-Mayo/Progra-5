@@ -47,7 +47,6 @@ public static class CuentaEndpoints
             catch (Exception)
             {
                 return Results.Problem(
-                    type: "core/balance/internal-error",
                     title: "Error interno",
                     statusCode: 500
                 );

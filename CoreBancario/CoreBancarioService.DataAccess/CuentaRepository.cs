@@ -59,5 +59,91 @@ namespace CoreBancarioService.DataAccess
         {
             public decimal Saldo { get; set; }
         }
+        //-----------------------------------------------SA11------------------
+        //Falta probar SPs
+        public void CrearCuenta(
+            int ClienteId,
+            string TipoCuenta)
+        {
+            var parametros = new[]
+            {
+                new SqlParameter("@Identificacion", ClienteId),
+                new SqlParameter("@TipoCuenta", TipoCuenta)
+            };
+
+            _context.Database.ExecuteSqlRaw(
+                "EXEC sp_CrearCuenta @Identificacion, @TipoCuenta", // falta crear SP
+                parametros
+            );
+        }
+
+        public void EditarCuenta(
+            int ClienteId,
+            string NumeroCuenta,
+            string TipoCuenta)
+        {
+            var parametros = new[]
+            {
+                new SqlParameter("@ClienteId", ClienteId),
+                new SqlParameter("@NumeroCuenta", NumeroCuenta),
+                new SqlParameter("@TipoCuenta", TipoCuenta) // falta agregar este campo a la BD
+            };
+
+            _context.Database.ExecuteSqlRaw(
+                "EXEC sp_EditarCuenta @ClienteId, @NumeroCuenta, @TipoCuenta", // falta crear SP
+                parametros
+            );
+        }
+
+        public void EliminarCuenta (
+            int ClienteId,
+            string NumeroCuenta)
+        {
+            var parametros = new[]
+            {
+                new SqlParameter("@ClienteId", ClienteId),
+                new SqlParameter("@NumeroCuenta", NumeroCuenta)
+            };
+
+            _context.Database.ExecuteSqlRaw(
+                "EXEC sp_EliminarCuenta @ClienteId, @NumeroCuenta", // falta probar SP
+                parametros
+            );
+        }
+
+        public void ListarTodas()
+        {            
+            _context.Database.ExecuteSqlRaw(
+                "EXEC sp_ListarTodas" // falta probar SP
+            );
+        }
+
+        public void ListarPorLlavePrimaria(
+            string NumeroCuenta)
+        {
+            var parametros = new[]
+            {
+                new SqlParameter("@NumeroCuenta", NumeroCuenta)
+            };
+
+            _context.Database.ExecuteSqlRaw(
+                "EXEC sp_ListarPorLlavePrimaria @NumeroCuenta", // falta probar SP
+                parametros
+            );
+        }
+
+        public void ListarPorCliente(
+            int ClienteId)
+        {
+            var parametros = new[]
+            {
+                new SqlParameter("@ClienteId", ClienteId)
+            };
+
+            _context.Database.ExecuteSqlRaw(
+                "EXEC sp_ListarPorCliente @ClienteId", // falta probar SP
+                parametros
+            );
+        }
     }
 }

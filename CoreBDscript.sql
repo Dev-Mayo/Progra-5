@@ -28,6 +28,9 @@ create TABLE cuenta (
         FOREIGN KEY (cliente_id) REFERENCES cliente(cliente_id)
 );
 
+ALTER TABLE cuenta
+ADD TipoCuenta VARCHAR(20) NOT NULL DEFAULT 'Corriente';
+
 --MOVIMIENTOS
 create TABLE movimiento (
     movimiento_id INT IDENTITY(1,1) PRIMARY KEY,
@@ -239,5 +242,288 @@ BEGIN
     WHERE cl.identificacion = @Identificacion
       AND c.numero_cuenta = @NumeroCuenta
     ORDER BY m.fecha_movimiento DESC;
+END;
+GO
+
+-----------------------------------------------------------------------
+----------------------------SA11---------------------------------------
+-----------------------------------------------------------------------
+create PROCEDURE sp_CrearCuenta
+(
+    @Identificacion INT, 
+    @TipoCuenta VARCHAR(20)
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @CuentaId INT;
+    DECLARE @NumeroCuenta VARCHAR(20);
+    DECLARE @UltimoNumero INT;
+    DECLARE @NuevoNumero INT;
+    DECLARE @ClienteId INT;
+    DECLARE @Prefix VARCHAR(2);
+
+    BEGIN TRY
+        BEGIN TRANSACTION;
+
+        IF NOT EXISTS (
+            SELECT 1 
+            FROM cliente 
+            WHERE identificacion = @Identificacion 
+              AND estado = 1
+        )
+        BEGIN
+            THROW 50070, 'El cliente no existe o está inactivo', 1;
+        END
+
+        IF @TipoCuenta NOT IN ('Corriente', 'Ahorros')
+        BEGIN
+            THROW 50071, 'Tipo de cuenta inválido. Debe ser Corriente o Ahorros', 1;
+        END
+
+        IF @TipoCuenta = 'Corriente'
+            SET @Prefix = 'CR';
+        ELSE
+            SET @Prefix = 'CR'; 
+
+        SELECT TOP 1 @UltimoNumero = CAST(SUBSTRING(numero_cuenta, LEN(@Prefix) + 1, LEN(numero_cuenta) - LEN(@Prefix)) AS INT)
+        FROM cuenta WITH (UPDLOCK, ROWLOCK)
+        WHERE numero_cuenta LIKE @Prefix + '%'
+        ORDER BY cuenta_id DESC;
+
+        IF @UltimoNumero IS NULL
+            SET @NuevoNumero = 1;
+        ELSE
+            SET @NuevoNumero = @UltimoNumero + 1;
+
+        SET @NumeroCuenta = @Prefix + RIGHT('100000' + CAST(@NuevoNumero AS VARCHAR(10)), 5);
+
+        SELECT @ClienteId = cliente_id 
+        FROM cliente 
+        WHERE identificacion = @Identificacion 
+          AND estado = 1;
+
+        INSERT INTO cuenta 
+        (
+            numero_cuenta,
+            cliente_id,
+            saldo,
+            estado,
+            fecha_creacion,
+            TipoCuenta
+        )
+        VALUES
+        (
+            @NumeroCuenta,
+            @ClienteId,
+            0.00,
+            1,
+            GETDATE(),
+            @TipoCuenta
+        );
+
+        SET @CuentaId = SCOPE_IDENTITY();
+        SELECT @CuentaId AS CuentaId, @NumeroCuenta AS NumeroCuenta;
+
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0
+            ROLLBACK TRANSACTION;
+
+        THROW;
+    END CATCH
+END;
+GO
+
+CREATE PROCEDURE sp_EditarCuenta
+(
+    @ClienteId INT,
+    @NumeroCuenta VARCHAR(20),
+    @TipoCuenta VARCHAR(20)
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    BEGIN TRY
+        BEGIN TRANSACTION;
+
+        -- Validar que el tipo de cuenta sea válido
+        IF @TipoCuenta NOT IN ('Corriente', 'Ahorros')
+        BEGIN
+            THROW 50030, 'Tipo de cuenta inválido. Debe ser Corriente o Ahorros', 1;
+        END
+
+        -- Validar que la cuenta exista y pertenezca al cliente
+        IF NOT EXISTS (
+            SELECT 1 
+            FROM cuenta c
+            INNER JOIN cliente cl ON c.cliente_id = cl.cliente_id
+            WHERE c.numero_cuenta = @NumeroCuenta
+              AND c.cliente_id = @ClienteId
+              AND c.estado = 1
+              AND cl.estado = 1
+        )
+        BEGIN
+            THROW 50031, 'La cuenta no existe o no pertenece al cliente', 1;
+        END
+
+        -- Actualizar el tipo de cuenta
+        UPDATE cuenta
+        SET TipoCuenta = @TipoCuenta
+        WHERE numero_cuenta = @NumeroCuenta;
+
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0
+            ROLLBACK TRANSACTION;
+
+        THROW;
+    END CATCH
+END;
+GO
+
+CREATE PROCEDURE sp_EliminarCuenta
+(
+    @ClienteId INT,
+    @NumeroCuenta VARCHAR(20)
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    BEGIN TRY
+        BEGIN TRANSACTION;
+
+        -- Validar que la cuenta exista y pertenezca al cliente
+        IF NOT EXISTS (
+            SELECT 1 
+            FROM cuenta c
+            INNER JOIN cliente cl ON c.cliente_id = cl.cliente_id
+            WHERE c.numero_cuenta = @NumeroCuenta
+              AND c.cliente_id = @ClienteId
+              AND c.estado = 1
+              AND cl.estado = 1
+        )
+        BEGIN
+            THROW 50040, 'La cuenta no existe o no pertenece al cliente', 1;
+        END
+
+        -- Validar que no tenga movimientos pendientes (opcional, según negocio)
+        IF EXISTS (
+            SELECT 1 
+            FROM movimiento m
+            WHERE m.cuenta_id = (SELECT cuenta_id FROM cuenta WHERE numero_cuenta = @NumeroCuenta)
+        )
+        BEGIN
+            THROW 50041, 'No se puede eliminar una cuenta con movimientos registrados', 1;
+        END
+
+        -- Soft delete (marcar como inactiva)
+        UPDATE cuenta
+        SET estado = 0
+        WHERE numero_cuenta = @NumeroCuenta;
+
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0
+            ROLLBACK TRANSACTION;
+
+        THROW;
+    END CATCH
+END;
+GO
+
+CREATE PROCEDURE sp_ListarTodas
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        c.cuenta_id,
+        c.numero_cuenta,
+        c.saldo,
+        c.TipoCuenta,
+        c.estado,
+        c.fecha_creacion,
+        cl.cliente_id,
+        cl.identificacion,
+        cl.nombre,
+        cl.apellido,
+        cl.Email
+    FROM cuenta c
+    INNER JOIN cliente cl ON c.cliente_id = cl.cliente_id
+    WHERE c.estado = 1
+      AND cl.estado = 1
+    ORDER BY c.fecha_creacion DESC;
+END;
+GO
+
+CREATE PROCEDURE sp_ListarPorLlavePrimaria
+(
+    @NumeroCuenta VARCHAR(20)
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        c.cuenta_id,
+        c.numero_cuenta,
+        c.saldo,
+        c.TipoCuenta,
+        c.estado,
+        c.fecha_creacion,
+        cl.cliente_id,
+        cl.identificacion,
+        cl.nombre,
+        cl.apellido,
+        cl.Email
+    FROM cuenta c
+    INNER JOIN cliente cl ON c.cliente_id = cl.cliente_id
+    WHERE c.numero_cuenta = @NumeroCuenta
+      AND c.estado = 1
+      AND cl.estado = 1;
+
+    IF @@ROWCOUNT = 0
+    BEGIN
+        THROW 50050, 'Cuenta no encontrada', 1;
+    END
+END;
+GO
+
+CREATE PROCEDURE sp_ListarPorCliente
+(
+    @ClienteId INT
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        c.cuenta_id,
+        c.numero_cuenta,
+        c.saldo,
+        c.TipoCuenta,
+        c.estado,
+        c.fecha_creacion,
+        cl.identificacion,
+        cl.nombre,
+        cl.apellido
+    FROM cuenta c
+    INNER JOIN cliente cl ON c.cliente_id = cl.cliente_id
+    WHERE c.cliente_id = @ClienteId
+      AND c.estado = 1
+      AND cl.estado = 1
+    ORDER BY c.fecha_creacion DESC;
+
+    IF @@ROWCOUNT = 0
+    BEGIN
+        THROW 50060, 'Cliente no encontrado o no tiene cuentas activas', 1;
+    END
 END;
 GO
