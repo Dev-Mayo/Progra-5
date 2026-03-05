@@ -1,0 +1,262 @@
+{
+  "info": {
+    "_postman_id": "d109dc81-d92d-4f18-b8b3-ca69d137a290",
+    "name": "Proyecto Microservicios",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52414678",
+    "_collection_link": "https://go.postman.co/collection/52414678-d109dc81-d92d-4f18-b8b3-ca69d137a290?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Catalogo - Crear Producto",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Laptop Acer 300HD\",\n  \"precio\": 1000,\n  \"stock\": 10\n}"
+        },
+        "url": {
+          "raw": "https://localhost:7161/api/Productos",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7161",
+          "path": [
+            "api",
+            "Productos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Catalogo - Listar 1",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://localhost:7161/api/productos/69a50beaa7653d923e1750b7",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7161",
+          "path": [
+            "api",
+            "productos",
+            "69a50beaa7653d923e1750b7"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Catalogo - Listar Todo",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://localhost:7161/api/productos",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7161",
+          "path": [
+            "api",
+            "productos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Ordenes - Crear Pedido",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"productoId\": \"69a50beaa7653d923e1750b7\",\n  \"cantidad\": 2,\n  \"fecha\": \"2026-02-27T10:00:00Z\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://localhost:7161/api/pedidos",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7161",
+          "path": [
+            "api",
+            "pedidos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Ordenes - Listar Todo Pedidos",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://localhost:7161/api/pedidos",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7161",
+          "path": [
+            "api",
+            "pedidos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Gateway - Resumen Orden",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://localhost:7161/api/resumen-orden/69a4fbb5714ae96a0641ef5a",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7161",
+          "path": [
+            "api",
+            "resumen-orden",
+            "69a4fbb5714ae96a0641ef5a"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Catalogo - Actualizar (PUT)",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"69a2df718a4ae63d93ad727a\",\n  \"nombre\": \"Monitor Editado\",\n  \"precio\": 350.00,\n  \"stock\": 5\n}"
+        },
+        "url": {
+          "raw": "https://localhost:7161/api/productos/69a2df718a4ae63d93ad727a",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7161",
+          "path": [
+            "api",
+            "productos",
+            "69a2df718a4ae63d93ad727a"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Catalogo - Eliminar (DELETE)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "https://localhost:7161/api/productos/PONER_ID_AQUI",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7161",
+          "path": [
+            "api",
+            "productos",
+            "PONER_ID_AQUI"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Clientes - Listar Todo",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://localhost:7161/api/clientes",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7161",
+          "path": [
+            "api",
+            "clientes"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Clientes - Listar 1",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://localhost:7161/api/clientes/69a50cae7306c5c3d96a2782",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7161",
+          "path": [
+            "api",
+            "clientes",
+            "69a50cae7306c5c3d96a2782"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Cliente - Crear",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"nombreCompleto\": \"Prueba Video\",\r\n  \"tipoIdentificacion\": \"07\",\r\n  \"identificacion\": \"305550882\",\r\n  \"telefono\": \"85151532\",\r\n  \"email\": \"aaasa@example.com\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://localhost:7161/api/clientes",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7161",
+          "path": [
+            "api",
+            "clientes"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

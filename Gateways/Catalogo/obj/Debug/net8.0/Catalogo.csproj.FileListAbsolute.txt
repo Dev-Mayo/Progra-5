@@ -1,0 +1,83 @@
+C:\Datos\Gateways\Catalogo\bin\Debug\net8.0\appsettings.Development.json
+C:\Datos\Gateways\Catalogo\bin\Debug\net8.0\appsettings.json
+C:\Datos\Gateways\Catalogo\bin\Debug\net8.0\Catalogo.staticwebassets.endpoints.json
+C:\Datos\Gateways\Catalogo\bin\Debug\net8.0\Catalogo.exe
+C:\Datos\Gateways\Catalogo\bin\Debug\net8.0\Catalogo.deps.json
+C:\Datos\Gateways\Catalogo\bin\Debug\net8.0\Catalogo.runtimeconfig.json
+C:\Datos\Gateways\Catalogo\bin\Debug\net8.0\Catalogo.dll
+C:\Datos\Gateways\Catalogo\bin\Debug\net8.0\Catalogo.pdb
+C:\Datos\Gateways\Catalogo\bin\Debug\net8.0\DnsClient.dll
+C:\Datos\Gateways\Catalogo\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Datos\Gateways\Catalogo\bin\Debug\net8.0\MongoDB.Bson.dll
+C:\Datos\Gateways\Catalogo\bin\Debug\net8.0\MongoDB.Driver.dll
+C:\Datos\Gateways\Catalogo\bin\Debug\net8.0\SharpCompress.dll
+C:\Datos\Gateways\Catalogo\bin\Debug\net8.0\Snappier.dll
+C:\Datos\Gateways\Catalogo\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Datos\Gateways\Catalogo\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Datos\Gateways\Catalogo\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Datos\Gateways\Catalogo\bin\Debug\net8.0\ZstdSharp.dll
+C:\Datos\Gateways\Catalogo\obj\Debug\net8.0\Catalogo.csproj.AssemblyReference.cache
+C:\Datos\Gateways\Catalogo\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Datos\Gateways\Catalogo\obj\Debug\net8.0\Catalogo.GeneratedMSBuildEditorConfig.editorconfig
+C:\Datos\Gateways\Catalogo\obj\Debug\net8.0\Catalogo.AssemblyInfoInputs.cache
+C:\Datos\Gateways\Catalogo\obj\Debug\net8.0\Catalogo.AssemblyInfo.cs
+C:\Datos\Gateways\Catalogo\obj\Debug\net8.0\Catalogo.csproj.CoreCompileInputs.cache
+C:\Datos\Gateways\Catalogo\obj\Debug\net8.0\Catalogo.MvcApplicationPartsAssemblyInfo.cs
+C:\Datos\Gateways\Catalogo\obj\Debug\net8.0\Catalogo.MvcApplicationPartsAssemblyInfo.cache
+C:\Datos\Gateways\Catalogo\obj\Debug\net8.0\rjimswa.dswa.cache.json
+C:\Datos\Gateways\Catalogo\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+C:\Datos\Gateways\Catalogo\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+C:\Datos\Gateways\Catalogo\obj\Debug\net8.0\scopedcss\bundle\Catalogo.styles.css
+C:\Datos\Gateways\Catalogo\obj\Debug\net8.0\staticwebassets.build.json
+C:\Datos\Gateways\Catalogo\obj\Debug\net8.0\staticwebassets.build.json.cache
+C:\Datos\Gateways\Catalogo\obj\Debug\net8.0\staticwebassets.development.json
+C:\Datos\Gateways\Catalogo\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Datos\Gateways\Catalogo\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Datos\Gateways\Catalogo\obj\Debug\net8.0\Catalogo.csproj.Up2Date
+C:\Datos\Gateways\Catalogo\obj\Debug\net8.0\Catalogo.dll
+C:\Datos\Gateways\Catalogo\obj\Debug\net8.0\refint\Catalogo.dll
+C:\Datos\Gateways\Catalogo\obj\Debug\net8.0\Catalogo.pdb
+C:\Datos\Gateways\Catalogo\obj\Debug\net8.0\Catalogo.genruntimeconfig.cache
+C:\Datos\Gateways\Catalogo\obj\Debug\net8.0\ref\Catalogo.dll
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\bin\Debug\net8.0\appsettings.json
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\bin\Debug\net8.0\Catalogo.staticwebassets.endpoints.json
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\bin\Debug\net8.0\Catalogo.exe
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\bin\Debug\net8.0\Catalogo.deps.json
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\bin\Debug\net8.0\Catalogo.runtimeconfig.json
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\bin\Debug\net8.0\Catalogo.dll
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\bin\Debug\net8.0\Catalogo.pdb
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\bin\Debug\net8.0\DnsClient.dll
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\bin\Debug\net8.0\MongoDB.Bson.dll
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\bin\Debug\net8.0\MongoDB.Driver.dll
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\bin\Debug\net8.0\SharpCompress.dll
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\bin\Debug\net8.0\Snappier.dll
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\bin\Debug\net8.0\ZstdSharp.dll
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\obj\Debug\net8.0\Catalogo.csproj.AssemblyReference.cache
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\obj\Debug\net8.0\Catalogo.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\obj\Debug\net8.0\Catalogo.AssemblyInfoInputs.cache
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\obj\Debug\net8.0\Catalogo.AssemblyInfo.cs
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\obj\Debug\net8.0\Catalogo.csproj.CoreCompileInputs.cache
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\obj\Debug\net8.0\Catalogo.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\obj\Debug\net8.0\Catalogo.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\obj\Debug\net8.0\rjimswa.dswa.cache.json
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\obj\Debug\net8.0\scopedcss\bundle\Catalogo.styles.css
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\obj\Debug\net8.0\staticwebassets.build.json.cache
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\obj\Debug\net8.0\swae.build.ex.cache
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\obj\Debug\net8.0\Catalogo.csproj.Up2Date
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\obj\Debug\net8.0\Catalogo.dll
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\obj\Debug\net8.0\refint\Catalogo.dll
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\obj\Debug\net8.0\Catalogo.pdb
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\obj\Debug\net8.0\Catalogo.genruntimeconfig.cache
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\Gateways\Catalogo\obj\Debug\net8.0\ref\Catalogo.dll

@@ -1,0 +1,85 @@
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\bin\Debug\net8.0\appsettings.Development.json
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\bin\Debug\net8.0\appsettings.json
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\bin\Debug\net8.0\TareaCorta2.staticwebassets.endpoints.json
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\bin\Debug\net8.0\TareaCorta2.exe
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\bin\Debug\net8.0\TareaCorta2.deps.json
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\bin\Debug\net8.0\TareaCorta2.runtimeconfig.json
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\bin\Debug\net8.0\TareaCorta2.dll
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\bin\Debug\net8.0\TareaCorta2.pdb
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\bin\Debug\net8.0\DnsClient.dll
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\bin\Debug\net8.0\Microsoft.AspNetCore.OpenApi.dll
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\bin\Debug\net8.0\Microsoft.OpenApi.dll
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\bin\Debug\net8.0\MongoDB.Bson.dll
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\bin\Debug\net8.0\MongoDB.Driver.dll
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\bin\Debug\net8.0\SharpCompress.dll
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\bin\Debug\net8.0\Snappier.dll
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\bin\Debug\net8.0\ZstdSharp.dll
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\obj\Debug\net8.0\TareaCorta2.csproj.AssemblyReference.cache
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\obj\Debug\net8.0\rpswa.dswa.cache.json
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\obj\Debug\net8.0\TareaCorta2.GeneratedMSBuildEditorConfig.editorconfig
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\obj\Debug\net8.0\TareaCorta2.AssemblyInfoInputs.cache
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\obj\Debug\net8.0\TareaCorta2.AssemblyInfo.cs
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\obj\Debug\net8.0\TareaCorta2.csproj.CoreCompileInputs.cache
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\obj\Debug\net8.0\TareaCorta2.MvcApplicationPartsAssemblyInfo.cs
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\obj\Debug\net8.0\TareaCorta2.MvcApplicationPartsAssemblyInfo.cache
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\obj\Debug\net8.0\rjimswa.dswa.cache.json
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\obj\Debug\net8.0\scopedcss\bundle\TareaCorta2.styles.css
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\obj\Debug\net8.0\staticwebassets.build.json
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\obj\Debug\net8.0\staticwebassets.build.json.cache
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\obj\Debug\net8.0\staticwebassets.development.json
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\obj\Debug\net8.0\TareaCor.5BD92994.Up2Date
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\obj\Debug\net8.0\TareaCorta2.dll
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\obj\Debug\net8.0\refint\TareaCorta2.dll
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\obj\Debug\net8.0\TareaCorta2.pdb
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\obj\Debug\net8.0\TareaCorta2.genruntimeconfig.cache
+D:\Escritorio\CUC TI\Progra V\Tarea Corta 2\TareaCorta2\obj\Debug\net8.0\ref\TareaCorta2.dll
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\bin\Debug\net8.0\appsettings.json
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\bin\Debug\net8.0\TareaCorta2.staticwebassets.endpoints.json
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\bin\Debug\net8.0\TareaCorta2.exe
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\bin\Debug\net8.0\TareaCorta2.deps.json
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\bin\Debug\net8.0\TareaCorta2.runtimeconfig.json
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\bin\Debug\net8.0\TareaCorta2.dll
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\bin\Debug\net8.0\TareaCorta2.pdb
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\bin\Debug\net8.0\DnsClient.dll
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\bin\Debug\net8.0\Microsoft.AspNetCore.OpenApi.dll
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\bin\Debug\net8.0\MongoDB.Bson.dll
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\bin\Debug\net8.0\MongoDB.Driver.dll
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\bin\Debug\net8.0\SharpCompress.dll
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\bin\Debug\net8.0\Snappier.dll
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\bin\Debug\net8.0\ZstdSharp.dll
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\obj\Debug\net8.0\TareaCorta2.csproj.AssemblyReference.cache
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\obj\Debug\net8.0\TareaCorta2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\obj\Debug\net8.0\TareaCorta2.AssemblyInfoInputs.cache
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\obj\Debug\net8.0\TareaCorta2.AssemblyInfo.cs
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\obj\Debug\net8.0\TareaCorta2.csproj.CoreCompileInputs.cache
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\obj\Debug\net8.0\TareaCorta2.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\obj\Debug\net8.0\TareaCorta2.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\obj\Debug\net8.0\rjimswa.dswa.cache.json
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\obj\Debug\net8.0\scopedcss\bundle\TareaCorta2.styles.css
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\obj\Debug\net8.0\staticwebassets.build.json.cache
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\obj\Debug\net8.0\swae.build.ex.cache
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\obj\Debug\net8.0\TareaCor.5BD92994.Up2Date
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\obj\Debug\net8.0\TareaCorta2.dll
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\obj\Debug\net8.0\refint\TareaCorta2.dll
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\obj\Debug\net8.0\TareaCorta2.pdb
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\obj\Debug\net8.0\TareaCorta2.genruntimeconfig.cache
+C:\Users\santi\Documents\CUC\Progra V\Tareas\Tarea 2\TareaCorta2\obj\Debug\net8.0\ref\TareaCorta2.dll
