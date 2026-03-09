@@ -1,4 +1,5 @@
-﻿using CoreBancarioService.Abstract.Bitacora;
+﻿using Azure.Core;
+using CoreBancarioService.Abstract.Bitacora;
 using CoreBancarioService.Abstract.Bitacora.Bitacora;
 using CoreBancarioService.Abstract.Repositories;
 using CoreBancarioService.Abstract.Services;
@@ -12,7 +13,7 @@ using System.Text.Json;
 
 namespace CoreBancarioService.BusinessLogic
 {
-    public class CuentaService : ICuentaService //falta agregar toda la logica
+    public class CuentaService : ICuentaService
     {
         private readonly ICuentaRepository _cuentaRepo;
         private readonly IBitacoraService _bitacoraService;
@@ -65,7 +66,7 @@ namespace CoreBancarioService.BusinessLogic
             {
                 var usuario = ObtenerUsuarioDesdeToken();
 
-                var descripcion = $"Nuevo registro realizado: {JsonSerializer.Serialize(response)}";
+                var descripcion = $"Nueva cuenta registrada: {JsonSerializer.Serialize(response)}";
 
                 _bitacoraService.RegistrarEventoAsync(new BitacoraRequest
                 {
@@ -79,25 +80,152 @@ namespace CoreBancarioService.BusinessLogic
 
             return response;
         }
-        public CuentaResponse EditarCuenta(CuentaRequest request)
+        public CuentaResponse EditarCuenta(CuentaRequest request) 
         {
-            throw new NotImplementedException();
+            try
+            {
+                _cuentaRepo.EditarCuenta(
+                    request.ClienteId,
+                    request.NumeroCuenta,
+                    request.TipoCuenta
+                );
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 50030)
+                    throw new TipoCuentaInvalido(ex.Message);
+
+                if (ex.Number == 50031)
+                    throw new CuentaNoExisteException(ex.Message);
+
+                throw;
+            }
+
+            var response = new CuentaResponse
+            {
+                ClienteId = request.ClienteId,
+                NumeroCuenta = request.NumeroCuenta,
+                TipoCuenta = request.TipoCuenta,
+                Estado = true,
+                FechaCreacion = DateTime.Now
+            };
+
+
+            try
+            {
+                var usuario = ObtenerUsuarioDesdeToken();
+
+                var descripcion = $"Cuenta editada: {JsonSerializer.Serialize(response)}";
+
+                _bitacoraService.RegistrarEventoAsync(new BitacoraRequest
+                {
+                    UsuarioAccion = usuario,
+                    Descripcion = descripcion
+                }).Wait();
+            }
+            catch
+            {
+            }
+
+            return response;
         }
-        public CuentaResponse EliminarCuenta(CuentaRequest request)
+        public CuentaResponse EliminarCuenta(
+            int ClienteId,
+            string NumeroCuenta)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _cuentaRepo.EliminarCuenta(
+                    ClienteId,
+                    NumeroCuenta
+                );
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 50040)
+                    throw new CuentaNoExisteException(ex.Message);
+
+                if (ex.Number == 50041)
+                    throw new CuentaTieneMovimientosRegistradosException(ex.Message);
+
+                throw;
+            }
+
+            var response = new CuentaResponse
+            {
+                ClienteId = ClienteId,
+                NumeroCuenta = NumeroCuenta,
+                FechaCreacion = DateTime.Now
+            };
+
+
+            try
+            {
+                var usuario = ObtenerUsuarioDesdeToken();
+
+                var descripcion = $"Cuenta eliminada: {JsonSerializer.Serialize(response)}";
+
+                _bitacoraService.RegistrarEventoAsync(new BitacoraRequest
+                {
+                    UsuarioAccion = usuario,
+                    Descripcion = descripcion
+                }).Wait();
+            }
+            catch
+            {
+            }
+
+            return response;
         }
-        public CuentaResponse ListarTodas(CuentaRequest request)
+        public async Task<IEnumerable<CuentaResponse>> ListarTodas()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var cuentas = await _cuentaRepo.ListarTodas();
+                await RegistrarEventoBitacora($"Usuario consulta las cuentas bancarias activas");
+                return cuentas;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error en ListarTodas: " + ex.Message);
+                throw;
+            }
         }
-        public CuentaResponse ListarPorLlavePrimaria(CuentaRequest request)
+
+        public async Task<IEnumerable<CuentaResponse>> ListarPorLlavePrimaria(string numeroCuenta)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var cuentas = await _cuentaRepo.ListarPorLlavePrimaria(numeroCuenta);
+                await RegistrarEventoBitacora($"Usuario consulta la cuenta {numeroCuenta}");
+ 
+                return cuentas;
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 50071)
+                    throw new CuentaNoExisteException(ex.Message);
+                throw;
+            }
         }
-        public CuentaResponse ListarPorCliente(CuentaRequest request)
+
+        public async Task<IEnumerable<CuentaResponse>> ListarPorCliente(int ClienteID)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var cuentas = await _cuentaRepo.ListarPorCliente(ClienteID);
+                await RegistrarEventoBitacora($"Usuario consulta las cuentas del cliente: {ClienteID}");
+                return cuentas;
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 50081)
+                    throw new ClienteNoExiste(ex.Message);
+             
+                if (ex.Number == 50060)
+                    throw new ClienteNoExiste(ex.Message);
+                throw;
+            }
         }
 
         private string ObtenerUsuarioDesdeToken()
@@ -116,6 +244,23 @@ namespace CoreBancarioService.BusinessLogic
             var emailClaim = jwtToken.Claims.FirstOrDefault(c => c.Type == "email");
 
             return emailClaim?.Value ?? "Desconocido";
+        }
+
+        public async Task RegistrarEventoBitacora(string descripcion)
+        {
+            try
+            {
+                var usuario = ObtenerUsuarioDesdeToken();
+
+                _bitacoraService.RegistrarEventoAsync(new BitacoraRequest
+                {
+                    UsuarioAccion = usuario,
+                    Descripcion = descripcion
+                }).Wait();
+            }
+            catch
+            {
+            }
         }
     }
 }

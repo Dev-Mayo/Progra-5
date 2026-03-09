@@ -28,6 +28,9 @@ create TABLE cuenta (
         FOREIGN KEY (cliente_id) REFERENCES cliente(cliente_id)
 );
 
+ALTER TABLE cliente
+ADD fecha_nacimiento Date NOT NULL DEFAULT '2002-01-15';
+
 ALTER TABLE cuenta
 ADD TipoCuenta VARCHAR(20) NOT NULL DEFAULT 'Corriente';
 
@@ -337,7 +340,7 @@ BEGIN
 END;
 GO
 
-CREATE PROCEDURE sp_EditarCuenta
+create PROCEDURE sp_EditarCuenta
 (
     @ClienteId INT,
     @NumeroCuenta VARCHAR(20),
@@ -346,6 +349,7 @@ CREATE PROCEDURE sp_EditarCuenta
 AS
 BEGIN
     SET NOCOUNT ON;
+    DECLARE @ClienteId2 INT;
 
     BEGIN TRY
         BEGIN TRANSACTION;
@@ -356,15 +360,26 @@ BEGIN
             THROW 50030, 'Tipo de cuenta inválido. Debe ser Corriente o Ahorros', 1;
         END
 
+        SELECT @ClienteId2 = cliente_id 
+        FROM cliente 
+        WHERE identificacion = @ClienteId 
+          AND estado = 1;
+
         -- Validar que la cuenta exista y pertenezca al cliente
         IF NOT EXISTS (
             SELECT 1 
             FROM cuenta c
             INNER JOIN cliente cl ON c.cliente_id = cl.cliente_id
             WHERE c.numero_cuenta = @NumeroCuenta
-              AND c.cliente_id = @ClienteId
+              AND c.cliente_id = @ClienteId2
               AND c.estado = 1
               AND cl.estado = 1
+        )
+        IF NOT EXISTS (
+            SELECT 1 
+            FROM cliente 
+            WHERE identificacion = @ClienteId 
+              AND estado = 1
         )
         BEGIN
             THROW 50031, 'La cuenta no existe o no pertenece al cliente', 1;
@@ -386,7 +401,7 @@ BEGIN
 END;
 GO
 
-CREATE PROCEDURE sp_EliminarCuenta
+create PROCEDURE sp_EliminarCuenta
 (
     @ClienteId INT,
     @NumeroCuenta VARCHAR(20)
@@ -394,9 +409,15 @@ CREATE PROCEDURE sp_EliminarCuenta
 AS
 BEGIN
     SET NOCOUNT ON;
+    DECLARE @ClienteId2 INT;
 
     BEGIN TRY
         BEGIN TRANSACTION;
+
+        SELECT @ClienteId2 = cliente_id 
+        FROM cliente 
+        WHERE identificacion = @ClienteId 
+          AND estado = 1;
 
         -- Validar que la cuenta exista y pertenezca al cliente
         IF NOT EXISTS (
@@ -404,9 +425,15 @@ BEGIN
             FROM cuenta c
             INNER JOIN cliente cl ON c.cliente_id = cl.cliente_id
             WHERE c.numero_cuenta = @NumeroCuenta
-              AND c.cliente_id = @ClienteId
+              AND c.cliente_id = @ClienteId2
               AND c.estado = 1
               AND cl.estado = 1
+        )
+        IF NOT EXISTS (
+            SELECT 1 
+            FROM cliente 
+            WHERE identificacion = @ClienteId 
+              AND estado = 1
         )
         BEGIN
             THROW 50040, 'La cuenta no existe o no pertenece al cliente', 1;
@@ -438,56 +465,59 @@ BEGIN
 END;
 GO
 
-CREATE PROCEDURE sp_ListarTodas
+alter PROCEDURE sp_ListarTodas
 AS
 BEGIN
     SET NOCOUNT ON;
 
-    SELECT 
-        c.cuenta_id,
-        c.numero_cuenta,
-        c.saldo,
-        c.TipoCuenta,
-        c.estado,
-        c.fecha_creacion,
-        cl.cliente_id,
-        cl.identificacion,
-        cl.nombre,
-        cl.apellido,
-        cl.Email
-    FROM cuenta c
-    INNER JOIN cliente cl ON c.cliente_id = cl.cliente_id
-    WHERE c.estado = 1
-      AND cl.estado = 1
-    ORDER BY c.fecha_creacion DESC;
+    SELECT
+        numero_cuenta AS NumeroCuenta,
+        saldo AS Saldo,
+        TipoCuenta AS TipoCuenta,
+        estado AS Estado,
+        fecha_creacion AS FechaCreacion,
+        cliente_id AS ClienteId
+    FROM cuenta
+    WHERE estado = 1
+    ORDER BY fecha_creacion DESC;
 END;
 GO
 
-CREATE PROCEDURE sp_ListarPorLlavePrimaria
+create PROCEDURE sp_ListarPorLlavePrimaria
 (
     @NumeroCuenta VARCHAR(20)
 )
 AS
 BEGIN
+
+    Declare @ClienteId INT;
     SET NOCOUNT ON;
 
-    SELECT 
-        c.cuenta_id,
-        c.numero_cuenta,
-        c.saldo,
-        c.TipoCuenta,
-        c.estado,
-        c.fecha_creacion,
-        cl.cliente_id,
-        cl.identificacion,
-        cl.nombre,
-        cl.apellido,
-        cl.Email
-    FROM cuenta c
-    INNER JOIN cliente cl ON c.cliente_id = cl.cliente_id
-    WHERE c.numero_cuenta = @NumeroCuenta
-      AND c.estado = 1
-      AND cl.estado = 1;
+    SELECT @ClienteId = cliente_id 
+        FROM cuenta 
+        WHERE numero_cuenta = @NumeroCuenta 
+          AND estado = 1;
+
+    IF NOT EXISTS (
+            SELECT 1 
+            FROM cliente 
+            WHERE cliente_id = @ClienteId 
+              AND estado = 1
+        )
+    BEGIN
+        THROW 50071, 'La cuenta no existe', 1;
+    END
+
+    SELECT
+        numero_cuenta AS NumeroCuenta,
+        saldo AS Saldo,
+        TipoCuenta AS TipoCuenta,
+        estado AS Estado,
+        fecha_creacion AS FechaCreacion,
+        cliente_id AS ClienteId
+    FROM cuenta
+    WHERE numero_cuenta = @NumeroCuenta
+      AND estado = 1
 
     IF @@ROWCOUNT = 0
     BEGIN
@@ -496,30 +526,42 @@ BEGIN
 END;
 GO
 
-CREATE PROCEDURE sp_ListarPorCliente
+create PROCEDURE sp_ListarPorCliente
 (
     @ClienteId INT
 )
 AS
 BEGIN
     SET NOCOUNT ON;
+    DECLARE @ClienteId2 INT;
+
+
+    SELECT @ClienteId2 = cliente_id 
+        FROM cliente 
+        WHERE identificacion = @ClienteId 
+          AND estado = 1;
+
+    IF NOT EXISTS (
+            SELECT 1 
+            FROM cliente 
+            WHERE cliente_id = @ClienteId2 
+              AND estado = 1
+        )
+    BEGIN
+        THROW 50081, ' El cliente consultado no existe o no tiene cuentas asociadas', 1;
+    END
 
     SELECT 
-        c.cuenta_id,
-        c.numero_cuenta,
-        c.saldo,
-        c.TipoCuenta,
-        c.estado,
-        c.fecha_creacion,
-        cl.identificacion,
-        cl.nombre,
-        cl.apellido
-    FROM cuenta c
-    INNER JOIN cliente cl ON c.cliente_id = cl.cliente_id
-    WHERE c.cliente_id = @ClienteId
-      AND c.estado = 1
-      AND cl.estado = 1
-    ORDER BY c.fecha_creacion DESC;
+        numero_cuenta AS NumeroCuenta,
+        saldo AS Saldo,
+        TipoCuenta AS TipoCuenta,
+        estado AS Estado,
+        fecha_creacion AS FechaCreacion,
+        cliente_id AS ClienteId
+    FROM cuenta
+    WHERE cliente_id = @ClienteId2
+      AND estado = 1
+    ORDER BY fecha_creacion DESC;
 
     IF @@ROWCOUNT = 0
     BEGIN

@@ -26,6 +26,135 @@
     "EndpointName": "CrearCuenta"
   },
   {
+    "ContainingType": "CoreBancarioAPI.CuentaCoreEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapCuentaCoreEndpoints\u003Eb__0_1",
+    "RelativePath": "core/accounts/",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "CoreBancarioService.Model.CuentaRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "SA11"
+    ],
+    "EndpointName": "EditarCuenta"
+  },
+  {
+    "ContainingType": "CoreBancarioAPI.CuentaCoreEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapCuentaCoreEndpoints\u003Eb__0_3",
+    "RelativePath": "core/accounts/",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "SA11"
+    ],
+    "EndpointName": "ListarTodas"
+  },
+  {
+    "ContainingType": "CoreBancarioAPI.CuentaCoreEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapCuentaCoreEndpoints\u003Eb__0_2",
+    "RelativePath": "core/accounts/{ClienteId:int}/{NumeroCuenta}",
+    "HttpMethod": "DELETE",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ClienteId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "NumeroCuenta",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "SA11"
+    ],
+    "EndpointName": "EliminarCuenta"
+  },
+  {
+    "ContainingType": "CoreBancarioAPI.CuentaCoreEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapCuentaCoreEndpoints\u003Eb__0_5",
+    "RelativePath": "core/accounts/Cliente/",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ClienteID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "SA11"
+    ],
+    "EndpointName": "ListarPorCliente"
+  },
+  {
+    "ContainingType": "CoreBancarioAPI.CuentaCoreEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapCuentaCoreEndpoints\u003Eb__0_4",
+    "RelativePath": "core/accounts/Cuenta/",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "NumeroCuenta",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "SA11"
+    ],
+    "EndpointName": "ListarPorLlavePrimaria"
+  },
+  {
     "ContainingType": "CoreBancarioAPI.CuentaEndpoints\u002B\u003C\u003Ec",
     "Method": "\u003CMapCuentaEndpoints\u003Eb__0_0",
     "RelativePath": "core/balance/",
@@ -55,6 +184,130 @@
       "SRV15"
     ],
     "EndpointName": "ConsultarSaldo"
+  },
+  {
+    "ContainingType": "CoreBancarioAPI.ClienteCoreEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapClienteCoreEndpoints\u003Eb__0_0",
+    "RelativePath": "core/client/",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "CoreBancarioService.Model.ClienteRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "SA10"
+    ],
+    "EndpointName": "CrearCliente"
+  },
+  {
+    "ContainingType": "CoreBancarioAPI.ClienteCoreEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapClienteCoreEndpoints\u003Eb__0_1",
+    "RelativePath": "core/client/",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "CoreBancarioService.Model.ClienteRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "SA10"
+    ],
+    "EndpointName": "EditarCliente"
+  },
+  {
+    "ContainingType": "CoreBancarioAPI.ClienteCoreEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapClienteCoreEndpoints\u003Eb__0_3",
+    "RelativePath": "core/client/",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "SA10"
+    ],
+    "EndpointName": "ListarTodos"
+  },
+  {
+    "ContainingType": "CoreBancarioAPI.ClienteCoreEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapClienteCoreEndpoints\u003Eb__0_2",
+    "RelativePath": "core/client/{identificacion}",
+    "HttpMethod": "DELETE",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "identificacion",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "SA10"
+    ],
+    "EndpointName": "EliminarCliente"
+  },
+  {
+    "ContainingType": "CoreBancarioAPI.ClienteCoreEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapClienteCoreEndpoints\u003Eb__0_4",
+    "RelativePath": "core/client/Cliente/",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "identificacion",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "SA10"
+    ],
+    "EndpointName": "ListarClientePorLlavePrimaria"
   },
   {
     "ContainingType": "CoreBancarioAPI.MovimientoEndpoints\u002B\u003C\u003Ec",

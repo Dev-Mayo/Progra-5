@@ -86,7 +86,7 @@ namespace CoreBancarioService.DataAccess
             {
                 new SqlParameter("@ClienteId", ClienteId),
                 new SqlParameter("@NumeroCuenta", NumeroCuenta),
-                new SqlParameter("@TipoCuenta", TipoCuenta) // falta agregar este campo a la BD
+                new SqlParameter("@TipoCuenta", TipoCuenta)
             };
 
             _context.Database.ExecuteSqlRaw(
@@ -111,39 +111,26 @@ namespace CoreBancarioService.DataAccess
             );
         }
 
-        public void ListarTodas()
-        {            
-            _context.Database.ExecuteSqlRaw(
-                "EXEC sp_ListarTodas" // falta probar SP
-            );
+        public async Task<IEnumerable<CuentaResponse>> ListarTodas()
+        {
+            return await _context.Database
+                .SqlQueryRaw<CuentaResponse>("EXEC sp_ListarTodas")
+                .ToListAsync();
         }
 
-        public void ListarPorLlavePrimaria(
-            string NumeroCuenta)
+        public async Task<IEnumerable<CuentaResponse>> ListarPorLlavePrimaria(string numeroCuenta)
         {
-            var parametros = new[]
-            {
-                new SqlParameter("@NumeroCuenta", NumeroCuenta)
-            };
-
-            _context.Database.ExecuteSqlRaw(
-                "EXEC sp_ListarPorLlavePrimaria @NumeroCuenta", // falta probar SP
-                parametros
-            );
+            return await _context.Database
+                .SqlQueryRaw<CuentaResponse>("EXEC sp_ListarPorLlavePrimaria @NumeroCuenta = @p0", numeroCuenta)
+                .ToListAsync();
         }
 
-        public void ListarPorCliente(
-            int ClienteId)
+        public async Task<IEnumerable<CuentaResponse>> ListarPorCliente(int clienteId)
         {
-            var parametros = new[]
-            {
-                new SqlParameter("@ClienteId", ClienteId)
-            };
-
-            _context.Database.ExecuteSqlRaw(
-                "EXEC sp_ListarPorCliente @ClienteId", // falta probar SP
-                parametros
-            );
+   
+            return await _context.Database
+                .SqlQueryRaw<CuentaResponse>("EXEC sp_ListarPorCliente @ClienteId = @p0", clienteId)
+                .ToListAsync();
         }
     }
 }

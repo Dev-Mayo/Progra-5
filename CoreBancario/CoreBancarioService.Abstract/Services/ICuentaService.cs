@@ -11,9 +11,9 @@ namespace CoreBancarioService.Abstract.Services
     {
        CuentaResponse CrearCuenta(CuentaRequest request);
        CuentaResponse EditarCuenta(CuentaRequest request);
-       CuentaResponse EliminarCuenta(CuentaRequest request);
-       CuentaResponse ListarTodas(CuentaRequest request);
-       CuentaResponse ListarPorLlavePrimaria(CuentaRequest request);
-       CuentaResponse ListarPorCliente(CuentaRequest request);
+       CuentaResponse EliminarCuenta(int ClienteId,string NumeroCuenta);
+       Task<IEnumerable<CuentaResponse>> ListarTodas();
+       Task<IEnumerable<CuentaResponse>> ListarPorLlavePrimaria(string numeroCuenta);
+       Task<IEnumerable<CuentaResponse>> ListarPorCliente(int ClienteID);
     }
 }

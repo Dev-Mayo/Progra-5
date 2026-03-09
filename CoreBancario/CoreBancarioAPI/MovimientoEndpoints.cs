@@ -33,7 +33,7 @@ public static class MovimientoEndpoints
             {
                 return Results.Conflict(new ErrorResponse
                 {
-                    Codigo = "402",
+                    Codigo = "409",
                     Mensaje = ex.Message
                 });
             }

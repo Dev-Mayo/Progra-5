@@ -26,6 +26,7 @@ builder.Services.AddDbContext<CoreBancarioContext>(options =>
 
 builder.Services.AddScoped<ITransactionService, TransactionService>();
 builder.Services.AddScoped<ICuentaService, CuentaService>();
+builder.Services.AddScoped<IClienteService, ClienteService>();
 
 builder.Services.AddHttpClient<ITokenValidationService, TokenValidationService>(client =>
 {
@@ -42,6 +43,7 @@ builder.Services.AddScoped<IMovimientoRepository, MovimientoRepository>();
 builder.Services.AddScoped<IBalanceService, BalanceService>();
 builder.Services.AddScoped<IUltimoMovimientoService, UltimoMovimientoService>();
 builder.Services.AddScoped<IUltimoMovimientoRepository, UltimoMovimientoRepository>();
+builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
 builder.Services.AddHttpContextAccessor();
 
 
@@ -60,5 +62,6 @@ app.UseMiddleware<TokenValidation>();
 app.MapCuentaCoreEndpoints();
 app.MapCuentaEndpoints();
 app.MapMovimientoEndpoints();
+app.MapClienteCoreEndpoints();
 
 app.Run();

@@ -1,6 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CoreBancarioService.Model;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 
 namespace CoreBancarioService.DataAccess.Models;
 

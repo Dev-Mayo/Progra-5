@@ -5,6 +5,107 @@
     "version": "1.0"
   },
   "paths": {
+    "/core/client": {
+      "post": {
+        "tags": [
+          "SA10"
+        ],
+        "operationId": "CrearCliente",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClienteRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "SA10"
+        ],
+        "operationId": "EditarCliente",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClienteRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "SA10"
+        ],
+        "operationId": "ListarTodos",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/core/client/{identificacion}": {
+      "delete": {
+        "tags": [
+          "SA10"
+        ],
+        "operationId": "EliminarCliente",
+        "parameters": [
+          {
+            "name": "identificacion",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/core/client/Cliente": {
+      "get": {
+        "tags": [
+          "SA10"
+        ],
+        "operationId": "ListarClientePorLlavePrimaria",
+        "parameters": [
+          {
+            "name": "identificacion",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/core/accounts": {
       "post": {
         "tags": [
@@ -21,6 +122,117 @@
           },
           "required": true
         },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "SA11"
+        ],
+        "operationId": "EditarCuenta",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CuentaRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "SA11"
+        ],
+        "operationId": "ListarTodas",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/core/accounts/{ClienteId}/{NumeroCuenta}": {
+      "delete": {
+        "tags": [
+          "SA11"
+        ],
+        "operationId": "EliminarCuenta",
+        "parameters": [
+          {
+            "name": "ClienteId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "NumeroCuenta",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/core/accounts/Cuenta": {
+      "get": {
+        "tags": [
+          "SA11"
+        ],
+        "operationId": "ListarPorLlavePrimaria",
+        "parameters": [
+          {
+            "name": "NumeroCuenta",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/core/accounts/Cliente": {
+      "get": {
+        "tags": [
+          "SA11"
+        ],
+        "operationId": "ListarPorCliente",
+        "parameters": [
+          {
+            "name": "ClienteID",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -116,12 +328,57 @@
   },
   "components": {
     "schemas": {
+      "ClienteRequest": {
+        "type": "object",
+        "properties": {
+          "identificacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "apellido": {
+            "type": "string",
+            "nullable": true
+          },
+          "fecha_nacimiento": {
+            "type": "string",
+            "format": "date"
+          },
+          "tipoIdentificacion": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "telefono": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "CuentaRequest": {
         "type": "object",
         "properties": {
           "clienteId": {
             "type": "integer",
             "format": "int32"
+          },
+          "numeroCuenta": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "apellido": {
+            "type": "string",
+            "nullable": true
+          },
+          "estado": {
+            "type": "boolean"
           },
           "tipoCuenta": {
             "type": "string",
