@@ -10,7 +10,7 @@ namespace CoreBancarioService.Abstract.Services
     public interface IClienteService
     {
         ClienteResponse CrearCliente(ClienteRequest request);
-        ClienteResponse EditarCliente(ClienteRequest request);
+        ClienteResponse EditarCliente(ClienteRequestEdit request);
         ClienteResponse EliminarCliente(string identificacion);
         Task<IEnumerable<ClienteResponse>> ListarTodos();
         Task<IEnumerable<ClienteResponse>> ListarClientePorLlavePrimaria(string identificacion);

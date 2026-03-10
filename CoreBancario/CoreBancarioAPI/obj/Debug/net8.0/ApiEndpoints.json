@@ -221,7 +221,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "CoreBancarioService.Model.ClienteRequest",
+        "Type": "CoreBancarioService.Model.ClienteRequestEdit",
         "IsRequired": true
       }
     ],

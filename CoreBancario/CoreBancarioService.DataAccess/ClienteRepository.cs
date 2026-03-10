@@ -5,6 +5,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +23,7 @@ namespace CoreBancarioService.DataAccess
 
         public void CrearCliente(
             string identificacion, string nombre, string apellido,
-            DateOnly fecha_nacimiento, int TipoIdentificacion, int Telefono)
+            DateOnly fecha_nacimiento, int TipoIdentificacion, int Telefono, string Email, string Contrasena)
         {
             var parametros = new[]
             {
@@ -31,18 +32,20 @@ namespace CoreBancarioService.DataAccess
                 new SqlParameter("@apellido", apellido),
                 new SqlParameter("@fecha_nacimiento",fecha_nacimiento),
                 new SqlParameter("@TipoIdentificacion",TipoIdentificacion),
-                new SqlParameter("@Telefono",Telefono)
+                new SqlParameter("@Telefono",Telefono),
+                new SqlParameter("@Email",Email),
+                new SqlParameter("@Contrasena", Contrasena)
             };
 
             _context.Database.ExecuteSqlRaw(
-                "EXEC sp_CrearCliente @identificacion, @nombre, @apellido, @fecha_nacimiento, @TipoIdentificacion, @Telefono", // falta crear SP
+                "EXEC sp_CrearCliente @identificacion, @nombre, @apellido, @fecha_nacimiento, @TipoIdentificacion, @Telefono, @Email, @Contrasena", // falta crear SP
                 parametros
             );
         }
 
         public void EditarCliente(
-            string identificacion, string nombre, string apellido,
-            DateOnly fecha_nacimiento, int TipoIdentificacion, int Telefono)
+            string identificacion, string? nombre, string? apellido,
+            DateOnly? fecha_nacimiento, int? TipoIdentificacion, int? Telefono, string? Email, string? Contrasena)
         {
             var parametros = new[]
             {
@@ -51,7 +54,9 @@ namespace CoreBancarioService.DataAccess
                 new SqlParameter("@apellido", apellido),
                 new SqlParameter("@fecha_nacimiento",fecha_nacimiento),
                 new SqlParameter("@TipoIdentificacion",TipoIdentificacion),
-                new SqlParameter("@Telefono",Telefono)
+                new SqlParameter("@Telefono",Telefono),
+                new SqlParameter("@Email",Email),
+                new SqlParameter("@Contrasena", Contrasena)
             };
 
             _context.Database.ExecuteSqlRaw(
@@ -84,7 +89,7 @@ namespace CoreBancarioService.DataAccess
         public async Task<IEnumerable<ClienteResponse>> ListarClientePorLlavePrimaria(string identificacion)
         {
             return await _context.Database
-                .SqlQueryRaw<ClienteResponse>("EXEC sp_ListarPorLlavePrimaria @NumeroCuenta = @p0", identificacion)
+                .SqlQueryRaw<ClienteResponse>("EXEC sp_ListarClientePorLlavePrimaria @identificacion = @p0", identificacion)
                 .ToListAsync();
         }
     }

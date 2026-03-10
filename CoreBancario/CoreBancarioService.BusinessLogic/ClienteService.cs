@@ -37,7 +37,9 @@ namespace CoreBancarioService.BusinessLogic
                     request.apellido,
                     request.fecha_nacimiento,
                     request.TipoIdentificacion,
-                    request.Telefono
+                    request.Telefono,
+                    request.Email,
+                    request.Contrasena
                 );
             }
             catch (SqlException ex)
@@ -82,7 +84,7 @@ namespace CoreBancarioService.BusinessLogic
             return response;
         }
 
-        public ClienteResponse EditarCliente(ClienteRequest request)
+        public ClienteResponse EditarCliente(ClienteRequestEdit request)
         {
             try
             {
@@ -92,12 +94,16 @@ namespace CoreBancarioService.BusinessLogic
                     request.apellido,
                     request.fecha_nacimiento,
                     request.TipoIdentificacion,
-                    request.Telefono
+                    request.Telefono,
+                    request.Email,
+                    request.Contrasena
                 );
             }
             catch (SqlException ex)
             {
-                if (ex.Number == 60071)
+                if (ex.Number == 60081)
+                    throw new ClienteNoExiste(ex.Message);
+                if (ex.Number == 60082)
                     throw new FechaNacimientoIncorrecta(ex.Message);
                 throw;
             }
@@ -142,10 +148,10 @@ namespace CoreBancarioService.BusinessLogic
             }
             catch (SqlException ex)
             {
-                if (ex.Number == 60040)
+                if (ex.Number == 60091)
                     throw new ClienteNoExiste(ex.Message);
 
-                if (ex.Number == 60041)
+                if (ex.Number == 60092)
                     throw new ClienteTieneCuentasRegistradas(ex.Message);
 
                 throw;
@@ -200,7 +206,7 @@ namespace CoreBancarioService.BusinessLogic
             }
             catch (SqlException ex)
             {
-                if (ex.Number == 60071)
+                if (ex.Number == 70011)
                     throw new ClienteNoExiste(ex.Message);
                 throw;
             }

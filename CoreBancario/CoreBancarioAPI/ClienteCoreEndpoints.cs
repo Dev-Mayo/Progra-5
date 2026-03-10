@@ -55,7 +55,7 @@ public static class ClienteCoreEndpoints
         .WithOpenApi();
 
         group.MapPut("/", (
-            ClienteRequest request,
+            ClienteRequestEdit request,
             IClienteService service) =>
         {
             try
@@ -156,7 +156,7 @@ public static class ClienteCoreEndpoints
                 var result = await service.ListarClientePorLlavePrimaria(identificacion);
                 return Results.Ok(result);
             }
-            catch (CuentaNoExisteException ex)
+            catch (ClienteNoExiste ex)
             {
                 return Results.NotFound(new ErrorResponse
                 {

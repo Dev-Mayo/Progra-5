@@ -465,7 +465,7 @@ BEGIN
 END;
 GO
 
-alter PROCEDURE sp_ListarTodas
+create PROCEDURE sp_ListarTodas
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -566,6 +566,251 @@ BEGIN
     IF @@ROWCOUNT = 0
     BEGIN
         THROW 50060, 'Cliente no encontrado o no tiene cuentas activas', 1;
+    END
+END;
+GO
+
+-----------------------------------------------------------------------
+----------------------------SA10---------------------------------------
+-----------------------------------------------------------------------
+create PROCEDURE sp_CrearCliente 
+(
+    @identificacion INT, 
+    @nombre VARCHAR(15),
+    @apellido VARCHAR(15),
+    @fecha_nacimiento date,
+    @TipoIdentificacion INT,
+    @Telefono INT,
+    @Email nvarchar(50),
+    @Contrasena varchar(50)
+
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+     
+    BEGIN TRY
+        BEGIN TRANSACTION;
+
+        IF EXISTS (
+            SELECT 1 
+            FROM cliente 
+            WHERE identificacion = @identificacion 
+              AND estado = 1
+        )
+        BEGIN
+            THROW 60072, 'El cliente ya existe y esta registrado en el sistema', 1;
+        END
+
+        IF @fecha_nacimiento > GETDATE()
+        BEGIN
+            THROW 60071, 'Fecha de nacimiento no puede ser posterior a la fecha actual', 1;
+        END
+
+        INSERT INTO cliente 
+        (
+            identificacion,
+            nombre,
+            apellido,
+            Email,
+            Tipo_Identificacion,
+            Telefono,
+            Rol,
+            ContrasenaHash,
+            Estado,
+            fecha_nacimiento
+        )
+        VALUES
+        (
+            @identificacion,
+            @nombre,
+            @apellido,
+            @Email,
+            @TipoIdentificacion,
+            @Telefono,
+            1,
+            HASHBYTES('SHA2_256',@Contrasena),
+            1,
+            @fecha_nacimiento
+        );
+
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0
+            ROLLBACK TRANSACTION;
+
+        THROW;
+    END CATCH
+END;
+GO
+
+CREATE PROCEDURE sp_EditarCliente
+(
+    @identificacion INT,
+    @nombre VARCHAR(15) = NULL,
+    @apellido VARCHAR(15) = NULL,
+    @fecha_nacimiento DATE = NULL,
+    @TipoIdentificacion INT = NULL,
+    @Telefono INT = NULL,
+    @Email NVARCHAR(50) = NULL,
+    @Contrasena VARCHAR(50) = NULL
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    BEGIN TRY
+        BEGIN TRANSACTION;
+
+        IF NOT EXISTS (
+            SELECT 1
+            FROM cliente
+            WHERE identificacion = @identificacion
+              AND estado = 1
+        )
+        BEGIN
+            THROW 60081, 'El cliente no existe', 1;
+        END
+
+        IF @fecha_nacimiento IS NOT NULL 
+           AND @fecha_nacimiento > GETDATE()
+        BEGIN
+            THROW 60082, 'Fecha de nacimiento no puede ser posterior a la fecha actual', 1;
+        END
+
+        UPDATE cliente
+        SET
+            nombre = COALESCE(@nombre, nombre),
+            apellido = COALESCE(@apellido, apellido),
+            fecha_nacimiento = COALESCE(@fecha_nacimiento, fecha_nacimiento),
+            tipo_identificacion = COALESCE(@TipoIdentificacion, tipo_identificacion),
+            telefono = COALESCE(@Telefono, telefono),
+            email = COALESCE(@Email, email),
+
+            ContrasenaHash = CASE 
+                            WHEN @Contrasena IS NOT NULL 
+                            THEN HASHBYTES('SHA2_256', @Contrasena)
+                            ELSE ContrasenaHash
+                         END
+        WHERE identificacion = @identificacion;
+
+        COMMIT TRANSACTION;
+
+    END TRY
+    BEGIN CATCH
+
+        IF @@TRANCOUNT > 0
+            ROLLBACK TRANSACTION;
+
+        THROW;
+
+    END CATCH
+END
+GO
+
+create PROCEDURE sp_EliminarCliente
+(
+    @identificacion INT
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+    DECLARE @ClienteId INT;
+
+    BEGIN TRY
+        BEGIN TRANSACTION;
+
+        IF NOT EXISTS (
+            SELECT 1
+            FROM cliente
+            WHERE identificacion = @identificacion
+              AND estado = 1
+        )
+        BEGIN
+            THROW 60091, 'El cliente no existe', 1;
+        END
+
+        SELECT @ClienteId = cliente_id 
+        FROM cliente 
+        WHERE identificacion = @identificacion 
+          AND estado = 1;
+
+        -- Validar que no tenga cuentas asociadas
+        IF EXISTS (
+            SELECT 1
+            FROM cuenta
+            WHERE cliente_id = @ClienteId
+        )
+        BEGIN
+            THROW 60092, 'No se puede eliminar un cliente con cuentas registradas', 1;
+        END
+
+        -- Soft delete (marcar como inactivo)
+        UPDATE cliente
+        SET estado = 0
+        WHERE identificacion = @identificacion;
+
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0
+            ROLLBACK TRANSACTION;
+
+        THROW;
+    END CATCH
+END;
+GO
+
+create PROCEDURE sp_ListarTodos
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT
+        identificacion AS identificacion,
+        nombre AS nombre,
+        apellido AS apellido,
+        fecha_nacimiento AS fecha_nacimiento,
+        Tipo_Identificacion AS TipoIdentificacion,
+        Telefono AS Telefono
+    FROM cliente
+    WHERE Estado = 1
+END;
+GO
+
+create PROCEDURE sp_ListarClientePorLlavePrimaria
+(
+    @identificacion VARCHAR(20)
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF NOT EXISTS (
+            SELECT 1 
+            FROM cliente 
+            WHERE identificacion = @identificacion 
+              AND estado = 1
+        )
+    BEGIN
+        THROW 70011, 'El cliente no existe o esta inactivo', 1;
+    END
+
+    SELECT
+        identificacion AS identificacion,
+        nombre AS nombre,
+        apellido AS apellido,
+        fecha_nacimiento AS fecha_nacimiento,
+        Tipo_Identificacion AS TipoIdentificacion,
+        Telefono AS Telefono
+    FROM cliente
+    WHERE identificacion = @identificacion
+      AND estado = 1
+
+    IF @@ROWCOUNT = 0
+    BEGIN
+        THROW 70050, 'Cliente no encontrado', 1;
     END
 END;
 GO
