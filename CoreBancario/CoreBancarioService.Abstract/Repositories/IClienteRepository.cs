@@ -11,8 +11,9 @@ namespace CoreBancarioService.Abstract.Repositories
     {
         void CrearCliente(string identificacion, string nombre, string apellido, 
             DateOnly fecha_nacimiento, int TipoIdentificacion, int Telefono, string Email, string Contrasena);
-        void EditarCliente(string identificacion, string? nombre, string? apellido,
-            DateOnly? fecha_nacimiento, int? TipoIdentificacion, int? Telefono, string? Email, string? Contrasena);
+        Task EditarCliente(string identificacion, string? nombre, string? apellido,
+        DateOnly? fecha_nacimiento, int? TipoIdentificacion, int? Telefono, string? Email, string? Contrasena);
+
         void EliminarCliente(string identificacion);
         Task<IEnumerable<ClienteResponse>> ListarTodos();
         Task<IEnumerable<ClienteResponse>> ListarClientePorLlavePrimaria(string identificacion);

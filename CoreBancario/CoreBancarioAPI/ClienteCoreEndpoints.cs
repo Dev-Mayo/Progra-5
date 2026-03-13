@@ -54,14 +54,15 @@ public static class ClienteCoreEndpoints
         .WithName("CrearCliente")
         .WithOpenApi();
 
-        group.MapPut("/", (
+        group.MapPut("/", async (
             ClienteRequestEdit request,
             IClienteService service) =>
         {
             try
             {
-                var result = service.EditarCliente(request);
-                return Results.NoContent();
+                var result = await service.EditarCliente(request);
+
+                return Results.Ok(result);
             }
             catch (ClienteNoExiste ex)
             {
@@ -87,9 +88,17 @@ public static class ClienteCoreEndpoints
                     Mensaje = ex.Message
                 });
             }
-            catch (Exception)
+            catch (FechaNacimientoIncorrecta ex)
             {
-                return Results.Problem("Error interno del servidor");
+                return Results.BadRequest(new ErrorResponse
+                {
+                    Codigo = "400",
+                    Mensaje = ex.Message
+                });
+            }
+            catch (Exception ex)
+            {
+                return Results.Problem("Error interno del servidor", statusCode: 500);
             }
         })
         .WithName("EditarCliente")

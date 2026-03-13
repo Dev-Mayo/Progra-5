@@ -14,5 +14,6 @@ namespace CoreBancarioService.Model
         public DateOnly? fecha_nacimiento { get; set; }
         public int? TipoIdentificacion { get; set; }
         public int? Telefono { get; set; }
+        public string? Email { get; set; }
     }
 }

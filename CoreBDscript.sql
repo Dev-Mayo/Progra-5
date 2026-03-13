@@ -645,9 +645,9 @@ BEGIN
 END;
 GO
 
-CREATE PROCEDURE sp_EditarCliente
+create PROCEDURE sp_EditarCliente
 (
-    @identificacion INT,
+    @identificacion VARCHAR(20),
     @nombre VARCHAR(15) = NULL,
     @apellido VARCHAR(15) = NULL,
     @fecha_nacimiento DATE = NULL,
@@ -663,19 +663,22 @@ BEGIN
     BEGIN TRY
         BEGIN TRANSACTION;
 
+        -- Add WITH (NOLOCK) to avoid blocking reads
         IF NOT EXISTS (
             SELECT 1
-            FROM cliente
+            FROM cliente WITH (NOLOCK)
             WHERE identificacion = @identificacion
               AND estado = 1
         )
         BEGIN
+            ROLLBACK TRANSACTION;
             THROW 60081, 'El cliente no existe', 1;
         END
 
         IF @fecha_nacimiento IS NOT NULL 
            AND @fecha_nacimiento > GETDATE()
         BEGIN
+            ROLLBACK TRANSACTION;
             THROW 60082, 'Fecha de nacimiento no puede ser posterior a la fecha actual', 1;
         END
 
@@ -687,7 +690,6 @@ BEGIN
             tipo_identificacion = COALESCE(@TipoIdentificacion, tipo_identificacion),
             telefono = COALESCE(@Telefono, telefono),
             email = COALESCE(@Email, email),
-
             ContrasenaHash = CASE 
                             WHEN @Contrasena IS NOT NULL 
                             THEN HASHBYTES('SHA2_256', @Contrasena)
@@ -699,15 +701,13 @@ BEGIN
 
     END TRY
     BEGIN CATCH
-
         IF @@TRANCOUNT > 0
             ROLLBACK TRANSACTION;
-
         THROW;
-
     END CATCH
 END
 GO
+
 
 create PROCEDURE sp_EliminarCliente
 (
@@ -762,7 +762,7 @@ BEGIN
 END;
 GO
 
-create PROCEDURE sp_ListarTodos
+alter PROCEDURE sp_ListarTodos
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -773,7 +773,8 @@ BEGIN
         apellido AS apellido,
         fecha_nacimiento AS fecha_nacimiento,
         Tipo_Identificacion AS TipoIdentificacion,
-        Telefono AS Telefono
+        Telefono AS Telefono,
+        Email AS Email
     FROM cliente
     WHERE Estado = 1
 END;

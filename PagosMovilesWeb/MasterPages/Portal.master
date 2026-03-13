@@ -1,0 +1,38 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Portal.Master.cs" Inherits="PagosMovilesWeb.MasterPages.Portal" %>
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <meta charset="utf-8" />
+    <title>Portal</title>
+    <link href="../Assets/css/site.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="layout">
+            <div class="sidebar">
+                <h2>Pagos Móviles</h2>
+                <p>Portal Usuario</p>
+
+                <asp:HyperLink ID="lnkInicio" runat="server" NavigateUrl="~/Portal/PTL2_Welcome.aspx" Text="Inicio" />
+                <asp:HyperLink ID="lnkSaldo" runat="server" NavigateUrl="#" Text="Consultar saldo" />
+                <asp:HyperLink ID="lnkMovimientos" runat="server" NavigateUrl="#" Text="Movimientos" />
+                <asp:HyperLink ID="lnkTransferir" runat="server" NavigateUrl="#" Text="Transferir" />
+                <asp:LinkButton ID="lnkLogout" runat="server" OnClick="lnkLogout_Click">Cerrar sesión</asp:LinkButton>
+            </div>
+
+            <div class="main">
+                <div class="topbar">
+                    <asp:Label ID="lblUsuarioPortal" runat="server"></asp:Label>
+                    <img src="../Assets/img/user.png" class="avatar" />
+                </div>
+
+                <div class="content">
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

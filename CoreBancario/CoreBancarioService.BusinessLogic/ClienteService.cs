@@ -61,7 +61,8 @@ namespace CoreBancarioService.BusinessLogic
                 apellido = request.apellido,
                 fecha_nacimiento = request.fecha_nacimiento,
                 TipoIdentificacion = request.TipoIdentificacion,
-                Telefono = request.Telefono
+                Telefono = request.Telefono,
+                Email = request.Email
             };
 
 
@@ -69,7 +70,7 @@ namespace CoreBancarioService.BusinessLogic
             {
                 var usuario = ObtenerUsuarioDesdeToken();
 
-                var descripcion = $"Nueva cuenta registrada: {JsonSerializer.Serialize(response)}";
+                var descripcion = $"Nuevo cliente registrado: {JsonSerializer.Serialize(response)}";
 
                 _bitacoraService.RegistrarEventoAsync(new BitacoraRequest
                 {
@@ -84,15 +85,16 @@ namespace CoreBancarioService.BusinessLogic
             return response;
         }
 
-        public ClienteResponse EditarCliente(ClienteRequestEdit request)
+        // CoreBancarioService.Services/ClienteService.cs
+        public async Task<ClienteResponse> EditarCliente(ClienteRequestEdit request)
         {
             try
             {
-                _clienteRepo.EditarCliente(
-                    request.identificacion,
-                    request.nombre,
-                    request.apellido,
-                    request.fecha_nacimiento,
+                await _clienteRepo.EditarCliente(
+                    request.Identificacion,
+                    request.Nombre,
+                    request.Apellido,
+                    request.FechaNacimiento,
                     request.TipoIdentificacion,
                     request.Telefono,
                     request.Email,
@@ -110,29 +112,29 @@ namespace CoreBancarioService.BusinessLogic
 
             var response = new ClienteResponse
             {
-                identificacion = request.identificacion,
-                nombre = request.nombre,
-                apellido = request.apellido,
-                fecha_nacimiento = request.fecha_nacimiento,
+                identificacion = request.Identificacion,
+                nombre = request.Nombre,
+                apellido = request.Apellido,
+                fecha_nacimiento = request.FechaNacimiento,
                 TipoIdentificacion = request.TipoIdentificacion,
-                Telefono = request.Telefono
+                Telefono = request.Telefono,
+                Email = request.Email
             };
-
 
             try
             {
                 var usuario = ObtenerUsuarioDesdeToken();
+                var descripcion = $"Cliente editado: {JsonSerializer.Serialize(response)}";
 
-                var descripcion = $"Cuenta editada: {JsonSerializer.Serialize(response)}";
-
-                _bitacoraService.RegistrarEventoAsync(new BitacoraRequest
+                await _bitacoraService.RegistrarEventoAsync(new BitacoraRequest
                 {
                     UsuarioAccion = usuario,
                     Descripcion = descripcion
-                }).Wait();
+                });
             }
             catch
             {
+                // Log error but don't fail the main operation
             }
 
             return response;
@@ -167,7 +169,7 @@ namespace CoreBancarioService.BusinessLogic
             {
                 var usuario = ObtenerUsuarioDesdeToken();
 
-                var descripcion = $"Cliente eliminada: {JsonSerializer.Serialize(response)}";
+                var descripcion = $"Cliente eliminado: {JsonSerializer.Serialize(response)}";
 
                 _bitacoraService.RegistrarEventoAsync(new BitacoraRequest
                 {

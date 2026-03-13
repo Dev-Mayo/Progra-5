@@ -367,11 +367,14 @@
         "additionalProperties": false
       },
       "ClienteRequestEdit": {
+        "required": [
+          "identificacion"
+        ],
         "type": "object",
         "properties": {
           "identificacion": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "nombre": {
             "type": "string",
@@ -381,7 +384,7 @@
             "type": "string",
             "nullable": true
           },
-          "fecha_nacimiento": {
+          "fechaNacimiento": {
             "type": "string",
             "format": "date",
             "nullable": true

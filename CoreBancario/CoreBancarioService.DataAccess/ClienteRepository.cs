@@ -43,24 +43,31 @@ namespace CoreBancarioService.DataAccess
             );
         }
 
-        public void EditarCliente(
-            string identificacion, string? nombre, string? apellido,
-            DateOnly? fecha_nacimiento, int? TipoIdentificacion, int? Telefono, string? Email, string? Contrasena)
+        public async Task EditarCliente(
+            string identificacion,
+            string? nombre,
+            string? apellido,
+            DateOnly? fecha_nacimiento,
+            int? TipoIdentificacion,
+            int? Telefono,
+            string? Email,
+            string? Contrasena)
         {
             var parametros = new[]
             {
-                new SqlParameter("@identificacion", identificacion),
-                new SqlParameter("@nombre", nombre),
-                new SqlParameter("@apellido", apellido),
-                new SqlParameter("@fecha_nacimiento",fecha_nacimiento),
-                new SqlParameter("@TipoIdentificacion",TipoIdentificacion),
-                new SqlParameter("@Telefono",Telefono),
-                new SqlParameter("@Email",Email),
-                new SqlParameter("@Contrasena", Contrasena)
+                new SqlParameter("@identificacion", identificacion ?? (object)DBNull.Value),
+                new SqlParameter("@nombre", nombre ?? (object)DBNull.Value),
+                new SqlParameter("@apellido", apellido ?? (object)DBNull.Value),
+                new SqlParameter("@fecha_nacimiento",
+                    fecha_nacimiento?.ToDateTime(TimeOnly.MinValue) ?? (object)DBNull.Value),
+                new SqlParameter("@TipoIdentificacion", TipoIdentificacion ?? (object)DBNull.Value),
+                new SqlParameter("@Telefono", Telefono ?? (object)DBNull.Value),
+                new SqlParameter("@Email", Email ?? (object)DBNull.Value),
+                new SqlParameter("@Contrasena", Contrasena ?? (object)DBNull.Value)
             };
 
-            _context.Database.ExecuteSqlRaw(
-                "EXEC sp_EditarCliente @identificacion, @nombre, @apellido, @fecha_nacimiento, @TipoIdentificacion, @Telefono", // falta crear SP
+            await _context.Database.ExecuteSqlRawAsync(
+                "EXEC sp_EditarCliente @identificacion, @nombre, @apellido, @fecha_nacimiento, @TipoIdentificacion, @Telefono, @Email, @Contrasena",
                 parametros
             );
         }

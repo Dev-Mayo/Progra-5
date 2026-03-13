@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CoreBancarioService.BusinessLogic")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cb49ad9ddd3c5c78a4517f11af94f329ade13858")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4fde19db9c566a26365e3cf764305d3b0e182d84")]
 [assembly: System.Reflection.AssemblyProductAttribute("CoreBancarioService.BusinessLogic")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CoreBancarioService.BusinessLogic")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
