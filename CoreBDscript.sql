@@ -780,7 +780,7 @@ BEGIN
 END;
 GO
 
-create PROCEDURE sp_ListarClientePorLlavePrimaria
+alter PROCEDURE sp_ListarClientePorLlavePrimaria
 (
     @identificacion VARCHAR(20)
 )
@@ -804,7 +804,8 @@ BEGIN
         apellido AS apellido,
         fecha_nacimiento AS fecha_nacimiento,
         Tipo_Identificacion AS TipoIdentificacion,
-        Telefono AS Telefono
+        Telefono AS Telefono,
+        Email AS Email
     FROM cliente
     WHERE identificacion = @identificacion
       AND estado = 1

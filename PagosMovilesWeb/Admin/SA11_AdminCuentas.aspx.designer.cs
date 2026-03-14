@@ -33,6 +33,15 @@ namespace PagosMovilesWeb.Admin
         protected global::System.Web.UI.WebControls.Button btnBuscarCuenta;
 
         /// <summary>
+        /// gvResultadoBusqueda control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvResultadoBusqueda;
+
+        /// <summary>
         /// txtBuscarCliente control.
         /// </summary>
         /// <remarks>
@@ -51,6 +60,24 @@ namespace PagosMovilesWeb.Admin
         protected global::System.Web.UI.WebControls.Button btnBuscarCliente;
 
         /// <summary>
+        /// gvCuentasCliente control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvCuentasCliente;
+
+        /// <summary>
+        /// txtClienteId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtClienteId;
+
+        /// <summary>
         /// txtNumeroCuenta control.
         /// </summary>
         /// <remarks>
@@ -60,15 +87,6 @@ namespace PagosMovilesWeb.Admin
         protected global::System.Web.UI.WebControls.TextBox txtNumeroCuenta;
 
         /// <summary>
-        /// txtCliente control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCliente;
-
-        /// <summary>
         /// ddlTipoCuenta control.
         /// </summary>
         /// <remarks>
@@ -76,15 +94,6 @@ namespace PagosMovilesWeb.Admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlTipoCuenta;
-
-        /// <summary>
-        /// txtSaldo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSaldo;
 
         /// <summary>
         /// btnCrearCuenta control.
@@ -103,6 +112,33 @@ namespace PagosMovilesWeb.Admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnActualizarCuenta;
+
+        /// <summary>
+        /// txtEliminarCliente control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtEliminarCliente;
+
+        /// <summary>
+        /// txtEliminarCuenta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtEliminarCuenta;
+
+        /// <summary>
+        /// btnEliminarCuenta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEliminarCuenta;
 
         /// <summary>
         /// gvCuentas control.

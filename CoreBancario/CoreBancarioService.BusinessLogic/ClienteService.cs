@@ -94,7 +94,7 @@ namespace CoreBancarioService.BusinessLogic
                     request.Identificacion,
                     request.Nombre,
                     request.Apellido,
-                    request.FechaNacimiento,
+                    request.fecha_nacimiento,
                     request.TipoIdentificacion,
                     request.Telefono,
                     request.Email,
@@ -115,7 +115,7 @@ namespace CoreBancarioService.BusinessLogic
                 identificacion = request.Identificacion,
                 nombre = request.Nombre,
                 apellido = request.Apellido,
-                fecha_nacimiento = request.FechaNacimiento,
+                fecha_nacimiento = request.fecha_nacimiento,
                 TipoIdentificacion = request.TipoIdentificacion,
                 Telefono = request.Telefono,
                 Email = request.Email

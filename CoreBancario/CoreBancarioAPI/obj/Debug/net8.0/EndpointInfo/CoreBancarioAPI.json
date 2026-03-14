@@ -384,7 +384,7 @@
             "type": "string",
             "nullable": true
           },
-          "fechaNacimiento": {
+          "fecha_nacimiento": {
             "type": "string",
             "format": "date",
             "nullable": true

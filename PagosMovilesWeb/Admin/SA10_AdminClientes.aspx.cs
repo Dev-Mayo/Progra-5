@@ -104,11 +104,12 @@ namespace PagosMovilesWeb.Admin
             if (string.IsNullOrEmpty(identificacion))
                 return;
 
-            var cliente = await GetAsync<Cliente>($"{baseUrl}/core/client/{identificacion}");
+            var clientes = await GetAsync<List<Cliente>>
+                ($"{baseUrl}/core/client/Cliente?identificacion={identificacion}");
 
-            if (cliente != null)
+            if (clientes != null && clientes.Count > 0)
             {
-                gvResultadoBusqueda.DataSource = new List<Cliente> { cliente };
+                gvResultadoBusqueda.DataSource = clientes;
                 gvResultadoBusqueda.DataBind();
             }
             else

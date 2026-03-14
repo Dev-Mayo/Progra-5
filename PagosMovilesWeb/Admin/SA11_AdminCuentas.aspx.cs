@@ -1,17 +1,18 @@
-﻿using Newtonsoft.Json;
-using PagosMovilesWeb.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using PagosMovilesWeb.Models;
 
 namespace PagosMovilesWeb.Admin
 {
     public partial class SA11_AdminCuentas : System.Web.UI.Page
     {
-        private readonly string baseUrl = "http://localhost:5227";
+
+        string baseUrl = "http://localhost:5227";
 
         protected async void Page_Load(object sender, EventArgs e)
         {
@@ -27,159 +28,123 @@ namespace PagosMovilesWeb.Admin
 
             var token = Session["AccessToken"]?.ToString();
 
-            if (!string.IsNullOrEmpty(token))
-            {
-                client.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue("Bearer", token);
-            }
+            client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", token);
 
             return client;
         }
 
-        private async Task<T> GetAsync<T>(string url)
-        {
-            using (HttpClient client = GetClient())
-            {
-                var response = await client.GetAsync(url);
-
-                if (!response.IsSuccessStatusCode)
-                    return default;
-
-                var json = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<T>(json);
-            }
-        }
-
-        private async Task<bool> PostAsync<T>(string url, T data)
-        {
-            using (HttpClient client = GetClient())
-            {
-                var json = JsonConvert.SerializeObject(data);
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-                var response = await client.PostAsync(url, content);
-
-                return response.IsSuccessStatusCode;
-            }
-        }
-
-        private async Task<bool> PutAsync<T>(string url, T data)
-        {
-            using (HttpClient client = GetClient())
-            {
-                var json = JsonConvert.SerializeObject(data);
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-                var response = await client.PutAsync(url, content);
-
-                return response.IsSuccessStatusCode;
-            }
-        }
-
-        private async Task<bool> DeleteAsync(string url)
-        {
-            using (HttpClient client = GetClient())
-            {
-                var response = await client.DeleteAsync(url);
-
-                return response.IsSuccessStatusCode;
-            }
-        }
-
         private async Task CargarCuentas()
         {
-            var cuentas = await GetAsync<List<Cuenta>>($"{baseUrl}/core/accounts");
-
-            if (cuentas != null)
+            using (var client = GetClient())
             {
-                gvCuentas.DataSource = cuentas;
-                gvCuentas.DataBind();
+                var response = await client.GetAsync($"{baseUrl}/core/accounts");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var json = await response.Content.ReadAsStringAsync();
+
+                    var cuentas = JsonConvert.DeserializeObject<List<Cuenta>>(json);
+
+                    gvCuentas.DataSource = cuentas;
+                    gvCuentas.DataBind();
+                }
             }
         }
 
         protected async void btnBuscarCuenta_Click(object sender, EventArgs e)
         {
-            string numeroCuenta = txtBuscarCuenta.Text.Trim();
+            string numeroCuenta = txtBuscarCuenta.Text;
 
-            var cuenta = await GetAsync<Cuenta>($"{baseUrl}/core/accounts/{numeroCuenta}");
-
-            if (cuenta != null)
+            using (var client = GetClient())
             {
-                gvCuentas.DataSource = new List<Cuenta> { cuenta };
-                gvCuentas.DataBind();
+                var response = await client.GetAsync($"{baseUrl}/core/accounts/Cuenta?NumeroCuenta={numeroCuenta}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var json = await response.Content.ReadAsStringAsync();
+
+                    var cuenta = JsonConvert.DeserializeObject<Cuenta>(json);
+
+                    gvResultadoBusqueda.DataSource = new List<Cuenta> { cuenta };
+                    gvResultadoBusqueda.DataBind();
+                }
             }
         }
 
         protected async void btnBuscarCliente_Click(object sender, EventArgs e)
         {
-            string cliente = txtBuscarCliente.Text.Trim();
+            string clienteId = txtBuscarCliente.Text;
 
-            var cuentas = await GetAsync<List<Cuenta>>($"{baseUrl}/core/accounts/client/{cliente}");
-
-            if (cuentas != null)
+            using (var client = GetClient())
             {
-                gvCuentas.DataSource = cuentas;
-                gvCuentas.DataBind();
+                var response = await client.GetAsync($"{baseUrl}/core/accounts/Cliente?ClienteID={clienteId}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var json = await response.Content.ReadAsStringAsync();
+
+                    var cuentas = JsonConvert.DeserializeObject<List<Cuenta>>(json);
+
+                    gvCuentasCliente.DataSource = cuentas;
+                    gvCuentasCliente.DataBind();
+                }
             }
         }
 
         protected async void btnCrearCuenta_Click(object sender, EventArgs e)
         {
-            Cuenta cuenta = new Cuenta
+            var cuenta = new
             {
-                numeroCuenta = txtNumeroCuenta.Text.Trim(),
-                identificacionCliente = txtCliente.Text.Trim(),
-                tipoCuenta = ddlTipoCuenta.SelectedValue,
-                saldo = decimal.Parse(txtSaldo.Text)
+                clienteId = int.Parse(txtClienteId.Text),
+                tipoCuenta = ddlTipoCuenta.SelectedValue
             };
 
-            bool creada = await PostAsync($"{baseUrl}/core/accounts", cuenta);
-
-            if (creada)
+            using (var client = GetClient())
             {
-                await CargarCuentas();
-                LimpiarFormulario();
+                var json = JsonConvert.SerializeObject(cuenta);
+
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                await client.PostAsync($"{baseUrl}/core/accounts", content);
             }
+
+            await CargarCuentas();
         }
 
         protected async void btnActualizarCuenta_Click(object sender, EventArgs e)
         {
-            Cuenta cuenta = new Cuenta
+            var cuenta = new
             {
-                numeroCuenta = txtNumeroCuenta.Text.Trim(),
-                identificacionCliente = txtCliente.Text.Trim(),
-                tipoCuenta = ddlTipoCuenta.SelectedValue,
-                saldo = decimal.Parse(txtSaldo.Text)
+                clienteId = int.Parse(txtClienteId.Text),
+                numeroCuenta = txtNumeroCuenta.Text,
+                tipoCuenta = ddlTipoCuenta.SelectedValue
             };
 
-            bool actualizada = await PutAsync($"{baseUrl}/core/accounts", cuenta);
-
-            if (actualizada)
+            using (var client = GetClient())
             {
-                await CargarCuentas();
-                LimpiarFormulario();
+                var json = JsonConvert.SerializeObject(cuenta);
+
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                await client.PutAsync($"{baseUrl}/core/accounts", content);
             }
+
+            await CargarCuentas();
         }
 
-        protected async void EliminarCuenta(object sender, EventArgs e)
+        protected async void btnEliminarCuenta_Click(object sender, EventArgs e)
         {
-            var btn = (System.Web.UI.WebControls.Button)sender;
-            string numeroCuenta = btn.CommandArgument;
+            string clienteId = txtEliminarCliente.Text;
+            string numeroCuenta = txtEliminarCuenta.Text;
 
-            bool eliminada = await DeleteAsync($"{baseUrl}/core/accounts/{numeroCuenta}");
-
-            if (eliminada)
+            using (var client = GetClient())
             {
-                await CargarCuentas();
+                await client.DeleteAsync($"{baseUrl}/core/accounts/{clienteId}/{numeroCuenta}");
             }
+
+            await CargarCuentas();
         }
 
-        private void LimpiarFormulario()
-        {
-            txtNumeroCuenta.Text = "";
-            txtCliente.Text = "";
-            txtSaldo.Text = "";
-            ddlTipoCuenta.SelectedIndex = 0;
-        }
     }
 }
