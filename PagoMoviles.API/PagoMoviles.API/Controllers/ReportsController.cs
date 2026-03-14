@@ -19,11 +19,9 @@ namespace PagoMoviles.API.Controllers
         }
 
         /// <summary>
-        /// SRV17 - Avance 2: Reporte de transacciones por fecha
+        /// SRV17 - AJUSTADO para SA12: Reporte de transacciones diarias
+        /// Ahora la fecha es OBLIGATORIA (antes era opcional).
         /// GET /api/reports/transactions/daily?fecha=2026-03-14
-        /// Recibe una fecha y devuelve todas las transacciones de ese día
-        /// Muestra: Fecha, Teléfono origen, Teléfono destino, Monto
-        /// Al final: Suma total del día
         /// </summary>
         [HttpGet("transactions/daily")]
         public async Task<IActionResult> GetDailyReport([FromQuery] DateTime? fecha)
@@ -31,14 +29,22 @@ namespace PagoMoviles.API.Controllers
             string tokenActual = Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
             string usuarioToken = User.Identity?.Name ?? "UsuarioDesconocido";
 
-            // Si no se envía fecha, usar la fecha de hoy
-            var fechaBusqueda = fecha ?? DateTime.Today;
+            // SA12: La fecha ahora es REQUERIDA
+            if (!fecha.HasValue)
+            {
+                return BadRequest(new
+                {
+                    codigo = -1,
+                    descripcion = "Debe indicar la fecha del reporte"
+                });
+            }
+
+            var fechaBusqueda = fecha.Value;
 
             try
             {
                 var result = await _reportService.GetDailyReport(fechaBusqueda);
 
-                // Bitácora
                 await _bitacoraService.RegistrarAsync(
                     usuarioToken,
                     $"Consulta de reporte diario - Fecha: {fechaBusqueda:yyyy-MM-dd}",
@@ -54,7 +60,6 @@ namespace PagoMoviles.API.Controllers
             }
             catch (Exception ex)
             {
-                // Bitácora de errores
                 await _bitacoraService.RegistrarAsync(
                     usuarioToken,
                     $"ERROR TÉCNICO en GetDailyReport: {ex.Message}",
