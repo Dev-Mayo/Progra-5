@@ -7,36 +7,45 @@ namespace PagoMoviles.BusinessLogic
 {
     public class ReportService : IReportService
     {
-        private readonly PagosMovilesContext _pagosContext; // Usa la base de David
+        private readonly PagosMovilesContext _pagosContext;
 
         public ReportService(PagosMovilesContext pagosContext)
         {
             _pagosContext = pagosContext;
         }
 
-        public async Task<ReportResponse> GetDailyReport()
+        /// <summary>
+        /// SRV17 - Avance 2: Reporte de transacciones por fecha
+        /// Muestra todas las transacciones de un día específico con:
+        /// - Fecha, Teléfono origen, Teléfono destino, Monto
+        /// - Suma total del día
+        /// </summary>
+        public async Task<DailyReportResponse> GetDailyReport(DateTime fecha)
         {
-            var hoy = DateTime.Today;
+            // Obtener solo la fecha sin hora para comparar
+            var fechaBusqueda = fecha.Date;
 
-            // Consultar y agrupar transacciones del día
+            // Consultar transacciones del día específico
             var transacciones = await _pagosContext.Transacciones
-                .Where(t => t.TrxFecha.Date == hoy)
-                .GroupBy(t => new { t.TrxEntOrigen, t.TrxEntDestino })
-                .Select(g => new TransaccionResumen
+                .Where(t => t.TrxFecha.Date == fechaBusqueda)
+                .OrderBy(t => t.TrxFecha)
+                .Select(t => new TransaccionDetalle
                 {
-                    EntidadOrigen = g.Key.TrxEntOrigen,
-                    EntidadDestino = g.Key.TrxEntDestino,
-                    TotalTransacciones = g.Count(),
-                    MontoTotal = g.Sum(t => t.TrxMonto)
+                    Fecha = t.TrxFecha,
+                    TelefonoOrigen = t.TrxTelOrigen,
+                    TelefonoDestino = t.TrxTelDestino,
+                    Monto = t.TrxMonto
                 })
                 .ToListAsync();
 
-            return new ReportResponse
+            // Calcular el total del día
+            var totalMonto = transacciones.Sum(t => t.Monto);
+
+            return new DailyReportResponse
             {
-                Fecha = hoy,
-                TotalGeneralTransacciones = transacciones.Sum(t => t.TotalTransacciones),
-                MontoTotalGeneral = transacciones.Sum(t => t.MontoTotal),
-                Detalle = transacciones
+                Fecha = fechaBusqueda,
+                Transacciones = transacciones,
+                TotalMonto = totalMonto
             };
         }
     }

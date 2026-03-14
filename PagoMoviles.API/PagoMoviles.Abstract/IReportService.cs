@@ -9,7 +9,7 @@ namespace PagoMoviles.Abstract
 {
     public interface IReportService
     {
-        // SRV17: Reporte de transacciones diarias
-        Task<ReportResponse> GetDailyReport();
+     
+        Task<DailyReportResponse> GetDailyReport(DateTime fecha);
     }
 }
