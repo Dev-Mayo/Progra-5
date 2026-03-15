@@ -1,0 +1,48 @@
+{
+  "Routes": [
+
+    {
+      "DownstreamPathTemplate": "/api/login", //sirve
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7160
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/auth/login",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/refresh", //sirve
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7160
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/auth/refresh",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/validate", //sirve
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7160
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/auth/validate",
+      "UpstreamHttpMethod": [ "GET" ]
+    } // falta /gateway/auth/register
+
+  ],
+
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:7084"
+  }
+}

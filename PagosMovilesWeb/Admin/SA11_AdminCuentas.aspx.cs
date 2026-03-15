@@ -64,9 +64,9 @@ namespace PagosMovilesWeb.Admin
                 {
                     var json = await response.Content.ReadAsStringAsync();
 
-                    var cuenta = JsonConvert.DeserializeObject<Cuenta>(json);
+                    var cuenta = JsonConvert.DeserializeObject<List<Cuenta>>(json);
 
-                    gvResultadoBusqueda.DataSource = new List<Cuenta> { cuenta };
+                    gvResultadoBusqueda.DataSource =  cuenta ;
                     gvResultadoBusqueda.DataBind();
                 }
             }

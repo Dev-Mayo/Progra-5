@@ -34,10 +34,23 @@ OnClick="btnBuscarCuenta_Click"/>
 
 <br />
 
-<asp:GridView ID="gvResultadoBusqueda"
-runat="server"
-AutoGenerateColumns="true"
-Width="100%" />
+<asp:GridView ID="gvResultadoBusqueda" runat="server" AutoGenerateColumns="false">
+
+    <Columns>
+        <asp:BoundField DataField="clienteId" HeaderText="Identificacion" />
+
+        <asp:BoundField DataField="numeroCuenta" HeaderText="Número de Cuenta" />
+
+        <asp:BoundField DataField="tipoCuenta" HeaderText="Tipo de Cuenta" />
+
+        <asp:BoundField DataField="saldo" HeaderText="Saldo" />
+
+        <asp:BoundField DataField="estado" HeaderText="Estado" />
+
+        <asp:BoundField DataField="fechaCreacion" HeaderText="Fecha de Creación" />
+    </Columns>
+
+</asp:GridView>
 
 <br />
 
@@ -60,10 +73,23 @@ OnClick="btnBuscarCliente_Click"/>
 
 <br />
 
-<asp:GridView ID="gvCuentasCliente"
-runat="server"
-AutoGenerateColumns="true"
-Width="100%" />
+<asp:GridView ID="gvCuentasCliente" runat="server" AutoGenerateColumns="false">
+
+    <Columns>
+        <asp:BoundField DataField="clienteId" HeaderText="Identificacion" />
+
+        <asp:BoundField DataField="numeroCuenta" HeaderText="Número de Cuenta" />
+
+        <asp:BoundField DataField="tipoCuenta" HeaderText="Tipo de Cuenta" />
+
+        <asp:BoundField DataField="saldo" HeaderText="Saldo" />
+
+        <asp:BoundField DataField="estado" HeaderText="Estado" />
+
+        <asp:BoundField DataField="fechaCreacion" HeaderText="Fecha de Creación" />
+    </Columns>
+
+</asp:GridView>
 
 <br />
 
@@ -138,9 +164,22 @@ OnClick="btnEliminarCuenta_Click"/>
 
 <h3>Lista de Cuentas</h3>
 
-<asp:GridView ID="gvCuentas"
-runat="server"
-AutoGenerateColumns="true"
-Width="100%" />
+<asp:GridView ID="gvCuentas" runat="server" AutoGenerateColumns="false">
+
+    <Columns>
+        <asp:BoundField DataField="clienteId" HeaderText="Identificacion" />
+
+        <asp:BoundField DataField="numeroCuenta" HeaderText="Número de Cuenta" />
+
+        <asp:BoundField DataField="tipoCuenta" HeaderText="Tipo de Cuenta" />
+
+        <asp:BoundField DataField="saldo" HeaderText="Saldo" />
+
+        <asp:BoundField DataField="estado" HeaderText="Estado" />
+
+        <asp:BoundField DataField="fechaCreacion" HeaderText="Fecha de Creación" />
+    </Columns>
+
+</asp:GridView>
 
 </asp:Content>

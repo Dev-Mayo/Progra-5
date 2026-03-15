@@ -471,15 +471,17 @@ BEGIN
     SET NOCOUNT ON;
 
     SELECT
-        numero_cuenta AS NumeroCuenta,
-        saldo AS Saldo,
-        TipoCuenta AS TipoCuenta,
-        estado AS Estado,
-        fecha_creacion AS FechaCreacion,
-        cliente_id AS ClienteId
-    FROM cuenta
-    WHERE estado = 1
-    ORDER BY fecha_creacion DESC;
+        c1.numero_cuenta AS NumeroCuenta,
+        c1.saldo AS Saldo,
+        c1.TipoCuenta AS TipoCuenta,
+        c1.estado AS Estado,
+        c1.fecha_creacion AS FechaCreacion,
+        TRY_CAST(c2.identificacion AS INT) AS ClienteId
+    FROM cuenta c1
+    INNER JOIN cliente c2 
+        ON c1.cliente_id = c2.cliente_id
+    WHERE c1.estado = 1
+    ORDER BY c1.fecha_creacion DESC;
 END;
 GO
 
@@ -509,15 +511,17 @@ BEGIN
     END
 
     SELECT
-        numero_cuenta AS NumeroCuenta,
-        saldo AS Saldo,
-        TipoCuenta AS TipoCuenta,
-        estado AS Estado,
-        fecha_creacion AS FechaCreacion,
-        cliente_id AS ClienteId
-    FROM cuenta
-    WHERE numero_cuenta = @NumeroCuenta
-      AND estado = 1
+    c1.numero_cuenta AS NumeroCuenta,
+    c1.saldo AS Saldo,
+    c1.TipoCuenta AS TipoCuenta,
+    c1.estado AS Estado,
+    c1.fecha_creacion AS FechaCreacion,
+    TRY_CAST(c2.identificacion AS INT) AS ClienteId
+    FROM cuenta c1
+    INNER JOIN cliente c2 
+        ON c1.cliente_id = c2.cliente_id
+    WHERE c1.numero_cuenta = @NumeroCuenta
+      AND c1.estado = 1
 
     IF @@ROWCOUNT = 0
     BEGIN
@@ -551,17 +555,19 @@ BEGIN
         THROW 50081, ' El cliente consultado no existe o no tiene cuentas asociadas', 1;
     END
 
-    SELECT 
-        numero_cuenta AS NumeroCuenta,
-        saldo AS Saldo,
-        TipoCuenta AS TipoCuenta,
-        estado AS Estado,
-        fecha_creacion AS FechaCreacion,
-        cliente_id AS ClienteId
-    FROM cuenta
-    WHERE cliente_id = @ClienteId2
-      AND estado = 1
-    ORDER BY fecha_creacion DESC;
+    SELECT
+    c1.numero_cuenta AS NumeroCuenta,
+    c1.saldo AS Saldo,
+    c1.TipoCuenta AS TipoCuenta,
+    c1.estado AS Estado,
+    c1.fecha_creacion AS FechaCreacion,
+    TRY_CAST(c2.identificacion AS INT) AS ClienteId
+    FROM cuenta c1
+    INNER JOIN cliente c2 
+        ON c1.cliente_id = c2.cliente_id
+    WHERE c1.cliente_id = @ClienteId2
+      AND c1.estado = 1
+    ORDER BY c1.fecha_creacion DESC;
 
     IF @@ROWCOUNT = 0
     BEGIN

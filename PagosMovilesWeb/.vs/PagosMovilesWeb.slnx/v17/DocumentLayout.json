@@ -3,18 +3,6 @@
   "WorkspaceRootPath": "D:\\ProyectoProgra5\\PagosMovilesWeb\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C186AE92-56A7-458E-8E16-CF7389468FE9}|PagosMovilesWeb.csproj|D:\\ProyectoProgra5\\PagosMovilesWeb\\admin\\sa11_admincuentas.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C186AE92-56A7-458E-8E16-CF7389468FE9}|PagosMovilesWeb.csproj|solutionrelative:admin\\sa11_admincuentas.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C186AE92-56A7-458E-8E16-CF7389468FE9}|PagosMovilesWeb.csproj|D:\\ProyectoProgra5\\PagosMovilesWeb\\admin\\sa10_adminclientes.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C186AE92-56A7-458E-8E16-CF7389468FE9}|PagosMovilesWeb.csproj|solutionrelative:admin\\sa10_adminclientes.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C186AE92-56A7-458E-8E16-CF7389468FE9}|PagosMovilesWeb.csproj|D:\\ProyectoProgra5\\PagosMovilesWeb\\admin\\sa2_welcome.aspx.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C186AE92-56A7-458E-8E16-CF7389468FE9}|PagosMovilesWeb.csproj|solutionrelative:admin\\sa2_welcome.aspx.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C186AE92-56A7-458E-8E16-CF7389468FE9}|PagosMovilesWeb.csproj|D:\\ProyectoProgra5\\PagosMovilesWeb\\admin\\sa11_admincuentas.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{C186AE92-56A7-458E-8E16-CF7389468FE9}|PagosMovilesWeb.csproj|solutionrelative:admin\\sa11_admincuentas.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
@@ -23,20 +11,28 @@
       "RelativeMoniker": "D:0:0:{C186AE92-56A7-458E-8E16-CF7389468FE9}|PagosMovilesWeb.csproj|solutionrelative:fakelogin.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C186AE92-56A7-458E-8E16-CF7389468FE9}|PagosMovilesWeb.csproj|d:\\proyectoprogra5\\pagosmovilesweb\\models\\cuenta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C186AE92-56A7-458E-8E16-CF7389468FE9}|PagosMovilesWeb.csproj|D:\\ProyectoProgra5\\PagosMovilesWeb\\models\\cuenta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C186AE92-56A7-458E-8E16-CF7389468FE9}|PagosMovilesWeb.csproj|solutionrelative:models\\cuenta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C186AE92-56A7-458E-8E16-CF7389468FE9}|PagosMovilesWeb.csproj|d:\\proyectoprogra5\\pagosmovilesweb\\admin\\sa10_adminclientes.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{C186AE92-56A7-458E-8E16-CF7389468FE9}|PagosMovilesWeb.csproj|solutionrelative:admin\\sa10_adminclientes.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{C186AE92-56A7-458E-8E16-CF7389468FE9}|PagosMovilesWeb.csproj|D:\\ProyectoProgra5\\PagosMovilesWeb\\admin\\sa10_adminclientes.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C186AE92-56A7-458E-8E16-CF7389468FE9}|PagosMovilesWeb.csproj|solutionrelative:admin\\sa10_adminclientes.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C186AE92-56A7-458E-8E16-CF7389468FE9}|PagosMovilesWeb.csproj|D:\\ProyectoProgra5\\PagosMovilesWeb\\models\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C186AE92-56A7-458E-8E16-CF7389468FE9}|PagosMovilesWeb.csproj|solutionrelative:models\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{C186AE92-56A7-458E-8E16-CF7389468FE9}|PagosMovilesWeb.csproj|d:\\proyectoprogra5\\pagosmovilesweb\\admin\\sa11_admincuentas.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C186AE92-56A7-458E-8E16-CF7389468FE9}|PagosMovilesWeb.csproj|solutionrelative:admin\\sa11_admincuentas.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C186AE92-56A7-458E-8E16-CF7389468FE9}|PagosMovilesWeb.csproj|D:\\ProyectoProgra5\\PagosMovilesWeb\\helpers\\apihelperadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C186AE92-56A7-458E-8E16-CF7389468FE9}|PagosMovilesWeb.csproj|solutionrelative:helpers\\apihelperadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C186AE92-56A7-458E-8E16-CF7389468FE9}|PagosMovilesWeb.csproj|D:\\ProyectoProgra5\\PagosMovilesWeb\\admin\\sa10_adminclientes.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{C186AE92-56A7-458E-8E16-CF7389468FE9}|PagosMovilesWeb.csproj|solutionrelative:admin\\sa10_adminclientes.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C186AE92-56A7-458E-8E16-CF7389468FE9}|PagosMovilesWeb.csproj|D:\\ProyectoProgra5\\PagosMovilesWeb\\masterpages\\admin.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
@@ -54,20 +50,20 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "Cuenta.cs",
               "DocumentMoniker": "D:\\ProyectoProgra5\\PagosMovilesWeb\\Models\\Cuenta.cs",
               "RelativeDocumentMoniker": "Models\\Cuenta.cs",
               "ToolTip": "D:\\ProyectoProgra5\\PagosMovilesWeb\\Models\\Cuenta.cs",
               "RelativeToolTip": "Models\\Cuenta.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAgAAAAAAAAAA==",
+              "ViewState": "AgIAAA4AAAAAAAAAAAA9wBkAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-14T06:47:58.718Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 4,
               "Title": "Cliente.cs",
               "DocumentMoniker": "D:\\ProyectoProgra5\\PagosMovilesWeb\\Models\\Cliente.cs",
               "RelativeDocumentMoniker": "Models\\Cliente.cs",
@@ -80,7 +76,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "SA10_AdminClientes.aspx",
               "DocumentMoniker": "D:\\ProyectoProgra5\\PagosMovilesWeb\\Admin\\SA10_AdminClientes.aspx",
               "RelativeDocumentMoniker": "Admin\\SA10_AdminClientes.aspx",
@@ -88,12 +84,11 @@
               "RelativeToolTip": "Admin\\SA10_AdminClientes.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2026-03-13T06:40:58.287Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-13T06:40:58.287Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "FakeLogin.aspx.cs",
               "DocumentMoniker": "D:\\ProyectoProgra5\\PagosMovilesWeb\\FakeLogin.aspx.cs",
               "RelativeDocumentMoniker": "FakeLogin.aspx.cs",
@@ -106,7 +101,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 6,
               "Title": "ApiHelperAdmin.cs",
               "DocumentMoniker": "D:\\ProyectoProgra5\\PagosMovilesWeb\\Helpers\\ApiHelperAdmin.cs",
               "RelativeDocumentMoniker": "Helpers\\ApiHelperAdmin.cs",
@@ -114,50 +109,38 @@
               "RelativeToolTip": "Helpers\\ApiHelperAdmin.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-13T05:34:08.462Z"
+              "WhenOpened": "2026-03-13T05:34:08.462Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "SA10_AdminClientes.aspx.cs",
               "DocumentMoniker": "D:\\ProyectoProgra5\\PagosMovilesWeb\\Admin\\SA10_AdminClientes.aspx.cs",
               "RelativeDocumentMoniker": "Admin\\SA10_AdminClientes.aspx.cs",
               "ToolTip": "D:\\ProyectoProgra5\\PagosMovilesWeb\\Admin\\SA10_AdminClientes.aspx.cs",
               "RelativeToolTip": "Admin\\SA10_AdminClientes.aspx.cs",
-              "ViewState": "AgIAAFwAAAAAAAAAAAAuwHcAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAADUAAAAAAAAAAAAIwHcAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-12T04:16:22.249Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "SA2_Welcome.aspx.designer.cs",
-              "DocumentMoniker": "D:\\ProyectoProgra5\\PagosMovilesWeb\\Admin\\SA2_Welcome.aspx.designer.cs",
-              "RelativeDocumentMoniker": "Admin\\SA2_Welcome.aspx.designer.cs",
-              "ToolTip": "D:\\ProyectoProgra5\\PagosMovilesWeb\\Admin\\SA2_Welcome.aspx.designer.cs",
-              "RelativeToolTip": "Admin\\SA2_Welcome.aspx.designer.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAD4vxAAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-12T04:15:56.538Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "SA11_AdminCuentas.aspx.cs",
               "DocumentMoniker": "D:\\ProyectoProgra5\\PagosMovilesWeb\\Admin\\SA11_AdminCuentas.aspx.cs",
               "RelativeDocumentMoniker": "Admin\\SA11_AdminCuentas.aspx.cs",
               "ToolTip": "D:\\ProyectoProgra5\\PagosMovilesWeb\\Admin\\SA11_AdminCuentas.aspx.cs",
               "RelativeToolTip": "Admin\\SA11_AdminCuentas.aspx.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAowDoAAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAADsAAAAAAAAAAAAIwFwAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-12T04:13:29.195Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "SA11_AdminCuentas.aspx",
               "DocumentMoniker": "D:\\ProyectoProgra5\\PagosMovilesWeb\\Admin\\SA11_AdminCuentas.aspx",
               "RelativeDocumentMoniker": "Admin\\SA11_AdminCuentas.aspx",
@@ -170,7 +153,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 8,
               "Title": "Admin.master",
               "DocumentMoniker": "D:\\ProyectoProgra5\\PagosMovilesWeb\\MasterPages\\Admin.master",
               "RelativeDocumentMoniker": "MasterPages\\Admin.master",
