@@ -9,7 +9,7 @@ namespace PagosMovilesWeb
             Session["UsuarioId"] = "1";
             Session["NombreCompleto"] = txtNombre.Text;
             Session["Rol"] = ddlRol.SelectedValue;
-            Session["AccessToken"] = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Im1hcmlhLmdvbWV6QG1haWwuY29tIiwiaWQiOiIxMDEwMDAwMDIiLCJuYmYiOjE3NzM1NDc1NjgsImV4cCI6MTc3MzU0Nzg2OCwiaWF0IjoxNzczNTQ3NTY4LCJpc3MiOiJUdUFwcEF1dGgiLCJhdWQiOiJUdUFwcFVzdWFyaW9zIn0.9LXrHDRaa7fBelo5nFDqNvcqRz7dy8ycDpAiqyURLYc";
+            Session["AccessToken"] = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Im1hcmlhLmdvbWV6QG1haWwuY29tIiwiaWQiOiIxMDEwMDAwMDIiLCJuYmYiOjE3NzM2MTU4NTIsImV4cCI6MTc3MzYxNjE1MiwiaWF0IjoxNzczNjE1ODUyLCJpc3MiOiJUdUFwcEF1dGgiLCJhdWQiOiJUdUFwcFVzdWFyaW9zIn0.XUKJpUys1u8k_nrQhX2Bdkv2S6Gd7gSuR2yC_cA7qF8";
 
             if (ddlRol.SelectedValue == "ADMIN")
             {

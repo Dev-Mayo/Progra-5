@@ -6,6 +6,8 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace PagosMovilesWeb.Admin
 {
@@ -24,15 +26,11 @@ namespace PagosMovilesWeb.Admin
         private HttpClient GetClient()
         {
             var client = new HttpClient();
-
             var token = Session["AccessToken"]?.ToString();
-
             if (!string.IsNullOrEmpty(token))
             {
-                client.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue("Bearer", token);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             }
-
             return client;
         }
 
@@ -41,10 +39,7 @@ namespace PagosMovilesWeb.Admin
             using (HttpClient client = GetClient())
             {
                 var response = await client.GetAsync(url);
-
-                if (!response.IsSuccessStatusCode)
-                    return default;
-
+                if (!response.IsSuccessStatusCode) return default;
                 var json = await response.Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<T>(json);
             }
@@ -56,9 +51,7 @@ namespace PagosMovilesWeb.Admin
             {
                 var json = JsonConvert.SerializeObject(data);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
-
                 var response = await client.PostAsync(url, content);
-
                 return response.IsSuccessStatusCode;
             }
         }
@@ -69,19 +62,17 @@ namespace PagosMovilesWeb.Admin
             {
                 var json = JsonConvert.SerializeObject(data);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
-
                 var response = await client.PutAsync(url, content);
-
                 return response.IsSuccessStatusCode;
             }
         }
 
-        private async Task<bool> DeleteAsync(string url)
+        private async Task<bool> DeleteAsync(string id)
         {
             using (HttpClient client = GetClient())
             {
-                var response = await client.DeleteAsync(url);
 
+                var response = await client.DeleteAsync($"{baseUrl}/core/client/{id}");
                 return response.IsSuccessStatusCode;
             }
         }
@@ -94,6 +85,11 @@ namespace PagosMovilesWeb.Admin
             {
                 gvClientes.DataSource = clientes;
                 gvClientes.DataBind();
+                lblTotalClientes.Text = clientes.Count.ToString();
+            }
+            else
+            {
+                lblTotalClientes.Text = "0";
             }
         }
 
@@ -102,119 +98,94 @@ namespace PagosMovilesWeb.Admin
             string identificacion = txtBuscarIdentificacion.Text.Trim();
 
             if (string.IsNullOrEmpty(identificacion))
+            {
+                pnlResultados.Visible = false;
                 return;
+            }
 
-            var clientes = await GetAsync<List<Cliente>>
-                ($"{baseUrl}/core/client/Cliente?identificacion={identificacion}");
+            var clientes = await GetAsync<List<Cliente>>(
+                $"{baseUrl}/core/client/Cliente?identificacion={identificacion}");
 
             if (clientes != null && clientes.Count > 0)
             {
                 gvResultadoBusqueda.DataSource = clientes;
                 gvResultadoBusqueda.DataBind();
+                pnlResultados.Visible = true;
             }
             else
             {
                 gvResultadoBusqueda.DataSource = null;
                 gvResultadoBusqueda.DataBind();
+                pnlResultados.Visible = true;
             }
         }
 
-        protected async void btnCrear_Click(object sender, EventArgs e)
+        protected async void gvClientes_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtIdentificacion.Text))
-                return;
-
-            int telefono = 0;
-            int.TryParse(txtTelefono.Text, out telefono);
-
-            int tipoIdentificacion = 0;
-            int.TryParse(ddlTipoIdentificacion.SelectedValue, out tipoIdentificacion);
-
-            var cliente = new
+            if (e.CommandName == "Eliminar")
             {
-                identificacion = txtIdentificacion.Text,
-                nombre = txtNombre.Text,
-                apellido = txtApellido.Text,
-                fecha_nacimiento = txtFechaNacimiento.Text,
-                tipoIdentificacion = tipoIdentificacion,
-                telefono = telefono,
-                email = txtEmail.Text,
-                contrasena = txtContrasena.Text
-            };
+                string identificacion = e.CommandArgument.ToString();
 
-            bool creado = await PostAsync($"{baseUrl}/core/client", cliente);
+                bool eliminado = await DeleteAsync(identificacion);  //
 
-            if (creado)
+                if (eliminado)
+                {
+                    pnlMensaje.Visible = true;
+                    lblMensaje.Text = $"Cliente {identificacion} eliminado correctamente.";
+                    await CargarClientes();
+                }
+                else
+                {
+                    pnlMensaje.CssClass = "alert alert-danger shadow-sm mb-4";
+                    lblMensaje.Text = $"Error al eliminar cliente {identificacion}";
+                    pnlMensaje.Visible = true;
+                }
+            }
+        }
+
+        protected void gvClientes_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvClientes.PageIndex = e.NewPageIndex;
+            RegisterAsyncTask(new PageAsyncTask(async () =>
             {
                 await CargarClientes();
-                LimpiarFormulario();
-            }
+            }));
         }
 
-        protected async void btnActualizar_Click(object sender, EventArgs e)
+        public string ClienteIdParaEliminar
         {
-            if (string.IsNullOrWhiteSpace(txtIdentificacion.Text))
-                return;
-
-            int? telefono = null;
-            int parsedTelefono;
-
-            if (int.TryParse(txtTelefono.Text, out parsedTelefono))
-                telefono = parsedTelefono;
-
-            int? tipoIdentificacion = null;
-            int parsedTipo;
-
-            if (int.TryParse(ddlTipoIdentificacion.SelectedValue, out parsedTipo))
-                tipoIdentificacion = parsedTipo;
-
-            var cliente = new
-            {
-                identificacion = txtIdentificacion.Text,
-                nombre = string.IsNullOrWhiteSpace(txtNombre.Text) ? null : txtNombre.Text,
-                apellido = string.IsNullOrWhiteSpace(txtApellido.Text) ? null : txtApellido.Text,
-                fecha_nacimiento = string.IsNullOrWhiteSpace(txtFechaNacimiento.Text) ? null : txtFechaNacimiento.Text,
-                tipoIdentificacion = tipoIdentificacion,
-                telefono = telefono,
-                email = string.IsNullOrWhiteSpace(txtEmail.Text) ? null : txtEmail.Text,
-                contrasena = string.IsNullOrWhiteSpace(txtContrasena.Text) ? null : txtContrasena.Text
-            };
-
-            bool actualizado = await PutAsync($"{baseUrl}/core/client", cliente);
-
-            if (actualizado)
-            {
-                await CargarClientes();
-                LimpiarFormulario();
-            }
+            get { return ViewState["ClienteIdParaEliminar"]?.ToString() ?? ""; }
+            set { ViewState["ClienteIdParaEliminar"] = value; }
         }
 
-        protected async void btnEliminarCliente_Click(object sender, EventArgs e)
+        protected async void btnConfirmarEliminar_Click(object sender, EventArgs e)
         {
-            string identificacion = txtEliminarIdentificacion.Text.Trim();
+            string identificacion = Request.Form["hdnClienteId"];
 
             if (string.IsNullOrEmpty(identificacion))
                 return;
 
-            bool eliminado = await DeleteAsync($"{baseUrl}/core/client/{identificacion}");
+            bool eliminado = await DeleteAsync(identificacion);
 
             if (eliminado)
             {
+                pnlMensaje.CssClass = "alert alert-success alert-dismissible fade show shadow-sm mb-4";
+                lblMensaje.Text = $"Cliente <strong>{identificacion}</strong> eliminado correctamente.";
+                pnlMensaje.Visible = true;
                 await CargarClientes();
-                txtEliminarIdentificacion.Text = "";
             }
-        }
+            else
+            {
+                pnlMensaje.CssClass = "alert alert-danger alert-dismissible fade show shadow-sm mb-4";
+                lblMensaje.Text = $"Error al eliminar cliente <strong>{identificacion}</strong>";
+                pnlMensaje.Visible = true;
+            }
 
-        private void LimpiarFormulario()
-        {
-            txtIdentificacion.Text = "";
-            txtNombre.Text = "";
-            txtApellido.Text = "";
-            txtFechaNacimiento.Text = "";
-            txtTelefono.Text = "";
-            txtEmail.Text = "";
-            txtContrasena.Text = "";
-            ddlTipoIdentificacion.SelectedIndex = 0;
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "closeModal",
+                @"$('#deleteModal').modal('hide'); 
+                  clienteIdParaEliminar = ''; 
+                  document.getElementById('modalClienteId').textContent = '';", true);
         }
     }
 }

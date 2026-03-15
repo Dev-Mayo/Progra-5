@@ -717,7 +717,7 @@ GO
 
 create PROCEDURE sp_EliminarCliente
 (
-    @identificacion INT
+    @identificacion VARCHAR(20)
 )
 AS
 BEGIN
