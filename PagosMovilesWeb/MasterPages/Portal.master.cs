@@ -27,8 +27,9 @@ namespace PagosMovilesWeb.MasterPages
         private void ConfigurarMenu()
         {
             lnkInicio.Visible = true;
-            lnkSaldo.Visible = true;
-            lnkMovimientos.Visible = true;
+            lnkDesinscribir.Visible = true;   // PTL6 - Desinscripción (Paola)
+            lnkSaldo.Visible = true;   // PTL7 - Consultar saldo (Paola)
+            lnkMovimientos.Visible = true;   // PTL8 - Últimos movimientos (Paola)
             lnkTransferir.Visible = true;
         }
 

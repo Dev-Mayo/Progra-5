@@ -30,6 +30,7 @@ namespace PagosMovilesWeb.MasterPages
             lnkUsuarios.Visible = true;
             lnkRoles.Visible = true;
             lnkPantallas.Visible = true;
+            lnkReporte.Visible = true;   // SA12 - Reporte Diario (Paola)
         }
 
         protected void lnkLogout_Click(object sender, EventArgs e)

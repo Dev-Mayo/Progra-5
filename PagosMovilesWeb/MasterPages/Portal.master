@@ -15,11 +15,12 @@
                 <h2>Pagos Móviles</h2>
                 <p>Portal Usuario</p>
 
-                <asp:HyperLink ID="lnkInicio" runat="server" NavigateUrl="~/Portal/PTL2_Welcome.aspx" Text="Inicio" />
-                <asp:HyperLink ID="lnkSaldo" runat="server" NavigateUrl="#" Text="Consultar saldo" />
-                <asp:HyperLink ID="lnkMovimientos" runat="server" NavigateUrl="#" Text="Movimientos" />
-                <asp:HyperLink ID="lnkTransferir" runat="server" NavigateUrl="#" Text="Transferir" />
-                <asp:LinkButton ID="lnkLogout" runat="server" OnClick="lnkLogout_Click">Cerrar sesión</asp:LinkButton>
+                <asp:HyperLink ID="lnkInicio"       runat="server" NavigateUrl="~/Portal/PTL2_Welcome.aspx"          Text="Inicio" />
+                <asp:HyperLink ID="lnkDesinscribir" runat="server" NavigateUrl="~/Portal/PTL6_Desinscripcion.aspx"    Text="Desinscribirse" />
+                <asp:HyperLink ID="lnkSaldo"        runat="server" NavigateUrl="~/Portal/PTL7_ConsultaSaldo.aspx"     Text="Consultar Saldo" />
+                <asp:HyperLink ID="lnkMovimientos"  runat="server" NavigateUrl="~/Portal/PTL8_UltimosMovimientos.aspx" Text="Mis Movimientos" />
+                <asp:HyperLink ID="lnkTransferir"   runat="server" NavigateUrl="#"                                    Text="Transferir" />
+                <asp:LinkButton ID="lnkLogout"      runat="server" OnClick="lnkLogout_Click">Cerrar sesión</asp:LinkButton>
             </div>
 
             <div class="main">
