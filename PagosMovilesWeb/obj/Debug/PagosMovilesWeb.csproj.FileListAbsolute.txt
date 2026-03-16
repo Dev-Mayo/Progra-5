@@ -1,0 +1,222 @@
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\PagosMovilesWeb.dll.config
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\PagosMovilesWeb.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\PagosMovilesWeb.pdb
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\csc.exe
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\csc.exe.config
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\csc.rsp
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\csi.exe
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\csi.exe.config
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\csi.rsp
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\System.AppContext.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\System.Console.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\System.Globalization.Calendars.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\System.IO.Compression.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\System.Net.Http.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\System.Net.Sockets.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\System.ValueTuple.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\System.Xml.XPath.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\vbc.exe
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\vbc.exe.config
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\vbc.rsp
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\VBCSCompiler.exe
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\Antlr3.Runtime.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\Microsoft.AspNet.FriendlyUrls.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\Microsoft.ScriptManager.MSAjax.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\Microsoft.ScriptManager.WebForms.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\Newtonsoft.Json.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\System.Web.Optimization.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\WebGrease.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\System.Web.Optimization.xml
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\Newtonsoft.Json.xml
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\Antlr3.Runtime.pdb
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\Microsoft.AspNet.FriendlyUrls.xml
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\es\System.Web.Optimization.resources.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\bin\es\Microsoft.AspNet.FriendlyUrls.resources.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\obj\Debug\PagosMovilesWeb.csproj.AssemblyReference.cache
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\obj\Debug\PagosMovilesWeb.csproj.CoreCompileInputs.cache
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\obj\Debug\PagosMov.F5CCCCF2.Up2Date
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\obj\Debug\PagosMovilesWeb.dll
+C:\Users\santi\Documents\CUC\Progra V\Proyecto\PagosMovilesWeb\obj\Debug\PagosMovilesWeb.pdb
+D:\ProyectoProgra5\PagosMovilesWeb\bin\PagosMovilesWeb.dll.config
+D:\ProyectoProgra5\PagosMovilesWeb\bin\PagosMovilesWeb.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\PagosMovilesWeb.pdb
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\csc.exe
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\csc.exe.config
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\csc.rsp
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\csi.exe
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\csi.exe.config
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\csi.rsp
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\Microsoft.Managed.Core.targets
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\Microsoft.Win32.Primitives.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\System.AppContext.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\System.Collections.Immutable.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\System.Console.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\System.Globalization.Calendars.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\System.IO.Compression.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\System.IO.Compression.ZipFile.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\System.IO.FileSystem.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\System.Net.Http.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\System.Net.Sockets.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\System.Reflection.Metadata.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\System.Threading.Tasks.Extensions.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\System.ValueTuple.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\System.Xml.XmlDocument.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\System.Xml.XPath.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\vbc.exe
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\vbc.exe.config
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\vbc.rsp
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\VBCSCompiler.exe
+D:\ProyectoProgra5\PagosMovilesWeb\bin\roslyn\VBCSCompiler.exe.config
+D:\ProyectoProgra5\PagosMovilesWeb\bin\Antlr3.Runtime.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\Microsoft.AspNet.FriendlyUrls.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\Microsoft.ScriptManager.MSAjax.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\Microsoft.ScriptManager.WebForms.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\Microsoft.Web.Infrastructure.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\Newtonsoft.Json.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\System.Web.Optimization.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\WebGrease.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\System.Web.Optimization.xml
+D:\ProyectoProgra5\PagosMovilesWeb\bin\Newtonsoft.Json.xml
+D:\ProyectoProgra5\PagosMovilesWeb\bin\Antlr3.Runtime.pdb
+D:\ProyectoProgra5\PagosMovilesWeb\bin\Microsoft.AspNet.FriendlyUrls.xml
+D:\ProyectoProgra5\PagosMovilesWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\ProyectoProgra5\PagosMovilesWeb\bin\es\System.Web.Optimization.resources.dll
+D:\ProyectoProgra5\PagosMovilesWeb\bin\es\Microsoft.AspNet.FriendlyUrls.resources.dll
+D:\ProyectoProgra5\PagosMovilesWeb\obj\Debug\PagosMovilesWeb.csproj.AssemblyReference.cache
+D:\ProyectoProgra5\PagosMovilesWeb\obj\Debug\PagosMovilesWeb.csproj.CoreCompileInputs.cache
+D:\ProyectoProgra5\PagosMovilesWeb\obj\Debug\PagosMov.F5CCCCF2.Up2Date
+D:\ProyectoProgra5\PagosMovilesWeb\obj\Debug\PagosMovilesWeb.dll
+D:\ProyectoProgra5\PagosMovilesWeb\obj\Debug\PagosMovilesWeb.pdb
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\PagosMovilesWeb.dll.config
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\PagosMovilesWeb.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\PagosMovilesWeb.pdb
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\csc.exe
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\csc.exe.config
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\csc.rsp
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\csi.exe
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\csi.exe.config
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\csi.rsp
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\System.AppContext.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\System.Console.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\System.Globalization.Calendars.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\System.IO.Compression.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\System.Net.Http.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\System.Net.Sockets.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\System.ValueTuple.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\System.Xml.XPath.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\vbc.exe
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\vbc.exe.config
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\vbc.rsp
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\VBCSCompiler.exe
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\Antlr3.Runtime.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\Microsoft.AspNet.FriendlyUrls.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\Microsoft.ScriptManager.MSAjax.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\Microsoft.ScriptManager.WebForms.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\Newtonsoft.Json.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\System.Web.Optimization.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\WebGrease.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\System.Web.Optimization.xml
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\Newtonsoft.Json.xml
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\Antlr3.Runtime.pdb
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\Microsoft.AspNet.FriendlyUrls.xml
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\es\System.Web.Optimization.resources.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\bin\es\Microsoft.AspNet.FriendlyUrls.resources.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\obj\Debug\PagosMovilesWeb.csproj.AssemblyReference.cache
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\obj\Debug\PagosMovilesWeb.csproj.CoreCompileInputs.cache
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\obj\Debug\PagosMov.F5CCCCF2.Up2Date
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\obj\Debug\PagosMovilesWeb.dll
+C:\Users\santi\Desktop\Progra-5-Diego\PagosMovilesWeb\obj\Debug\PagosMovilesWeb.pdb
