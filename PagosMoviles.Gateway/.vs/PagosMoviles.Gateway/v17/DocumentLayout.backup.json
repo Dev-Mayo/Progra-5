@@ -38,21 +38,19 @@
               "RelativeToolTip": "Properties\\launchSettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAABHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-03-15T06:52:07.084Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-15T06:52:07.084Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "PagosMoviles.Gateway",
+              "Title": "PagosMoviles.Gateway.csproj",
               "DocumentMoniker": "D:\\ProyectoProgra5\\PagosMoviles.Gateway\\PagosMoviles.Gateway.csproj",
               "RelativeDocumentMoniker": "PagosMoviles.Gateway.csproj",
               "ToolTip": "D:\\ProyectoProgra5\\PagosMoviles.Gateway\\PagosMoviles.Gateway.csproj",
               "RelativeToolTip": "PagosMoviles.Gateway.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-03-15T05:28:46.818Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-15T05:28:46.818Z"
             },
             {
               "$type": "Document",
@@ -64,8 +62,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-15T05:28:10.714Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-15T05:28:10.714Z"
             },
             {
               "$type": "Document",
@@ -75,7 +72,7 @@
               "RelativeDocumentMoniker": "ocelot.json",
               "ToolTip": "D:\\ProyectoProgra5\\PagosMoviles.Gateway\\ocelot.json",
               "RelativeToolTip": "ocelot.json",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAACgAAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAADMAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2026-03-15T05:27:33.069Z",
               "EditorCaption": ""

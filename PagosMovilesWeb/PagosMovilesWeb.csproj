@@ -137,6 +137,7 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="Admin\SA10_FormCliente.aspx" />
+    <Content Include="Admin\SA11_FormCuenta.aspx" />
     <Content Include="Admin\SA11_AdminCuentas.aspx" />
     <Content Include="Admin\SA10_AdminClientes.aspx" />
     <Content Include="Admin\SA2_Welcome.aspx" />
@@ -234,6 +235,13 @@
     </Compile>
     <Compile Include="Admin\SA10_FormCliente.aspx.designer.cs">
       <DependentUpon>SA10_FormCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\SA11_FormCuenta.aspx.cs">
+      <DependentUpon>SA11_FormCuenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\SA11_FormCuenta.aspx.designer.cs">
+      <DependentUpon>SA11_FormCuenta.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\SA11_AdminCuentas.aspx.cs">
       <DependentUpon>SA11_AdminCuentas.aspx</DependentUpon>

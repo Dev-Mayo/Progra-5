@@ -11,115 +11,124 @@ namespace PagosMovilesWeb.Admin
 {
 
 
-    public partial class SA11_AdminCuentas
+    public partial class SA11_FormCuenta
     {
 
         /// <summary>
-        /// btnNuevaCuenta control.
+        /// lblTitulo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNuevaCuenta;
+        protected global::System.Web.UI.WebControls.Label lblTitulo;
 
         /// <summary>
-        /// pnlMensaje control.
+        /// lblSubtitulo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlMensaje;
+        protected global::System.Web.UI.WebControls.Label lblSubtitulo;
 
         /// <summary>
-        /// lblMensaje control.
+        /// pnlError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMensaje;
+        protected global::System.Web.UI.WebControls.Panel pnlError;
 
         /// <summary>
-        /// txtBuscarCuenta control.
+        /// lblError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBuscarCuenta;
+        protected global::System.Web.UI.WebControls.Label lblError;
 
         /// <summary>
-        /// btnBuscarCuenta control.
+        /// txtClienteId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuscarCuenta;
+        protected global::System.Web.UI.WebControls.TextBox txtClienteId;
 
         /// <summary>
-        /// pnlResultadoBusqueda control.
+        /// rfvClienteId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlResultadoBusqueda;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvClienteId;
 
         /// <summary>
-        /// gvResultadoBusqueda control.
+        /// lblNumeroCuenta control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvResultadoBusqueda;
+        protected global::System.Web.UI.WebControls.Label lblNumeroCuenta;
 
         /// <summary>
-        /// txtBuscarCliente control.
+        /// lblAsteriscoNumero control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBuscarCliente;
+        protected global::System.Web.UI.WebControls.Label lblAsteriscoNumero;
 
         /// <summary>
-        /// btnBuscarCliente control.
+        /// txtNumeroCuenta control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuscarCliente;
+        protected global::System.Web.UI.WebControls.TextBox txtNumeroCuenta;
 
         /// <summary>
-        /// pnlCuentasCliente control.
+        /// ddlTipoCuenta control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlCuentasCliente;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTipoCuenta;
 
         /// <summary>
-        /// gvCuentasCliente control.
+        /// rfvTipoCuenta control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvCuentasCliente;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTipoCuenta;
 
         /// <summary>
-        /// gvCuentas control.
+        /// btnGuardar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvCuentas;
+        protected global::System.Web.UI.WebControls.Button btnGuardar;
+
+        /// <summary>
+        /// lblModalMensaje control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblModalMensaje;
     }
 }

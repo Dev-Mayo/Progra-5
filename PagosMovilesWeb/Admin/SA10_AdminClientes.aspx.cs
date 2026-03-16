@@ -69,11 +69,26 @@ namespace PagosMovilesWeb.Admin
 
         private async Task<bool> DeleteAsync(string id)
         {
-            using (HttpClient client = GetClient())
+            try
             {
+                using (HttpClient client = GetClient())
+                {
+                    string url = $"{baseUrl}/core/client/{id}";
+                    System.Diagnostics.Debug.WriteLine($"DELETE: {url}");
 
-                var response = await client.DeleteAsync($"{baseUrl}/core/client/{id}");
-                return response.IsSuccessStatusCode;
+                    HttpResponseMessage response = await client.DeleteAsync(url);
+                    string content = await response.Content.ReadAsStringAsync();
+
+                    System.Diagnostics.Debug.WriteLine($"Status: {response.StatusCode}");
+                    System.Diagnostics.Debug.WriteLine($"Response: {content}");
+
+                    return response.IsSuccessStatusCode;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error DELETE: {ex.Message}");
+                return false;
             }
         }
 
@@ -158,12 +173,19 @@ namespace PagosMovilesWeb.Admin
             set { ViewState["ClienteIdParaEliminar"] = value; }
         }
 
-        protected async void btnConfirmarEliminar_Click(object sender, EventArgs e)
+        protected async void lnkEliminar_Click(object sender, EventArgs e)
         {
-            string identificacion = Request.Form["hdnClienteId"];
+            LinkButton btn = sender as LinkButton;
+            string identificacion = btn.CommandArgument ?? ""; 
+            System.Diagnostics.Debug.WriteLine($"🔍 Click recibido - ID: '{identificacion}' (Length: {identificacion.Length})");
 
             if (string.IsNullOrEmpty(identificacion))
+            {
+                pnlMensaje.CssClass = "alert alert-danger alert-dismissible fade show shadow-sm mb-4";
+                lblMensaje.Text = "Error: No se pudo obtener el ID del cliente";
+                pnlMensaje.Visible = true;
                 return;
+            }
 
             bool eliminado = await DeleteAsync(identificacion);
 
@@ -180,12 +202,6 @@ namespace PagosMovilesWeb.Admin
                 lblMensaje.Text = $"Error al eliminar cliente <strong>{identificacion}</strong>";
                 pnlMensaje.Visible = true;
             }
-
-
-            ScriptManager.RegisterStartupScript(this, GetType(), "closeModal",
-                @"$('#deleteModal').modal('hide'); 
-                  clienteIdParaEliminar = ''; 
-                  document.getElementById('modalClienteId').textContent = '';", true);
         }
     }
 }
