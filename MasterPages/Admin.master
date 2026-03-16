@@ -1,0 +1,41 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.Master.cs" Inherits="PagosMovilesWeb.MasterPages.Admin" %>
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <meta charset="utf-8" />
+    <title>Administración</title>
+    <link href="~/Assets/css/site.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="layout">
+            <div class="sidebar">
+                <h2>Pagos Móviles</h2>
+                <p>Administración</p>
+
+                <asp:HyperLink ID="lnkInicio" runat="server" NavigateUrl="~/Admin/SA2_Welcome.aspx" Text="Inicio" />
+                <asp:HyperLink ID="lnkUsuarios" runat="server" NavigateUrl="#" Text="Usuarios" />
+                <asp:HyperLink ID="lnkClientes" runat="server" NavigateUrl="~/Admin/SA10_AdminClientes.aspx" Text="Administrar Clientes" />
+                <asp:HyperLink ID="lnkCuentas" runat="server" NavigateUrl="~/Admin/SA11_AdminCuentas.aspx" Text="Administrar Cuentas" />
+                <asp:HyperLink ID="lnkRoles" runat="server" NavigateUrl="~/Admin/SA7_Roles/Lista.aspx" Text="Roles" />
+                <asp:HyperLink ID="lnkPantallas" runat="server" NavigateUrl="~/Admin/SA6_Pantallas/Lista.aspx" Text="Pantallas" />
+                <asp:HyperLink ID="lnkEntidades" runat="server" NavigateUrl="~/Admin/SA9_Entidades/Lista.aspx" Text="Entidades Bancarias" />
+                <asp:LinkButton ID="lnkLogout" runat="server" OnClick="lnkLogout_Click">Cerrar sesión</asp:LinkButton>
+            </div>
+
+            <div class="main">
+                <div class="topbar">
+                    <asp:Label ID="lblUsuario" runat="server"></asp:Label>
+                    <img src="../Assets/img/admin.png" class="avatar" />
+                </div>
+
+                <div class="content">
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
