@@ -1,0 +1,73 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true"
+           CodeBehind="Portal.Master.cs" 
+           Inherits="PagosMovilesWeb.MasterPages.Portal" %>
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <meta charset="utf-8" />
+    <title>Portal</title>
+    <link href="../Assets/css/site.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="layout">
+            <div class="sidebar">
+                <h2>Pagos Móviles</h2>
+                <p>Portal Usuario</p>
+                <asp:HyperLink ID="lnkInicio" runat="server" NavigateUrl="~/Portal/PTL2_Welcome.aspx" Text="Inicio" />
+                <asp:HyperLink ID="lnkSaldo" runat="server" NavigateUrl="#" Text="Consultar saldo" />
+                <asp:HyperLink ID="lnkMovimientos" runat="server" NavigateUrl="#" Text="Movimientos" />
+                <asp:HyperLink ID="lnkTransferir" runat="server" NavigateUrl="#" Text="Transferir" />
+                <asp:LinkButton ID="lnkLogout" runat="server" OnClick="lnkLogout_Click">Cerrar sesión</asp:LinkButton>
+            </div>
+            <div class="main">
+                <div class="topbar">
+                    <asp:Label ID="lblUsuarioPortal" runat="server"></asp:Label>
+                    <img src="../Assets/img/user.png" class="avatar" />
+                </div>
+                <div class="content">
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </div>
+
+        <!-- Aviso de inactividad PTL4 -->
+        <div id="inactivityBar" style="display:none; position:fixed; bottom:20px; 
+             right:20px; background:#fff3cd; border:1px solid #ffc107; 
+             padding:15px; border-radius:8px; z-index:9999;">
+            ⚠️ Su sesión está por expirar por inactividad.
+        </div>
+
+    </form>
+
+    <!-- Script inactividad PTL4 -->
+    <script>
+        (function () {
+            const TIMEOUT_MS = 5 * 60 * 1000;
+            const WARNING_MS = 4 * 60 * 1000;
+            let timerWarning, timerLogout;
+
+            function resetTimers() {
+                clearTimeout(timerWarning);
+                clearTimeout(timerLogout);
+                timerWarning = setTimeout(showWarning, WARNING_MS);
+                timerLogout  = setTimeout(forceLogout, TIMEOUT_MS);
+            }
+
+            function showWarning() {
+                document.getElementById('inactivityBar').style.display = 'block';
+            }
+
+            function forceLogout() {
+                window.location.href = '/Portal/Login.aspx?msg=expirado';
+            }
+
+            ['mousemove', 'keypress', 'click', 'scroll', 'touchstart']
+                .forEach(ev => document.addEventListener(ev, resetTimers));
+
+            resetTimers();
+        })();
+    </script>
+</body>
+</html>
