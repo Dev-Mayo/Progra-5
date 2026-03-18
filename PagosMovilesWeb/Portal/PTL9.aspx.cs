@@ -20,9 +20,18 @@ namespace PagosMovilesWeb.Portal
 
             if (!IsPostBack)
             {
+                // 🔥 FAKE LOGIN (solo para pruebas)
+                Session["AccessToken"] = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Imp1YW4ucGVyZXpAbWFpbC5jb20iLCJpZCI6IjEwMTAwMDAwMSIsIm5iZiI6MTc3MzcyNTU3MiwiZXhwIjoxNzczNzI1ODcyLCJpYXQiOjE3NzM3MjU1NzIsImlzcyI6IlR1QXBwQXV0aCIsImF1ZCI6IlR1QXBwVXN1YXJpb3MifQ.RFfgCHlbgNiMCI4cNGAn1SbhRq15DG4ZMOiNoIZtad4";
+                Session["NombreCompleto"] = "David Prueba";
+
+                txtNombreOrigen.Text = Session["NombreCompleto"].ToString();
+            }
+
+            /*if (!IsPostBack)
+            {
                 txtNombreOrigen.Text = SessionHelper.NombreCompleto;
                 pnlMensaje.Visible = false;
-            }
+            }*/
         }
 
         protected void btnTransferir_Click(object sender, EventArgs e)
