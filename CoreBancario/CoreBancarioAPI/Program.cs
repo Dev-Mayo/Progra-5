@@ -1,0 +1,67 @@
+﻿using CoreBancarioAPI;
+using CoreBancarioAPI.Validation;
+using CoreBancarioService.Abstract.Bitacora;
+using CoreBancarioService.Abstract.Bitacora.Bitacora;
+using CoreBancarioService.Abstract.Repositories;
+using CoreBancarioService.Abstract.Security;
+using CoreBancarioService.Abstract.Services;
+using CoreBancarioService.BusinessLogic;
+using CoreBancarioService.BusinessLogic.Bitacora;
+using CoreBancarioService.BusinessLogic.Security;
+using CoreBancarioService.DataAccess;
+using CoreBancarioService.DataAccess.Models;
+using CoreBancarioService.DataAccess.Repositories;
+using Microsoft.EntityFrameworkCore;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<CoreBancarioContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection")
+    )
+);
+
+builder.Services.AddScoped<ITransactionService, TransactionService>();
+builder.Services.AddScoped<ICuentaService, CuentaService>();
+builder.Services.AddScoped<IClienteService, ClienteService>();
+
+builder.Services.AddHttpClient<ITokenValidationService, TokenValidationService>(client =>
+{
+    client.BaseAddress = new Uri("https://localhost:7160");
+});
+
+builder.Services.AddHttpClient<IBitacoraService, BitacoraService>(client =>
+{
+    client.BaseAddress = new Uri("https://localhost:7232");
+});
+
+builder.Services.AddScoped<ICuentaRepository, CuentaRepository>();
+builder.Services.AddScoped<IMovimientoRepository, MovimientoRepository>();
+builder.Services.AddScoped<IBalanceService, BalanceService>();
+builder.Services.AddScoped<IUltimoMovimientoService, UltimoMovimientoService>();
+builder.Services.AddScoped<IUltimoMovimientoRepository, UltimoMovimientoRepository>();
+builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+builder.Services.AddHttpContextAccessor();
+
+
+
+var app = builder.Build();
+
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseMiddleware<TokenValidation>();
+
+app.MapCuentaCoreEndpoints();
+app.MapCuentaEndpoints();
+app.MapMovimientoEndpoints();
+app.MapClienteCoreEndpoints();
+
+app.Run();

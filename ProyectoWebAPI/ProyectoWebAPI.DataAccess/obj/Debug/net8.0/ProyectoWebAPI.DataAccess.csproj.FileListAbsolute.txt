@@ -1,0 +1,14 @@
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.DataAccess\bin\Debug\net8.0\ProyectoWebAPI.DataAccess.deps.json
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.DataAccess\bin\Debug\net8.0\ProyectoWebAPI.DataAccess.runtimeconfig.json
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.DataAccess\bin\Debug\net8.0\ProyectoWebAPI.DataAccess.dll
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.DataAccess\bin\Debug\net8.0\ProyectoWebAPI.DataAccess.pdb
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.DataAccess\obj\Debug\net8.0\ProyectoWebAPI.DataAccess.csproj.AssemblyReference.cache
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.DataAccess\obj\Debug\net8.0\ProyectoWebAPI.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.DataAccess\obj\Debug\net8.0\ProyectoWebAPI.DataAccess.AssemblyInfoInputs.cache
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.DataAccess\obj\Debug\net8.0\ProyectoWebAPI.DataAccess.AssemblyInfo.cs
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.DataAccess\obj\Debug\net8.0\ProyectoWebAPI.DataAccess.csproj.CoreCompileInputs.cache
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.DataAccess\obj\Debug\net8.0\ProyectoWebAPI.DataAccess.dll
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.DataAccess\obj\Debug\net8.0\refint\ProyectoWebAPI.DataAccess.dll
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.DataAccess\obj\Debug\net8.0\ProyectoWebAPI.DataAccess.pdb
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.DataAccess\obj\Debug\net8.0\ProyectoWebAPI.DataAccess.genruntimeconfig.cache
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.DataAccess\obj\Debug\net8.0\ref\ProyectoWebAPI.DataAccess.dll

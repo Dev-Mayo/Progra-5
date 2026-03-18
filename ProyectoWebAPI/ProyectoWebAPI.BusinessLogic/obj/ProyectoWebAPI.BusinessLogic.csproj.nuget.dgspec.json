@@ -1,0 +1,232 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\ProyectoProgra5\\ProyectoWebAPI\\ProyectoWebAPI.BusinessLogic\\ProyectoWebAPI.BusinessLogic.csproj": {}
+  },
+  "projects": {
+    "D:\\ProyectoProgra5\\ProyectoWebAPI\\ProyectoWebAPI.Abstract\\ProyectoWebAPI.Abstract.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\ProyectoProgra5\\ProyectoWebAPI\\ProyectoWebAPI.Abstract\\ProyectoWebAPI.Abstract.csproj",
+        "projectName": "ProyectoWebAPI.Abstract",
+        "projectPath": "D:\\ProyectoProgra5\\ProyectoWebAPI\\ProyectoWebAPI.Abstract\\ProyectoWebAPI.Abstract.csproj",
+        "packagesPath": "C:\\Users\\difue\\.nuget\\packages\\",
+        "outputPath": "D:\\ProyectoProgra5\\ProyectoWebAPI\\ProyectoWebAPI.Abstract\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\difue\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "D:\\ProyectoProgra5\\ProyectoWebAPI\\ProyectoWebAPI.DataAccess\\ProyectoWebAPI.DataAccess.csproj": {
+                "projectPath": "D:\\ProyectoProgra5\\ProyectoWebAPI\\ProyectoWebAPI.DataAccess\\ProyectoWebAPI.DataAccess.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\ProyectoProgra5\\ProyectoWebAPI\\ProyectoWebAPI.BusinessLogic\\ProyectoWebAPI.BusinessLogic.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\ProyectoProgra5\\ProyectoWebAPI\\ProyectoWebAPI.BusinessLogic\\ProyectoWebAPI.BusinessLogic.csproj",
+        "projectName": "ProyectoWebAPI.BusinessLogic",
+        "projectPath": "D:\\ProyectoProgra5\\ProyectoWebAPI\\ProyectoWebAPI.BusinessLogic\\ProyectoWebAPI.BusinessLogic.csproj",
+        "packagesPath": "C:\\Users\\difue\\.nuget\\packages\\",
+        "outputPath": "D:\\ProyectoProgra5\\ProyectoWebAPI\\ProyectoWebAPI.BusinessLogic\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\difue\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "D:\\ProyectoProgra5\\ProyectoWebAPI\\ProyectoWebAPI.Abstract\\ProyectoWebAPI.Abstract.csproj": {
+                "projectPath": "D:\\ProyectoProgra5\\ProyectoWebAPI\\ProyectoWebAPI.Abstract\\ProyectoWebAPI.Abstract.csproj"
+              },
+              "D:\\ProyectoProgra5\\ProyectoWebAPI\\ProyectoWebAPI.DataAccess\\ProyectoWebAPI.DataAccess.csproj": {
+                "projectPath": "D:\\ProyectoProgra5\\ProyectoWebAPI\\ProyectoWebAPI.DataAccess\\ProyectoWebAPI.DataAccess.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Http": {
+              "target": "Package",
+              "version": "[2.3.9, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\ProyectoProgra5\\ProyectoWebAPI\\ProyectoWebAPI.DataAccess\\ProyectoWebAPI.DataAccess.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\ProyectoProgra5\\ProyectoWebAPI\\ProyectoWebAPI.DataAccess\\ProyectoWebAPI.DataAccess.csproj",
+        "projectName": "ProyectoWebAPI.DataAccess",
+        "projectPath": "D:\\ProyectoProgra5\\ProyectoWebAPI\\ProyectoWebAPI.DataAccess\\ProyectoWebAPI.DataAccess.csproj",
+        "packagesPath": "C:\\Users\\difue\\.nuget\\packages\\",
+        "outputPath": "D:\\ProyectoProgra5\\ProyectoWebAPI\\ProyectoWebAPI.DataAccess\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\difue\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

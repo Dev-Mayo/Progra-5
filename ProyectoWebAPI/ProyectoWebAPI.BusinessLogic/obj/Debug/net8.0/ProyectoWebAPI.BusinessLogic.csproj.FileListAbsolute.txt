@@ -1,0 +1,17 @@
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.BusinessLogic\obj\Debug\net8.0\ProyectoWebAPI.BusinessLogic.csproj.AssemblyReference.cache
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.BusinessLogic\obj\Debug\net8.0\ProyectoWebAPI.BusinessLogic.GeneratedMSBuildEditorConfig.editorconfig
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.BusinessLogic\obj\Debug\net8.0\ProyectoWebAPI.BusinessLogic.AssemblyInfoInputs.cache
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.BusinessLogic\obj\Debug\net8.0\ProyectoWebAPI.BusinessLogic.AssemblyInfo.cs
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.BusinessLogic\obj\Debug\net8.0\ProyectoWebAPI.BusinessLogic.csproj.CoreCompileInputs.cache
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.BusinessLogic\bin\Debug\net8.0\ProyectoWebAPI.BusinessLogic.deps.json
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.BusinessLogic\bin\Debug\net8.0\ProyectoWebAPI.BusinessLogic.dll
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.BusinessLogic\bin\Debug\net8.0\ProyectoWebAPI.BusinessLogic.pdb
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.BusinessLogic\bin\Debug\net8.0\ProyectoWebAPI.Abstract.dll
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.BusinessLogic\bin\Debug\net8.0\ProyectoWebAPI.DataAccess.dll
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.BusinessLogic\bin\Debug\net8.0\ProyectoWebAPI.Abstract.pdb
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.BusinessLogic\bin\Debug\net8.0\ProyectoWebAPI.DataAccess.pdb
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.BusinessLogic\obj\Debug\net8.0\Proyecto.6F467E80.Up2Date
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.BusinessLogic\obj\Debug\net8.0\ProyectoWebAPI.BusinessLogic.dll
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.BusinessLogic\obj\Debug\net8.0\refint\ProyectoWebAPI.BusinessLogic.dll
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.BusinessLogic\obj\Debug\net8.0\ProyectoWebAPI.BusinessLogic.pdb
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.BusinessLogic\obj\Debug\net8.0\ref\ProyectoWebAPI.BusinessLogic.dll

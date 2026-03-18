@@ -1,0 +1,11 @@
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.Entities\bin\Debug\net8.0\ProyectoWebAPI.Entities.deps.json
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.Entities\bin\Debug\net8.0\ProyectoWebAPI.Entities.dll
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.Entities\bin\Debug\net8.0\ProyectoWebAPI.Entities.pdb
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.Entities\obj\Debug\net8.0\ProyectoWebAPI.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.Entities\obj\Debug\net8.0\ProyectoWebAPI.Entities.AssemblyInfoInputs.cache
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.Entities\obj\Debug\net8.0\ProyectoWebAPI.Entities.AssemblyInfo.cs
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.Entities\obj\Debug\net8.0\ProyectoWebAPI.Entities.csproj.CoreCompileInputs.cache
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.Entities\obj\Debug\net8.0\ProyectoWebAPI.Entities.dll
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.Entities\obj\Debug\net8.0\refint\ProyectoWebAPI.Entities.dll
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.Entities\obj\Debug\net8.0\ProyectoWebAPI.Entities.pdb
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.Entities\obj\Debug\net8.0\ref\ProyectoWebAPI.Entities.dll
