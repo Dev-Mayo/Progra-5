@@ -1,0 +1,15 @@
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.Abstract\bin\Debug\net8.0\ProyectoWebAPI.Abstract.deps.json
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.Abstract\bin\Debug\net8.0\ProyectoWebAPI.Abstract.dll
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.Abstract\bin\Debug\net8.0\ProyectoWebAPI.Abstract.pdb
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.Abstract\bin\Debug\net8.0\ProyectoWebAPI.DataAccess.dll
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.Abstract\bin\Debug\net8.0\ProyectoWebAPI.DataAccess.pdb
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.Abstract\obj\Debug\net8.0\ProyectoWebAPI.Abstract.csproj.AssemblyReference.cache
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.Abstract\obj\Debug\net8.0\ProyectoWebAPI.Abstract.GeneratedMSBuildEditorConfig.editorconfig
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.Abstract\obj\Debug\net8.0\ProyectoWebAPI.Abstract.AssemblyInfoInputs.cache
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.Abstract\obj\Debug\net8.0\ProyectoWebAPI.Abstract.AssemblyInfo.cs
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.Abstract\obj\Debug\net8.0\ProyectoWebAPI.Abstract.csproj.CoreCompileInputs.cache
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.Abstract\obj\Debug\net8.0\Proyecto.A0A647F0.Up2Date
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.Abstract\obj\Debug\net8.0\ProyectoWebAPI.Abstract.dll
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.Abstract\obj\Debug\net8.0\refint\ProyectoWebAPI.Abstract.dll
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.Abstract\obj\Debug\net8.0\ProyectoWebAPI.Abstract.pdb
+C:\Ejemplos_Progra5\ProyectoWebAPI\ProyectoWebAPI.Abstract\obj\Debug\net8.0\ref\ProyectoWebAPI.Abstract.dll

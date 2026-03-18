@@ -1,0 +1,61 @@
+-- Crear la base de datos
+CREATE DATABASE Pagos_Moviles;
+USE Pagos_Moviles;
+ 
+-- Tabla ENTIDADES_BANCARIAS
+CREATE TABLE ENTIDADES_BANCARIAS (
+    ID_Entidad INT PRIMARY KEY AUTO_INCREMENT,
+    Nombre VARCHAR(100) NOT NULL,
+    Estado BOOLEAN DEFAULT TRUE
+);
+ 
+-- Tabla TIPOS_IDENTIFICACION
+CREATE TABLE TIPOS_IDENTIFICACION (
+    ID_Tipo_Identificacion INT PRIMARY KEY AUTO_INCREMENT,
+    Nombre VARCHAR(50) NOT NULL,
+    Estado BOOLEAN DEFAULT TRUE
+);
+ 
+-- Tabla ROLES
+CREATE TABLE ROLES (
+    ID_Rol INT PRIMARY KEY AUTO_INCREMENT,
+    Nombre VARCHAR(50) NOT NULL UNIQUE
+);
+ 
+-- Tabla PANTALLAS
+CREATE TABLE PANTALLAS (
+    ID_Pantalla INT PRIMARY KEY AUTO_INCREMENT,
+    Nombre_Pantalla VARCHAR(100) NOT NULL,
+    Descripción TEXT,
+    Ruta_Acceso VARCHAR(200) NOT NULL
+);
+ 
+-- Tabla cliente
+CREATE TABLE cliente (
+    cliente_id INT PRIMARY KEY AUTO_INCREMENT,
+    identificacion VARCHAR(20) NOT NULL UNIQUE,
+    Email VARCHAR(100) NOT NULL UNIQUE,
+    Tipo_Identificacion INT NOT NULL,
+    Telefono VARCHAR(20),
+    Rol INT NOT NULL,
+    ContrasenalHash VARCHAR(255) NOT NULL,
+    nombre_completo VARCHAR(150) NOT NULL,
+    FOREIGN KEY (Tipo_Identificacion) REFERENCES TIPOS_IDENTIFICACION(ID_Tipo_Identificacion),
+    FOREIGN KEY (Rol) REFERENCES ROLES(ID_Rol)
+);
+ 
+-- Tabla RolPantalla
+CREATE TABLE RolPantalla (
+    ID_Rol INT NOT NULL,
+    ID_Pantalla INT NOT NULL,
+    PRIMARY KEY (ID_Rol, ID_Pantalla),
+    FOREIGN KEY (ID_Rol) REFERENCES ROLES(ID_Rol) ON DELETE CASCADE,
+    FOREIGN KEY (ID_Pantalla) REFERENCES PANTALLAS(ID_Pantalla) ON DELETE CASCADE
+);
+
+-- Tabla IntentosFallidos
+CREATE TABLE IntentosFallidos (
+    Email VARCHAR(100) PRIMARY KEY,
+    Intentos INT DEFAULT 0,
+    Bloqueado BIT DEFAULT 0
+);

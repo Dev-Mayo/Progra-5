@@ -23,6 +23,13 @@
                 <asp:HyperLink ID="lnkRoles"     runat="server" NavigateUrl="#"                                   Text="Roles" />
                 <asp:HyperLink ID="lnkPantallas" runat="server" NavigateUrl="#"                                   Text="Pantallas" />
                 <asp:LinkButton ID="lnkLogout"   runat="server" OnClick="lnkLogout_Click">Cerrar sesión</asp:LinkButton>
+                <asp:HyperLink ID="lnkInicio" runat="server" NavigateUrl="~/Admin/SA2_Welcome.aspx" Text="Inicio" />
+                <asp:HyperLink ID="lnkUsuarios" runat="server" NavigateUrl="#" Text="Usuarios" />
+                <asp:HyperLink ID="lnkClientes" runat="server" NavigateUrl="~/Admin/SA10_AdminClientes.aspx" Text="Administrar Clientes" />
+                <asp:HyperLink ID="lnkCuentas" runat="server" NavigateUrl="~/Admin/SA11_AdminCuentas.aspx" Text="Administrar Cuentas" />
+                <asp:HyperLink ID="lnkRoles" runat="server" NavigateUrl="#" Text="Roles" />
+                <asp:HyperLink ID="lnkPantallas" runat="server" NavigateUrl="#" Text="Pantallas" />
+                <asp:LinkButton ID="lnkLogout" runat="server" OnClick="lnkLogout_Click">Cerrar sesión</asp:LinkButton>
             </div>
 
             <div class="main">

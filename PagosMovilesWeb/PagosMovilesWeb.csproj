@@ -1908,6 +1908,20 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\SA10_FormCliente.aspx.cs">
+      <DependentUpon>SA10_FormCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\SA10_FormCliente.aspx.designer.cs">
+      <DependentUpon>SA10_FormCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\SA11_FormCuenta.aspx.cs">
+      <DependentUpon>SA11_FormCuenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\SA11_FormCuenta.aspx.designer.cs">
+      <DependentUpon>SA11_FormCuenta.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\SA11_AdminCuentas.aspx.cs">
       <DependentUpon>SA11_AdminCuentas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

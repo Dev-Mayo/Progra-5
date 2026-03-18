@@ -6,10 +6,10 @@ namespace PagosMovilesWeb
     {
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            Session["UsuarioId"] = "123456789";
+            Session["UsuarioId"] = "1";
             Session["NombreCompleto"] = txtNombre.Text;
             Session["Rol"] = ddlRol.SelectedValue;
-            Session["AccessToken"] = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Imp1YW4ucGVyZXpAbWFpbC5jb20iLCJpZCI6IjEyMzQ1Njc4OSIsIm5iZiI6MTc3MzYyNjE3OSwiZXhwIjoxNzczNjI2NDc5LCJpYXQiOjE3NzM2MjYxNzksImlzcyI6IlR1QXBwQXV0aCIsImF1ZCI6IlR1QXBwVXN1YXJpb3MifQ.E86c9HotKaal1tp7pAtNzKqf0mBxJzwoWQp_3Zfb7X8";
+            Session["AccessToken"] = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Imp1YW5AZW1haWwuY29tIiwiaWQiOiIxMDEwMDAwMDEiLCJuYmYiOjE3NzM2Mjk4NzgsImV4cCI6MTc3MzYzMDE3OCwiaWF0IjoxNzczNjI5ODc4LCJpc3MiOiJUdUFwcEF1dGgiLCJhdWQiOiJUdUFwcFVzdWFyaW9zIn0.1IIxn5YlNrOTwnzDSMrbxhrRv86Akxj75I3BogTfN6E";
 
             if (ddlRol.SelectedValue == "ADMIN")
             {

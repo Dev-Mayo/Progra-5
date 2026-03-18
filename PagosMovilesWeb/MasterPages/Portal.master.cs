@@ -30,6 +30,8 @@ namespace PagosMovilesWeb.MasterPages
             lnkDesinscribir.Visible = true;   // PTL6 - Desinscripción (Paola)
             lnkSaldo.Visible = true;   // PTL7 - Consultar saldo (Paola)
             lnkMovimientos.Visible = true;   // PTL8 - Últimos movimientos (Paola)
+            lnkSaldo.Visible = true;
+            lnkMovimientos.Visible = true;
             lnkTransferir.Visible = true;
         }
 
