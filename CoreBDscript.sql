@@ -49,6 +49,13 @@ create TABLE movimiento (
         FOREIGN KEY (cuenta_id) REFERENCES cuenta(cuenta_id)
 );
 
+-- Tabla IntentosFallidos
+CREATE TABLE IntentosFallidos (
+    Email VARCHAR(100) PRIMARY KEY,
+    Intentos INT DEFAULT 0,
+    Bloqueado BIT DEFAULT 0
+);
+
 INSERT INTO cliente 
 (identificacion, nombre, apellido, Email, Tipo_Identificacion, Telefono, Rol, ContrasenaHash, Estado)
 VALUES

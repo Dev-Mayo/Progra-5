@@ -52,3 +52,10 @@ CREATE TABLE RolPantalla (
     FOREIGN KEY (ID_Rol) REFERENCES ROLES(ID_Rol) ON DELETE CASCADE,
     FOREIGN KEY (ID_Pantalla) REFERENCES PANTALLAS(ID_Pantalla) ON DELETE CASCADE
 );
+
+-- Tabla IntentosFallidos
+CREATE TABLE IntentosFallidos (
+    Email VARCHAR(100) PRIMARY KEY,
+    Intentos INT DEFAULT 0,
+    Bloqueado BIT DEFAULT 0
+);
