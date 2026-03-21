@@ -1,18 +1,19 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using PagosMovilesWeb.Models;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using PagosMovilesWeb.Models;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace PagosMovilesWeb.Admin
 {
     public partial class SA11_AdminCuentas : System.Web.UI.Page
     {
-
-        string baseUrl = "http://localhost:5227";
+        private readonly string baseUrl = "http://localhost:5227";
 
         protected async void Page_Load(object sender, EventArgs e)
         {
@@ -25,12 +26,11 @@ namespace PagosMovilesWeb.Admin
         private HttpClient GetClient()
         {
             var client = new HttpClient();
-
             var token = Session["AccessToken"]?.ToString();
-
-            client.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue("Bearer", token);
-
+            if (!string.IsNullOrEmpty(token))
+            {
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            }
             return client;
         }
 
@@ -39,13 +39,10 @@ namespace PagosMovilesWeb.Admin
             using (var client = GetClient())
             {
                 var response = await client.GetAsync($"{baseUrl}/core/accounts");
-
                 if (response.IsSuccessStatusCode)
                 {
                     var json = await response.Content.ReadAsStringAsync();
-
                     var cuentas = JsonConvert.DeserializeObject<List<Cuenta>>(json);
-
                     gvCuentas.DataSource = cuentas;
                     gvCuentas.DataBind();
                 }
@@ -55,19 +52,16 @@ namespace PagosMovilesWeb.Admin
         protected async void btnBuscarCuenta_Click(object sender, EventArgs e)
         {
             string numeroCuenta = txtBuscarCuenta.Text;
-
             using (var client = GetClient())
             {
                 var response = await client.GetAsync($"{baseUrl}/core/accounts/Cuenta?NumeroCuenta={numeroCuenta}");
-
                 if (response.IsSuccessStatusCode)
                 {
                     var json = await response.Content.ReadAsStringAsync();
-
                     var cuenta = JsonConvert.DeserializeObject<List<Cuenta>>(json);
-
-                    gvResultadoBusqueda.DataSource =  cuenta ;
+                    gvResultadoBusqueda.DataSource = cuenta;
                     gvResultadoBusqueda.DataBind();
+                    pnlResultadoBusqueda.Visible = true;
                 }
             }
         }
@@ -75,76 +69,53 @@ namespace PagosMovilesWeb.Admin
         protected async void btnBuscarCliente_Click(object sender, EventArgs e)
         {
             string clienteId = txtBuscarCliente.Text;
-
             using (var client = GetClient())
             {
                 var response = await client.GetAsync($"{baseUrl}/core/accounts/Cliente?ClienteID={clienteId}");
-
                 if (response.IsSuccessStatusCode)
                 {
                     var json = await response.Content.ReadAsStringAsync();
-
                     var cuentas = JsonConvert.DeserializeObject<List<Cuenta>>(json);
-
                     gvCuentasCliente.DataSource = cuentas;
                     gvCuentasCliente.DataBind();
+                    pnlCuentasCliente.Visible = true;
                 }
             }
         }
 
-        protected async void btnCrearCuenta_Click(object sender, EventArgs e)
+        protected void lnkEditar_Command(object sender, CommandEventArgs e)
         {
-            var cuenta = new
-            {
-                clienteId = int.Parse(txtClienteId.Text),
-                tipoCuenta = ddlTipoCuenta.SelectedValue
-            };
+            string[] partes = e.CommandArgument.ToString().Split('_');
+            string clienteId = partes[0];
+            string numeroCuenta = partes[1];
+            Response.Redirect($"SA11_FormCuenta.aspx?edit={clienteId}_{numeroCuenta}");
+        }
+
+        protected async void lnkEliminarCuenta_Click(object sender, EventArgs e)
+        {
+            LinkButton btn = sender as LinkButton;
+            string[] datos = btn.CommandArgument.Split('|');
+            string clienteId = datos[0];
+            string numeroCuenta = datos[1];
+
+            System.Diagnostics.Debug.WriteLine($"ELIMINAR: Cliente={clienteId}, Cuenta={numeroCuenta}");
 
             using (var client = GetClient())
             {
-                var json = JsonConvert.SerializeObject(cuenta);
-
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-                await client.PostAsync($"{baseUrl}/core/accounts", content);
+                var response = await client.DeleteAsync($"{baseUrl}/core/accounts/{clienteId}/{numeroCuenta}");
+                System.Diagnostics.Debug.WriteLine($" Status: {response.StatusCode}");
             }
 
+            pnlMensaje.CssClass = "alert alert-success alert-dismissible fade show shadow-sm mb-4";
+            lblMensaje.Text = $"Cuenta <strong>{numeroCuenta}</strong> (Cliente: {clienteId}) eliminada correctamente.";
+            pnlMensaje.Visible = true;
             await CargarCuentas();
         }
 
-        protected async void btnActualizarCuenta_Click(object sender, EventArgs e)
+        protected void gvCuentas_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            var cuenta = new
-            {
-                clienteId = int.Parse(txtClienteId.Text),
-                numeroCuenta = txtNumeroCuenta.Text,
-                tipoCuenta = ddlTipoCuenta.SelectedValue
-            };
-
-            using (var client = GetClient())
-            {
-                var json = JsonConvert.SerializeObject(cuenta);
-
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-                await client.PutAsync($"{baseUrl}/core/accounts", content);
-            }
-
-            await CargarCuentas();
+            gvCuentas.PageIndex = e.NewPageIndex;
+            RegisterAsyncTask(new PageAsyncTask(async () => await CargarCuentas()));
         }
-
-        protected async void btnEliminarCuenta_Click(object sender, EventArgs e)
-        {
-            string clienteId = txtEliminarCliente.Text;
-            string numeroCuenta = txtEliminarCuenta.Text;
-
-            using (var client = GetClient())
-            {
-                await client.DeleteAsync($"{baseUrl}/core/accounts/{clienteId}/{numeroCuenta}");
-            }
-
-            await CargarCuentas();
-        }
-
     }
 }

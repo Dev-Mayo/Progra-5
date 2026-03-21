@@ -82,3 +82,27 @@
     max-width: 140px;
     margin-bottom: 20px;
 }
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.sidebar-logo {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+.sidebar-brand-text h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.sidebar-brand-text p {
+    margin: 0;
+    font-size: 13px;
+    opacity: 0.8;
+}

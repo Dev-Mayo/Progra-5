@@ -113,10 +113,12 @@ Inherits="PagosMovilesWeb.Admin.SA10_AdminClientes" %>
                                     </asp:LinkButton>
 
                                     <asp:LinkButton ID="lnkEliminar" runat="server" 
-                                                   CssClass="btn btn-outline-danger btn-sm"
-                                                   OnClientClick='mostrarModalEliminar("<%# Eval("identificacion") %>"); return false;'>
-                                        <i class="bi bi-trash"></i> Eliminar
-                                    </asp:LinkButton>
+                                       CssClass="btn btn-outline-danger btn-sm"
+                                       CommandArgument='<%# Eval("identificacion") %>'
+                                       OnClientClick='return confirm("¿Realmente desea eliminar el elemento seleccionado?\n\nID: <%# Eval("identificacion") %>");'
+                                       OnClick="lnkEliminar_Click">
+                                    <i class="bi bi-trash"></i> Eliminar
+                                </asp:LinkButton>
                                 </div>
                             </ItemTemplate>
                         </asp:TemplateField>
@@ -131,63 +133,11 @@ Inherits="PagosMovilesWeb.Admin.SA10_AdminClientes" %>
         </div>
     </div>
 
-    <!-- DELETE CONFIRMATION MODAL -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content border-0 shadow-lg">
-            <div class="modal-header bg-danger text-white border-0">
-                <div class="d-flex align-items-center">
-                    <i class="bi bi-exclamation-triangle-fill fs-3 me-2"></i>
-                    <h5 class="modal-title mb-0 fw-bold" id="deleteModalLabel">
-                        Confirmar Eliminación
-                    </h5>
-                </div>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body text-center py-5">
-                <i class="bi bi-person-x display-1 text-danger mb-4 opacity-75"></i>
-                <h4 class="fw-bold text-danger mb-2">¿Eliminar este cliente?</h4>
-                <p class="text-muted mb-0">
-                    El cliente con ID <strong><span id="modalClienteId"></span></strong> 
-                    será eliminado permanentemente.
-                </p>
-                <div class="alert alert-warning mt-3 border-0" role="alert">
-                    <i class="bi bi-info-circle-fill me-2"></i>
-                    Esta acción no se puede deshacer.
-                </div>
-            </div>
-            <div class="modal-footer bg-light border-0 justify-content-center">
-                <button type="button" class="btn btn-outline-secondary px-4" data-bs-dismiss="modal" onclick="limpiarModal()">
-                    <i class="bi bi-x-circle me-1"></i>Cancelar
-                </button>
-                
-                <!-- HIDDEN FIELD PARA PASAR EL ID -->
-                <asp:HiddenField ID="hdnClienteId" runat="server" />
-                
-                <asp:Button ID="btnConfirmarEliminar" runat="server" Text="Sí, Eliminar" 
-                           CssClass="btn btn-danger px-4 shadow-sm" 
-                           OnClientClick="return validarEliminar();" 
-                           OnClick="btnConfirmarEliminar_Click" />
-            </div>
-        </div>
-    </div>
-</div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         function limpiarBusqueda() {
             document.getElementById('<%= txtBuscarIdentificacion.ClientID %>').value = '';
             __doPostBack('<%= btnBuscar.UniqueID %>', '');
-        }
-
-        let clienteIdParaEliminar = '';
-
-        function mostrarModalEliminar(id) {
-            clienteIdParaEliminar = id;
-            document.getElementById('modalClienteId').textContent = id;
-            document.getElementById('<%= hdnClienteId.ClientID %>').value = id;
-            var modal = new bootstrap.Modal(document.getElementById('deleteModal'));
-            modal.show();
         }
     </script>
 </asp:Content>

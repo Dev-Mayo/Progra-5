@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web.UI;
 using PagosMovilesWeb.Services;
 
 namespace PagosMovilesWeb.MasterPages
@@ -9,18 +10,25 @@ namespace PagosMovilesWeb.MasterPages
         {
             if (!SessionHelper.HaySesion())
             {
-                Response.Redirect("~/Login.aspx");
+                Response.Redirect("~/Admin/SA1_Login.aspx?msg=nosesion");
+                return;
+            }
+
+            if (SessionHelper.SesionExpirada())
+            {
+                SessionHelper.CerrarSesion();
+                Response.Redirect("~/Admin/SA1_Login.aspx?msg=expirado");
                 return;
             }
 
             if (SessionHelper.Rol != "ADMIN")
             {
-                Response.Redirect("~/Login.aspx");
+                Response.Redirect("~/Admin/SA1_Login.aspx?msg=nosesion");
                 return;
             }
 
+            SessionHelper.RenovarActividad();
             lblUsuario.Text = SessionHelper.NombreCompleto;
-
             ConfigurarMenu();
         }
 
@@ -35,7 +43,7 @@ namespace PagosMovilesWeb.MasterPages
         protected void lnkLogout_Click(object sender, EventArgs e)
         {
             SessionHelper.CerrarSesion();
-            Response.Redirect("~/Login.aspx");
+            Response.Redirect("~/Admin/SA1_Login.aspx");
         }
     }
 }

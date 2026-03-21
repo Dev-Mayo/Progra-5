@@ -1,25 +1,17 @@
 ﻿using System;
+using System.Web.UI;
 using PagosMovilesWeb.Services;
 
 namespace PagosMovilesWeb.Portal
 {
-    public partial class PTL2_Welcome : System.Web.UI.Page
+    public partial class PTL2_Welcome : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!SessionHelper.HaySesion())
+            if (!IsPostBack)
             {
-                Response.Redirect("~/Login.aspx");
-                return;
+                lblNombreCompleto.Text = SessionHelper.NombreCompleto;
             }
-
-            if (SessionHelper.Rol != "CLIENTE")
-            {
-                Response.Redirect("~/Login.aspx");
-                return;
-            }
-
-            lblNombreCompleto.Text = SessionHelper.NombreCompleto;
         }
     }
 }
