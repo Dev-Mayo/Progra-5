@@ -1,0 +1,7 @@
+# Ignore Visual Studio folders anywhere
+.vs/
+bin/
+obj/
+
+# Ignore user files anywhere
+*.user
