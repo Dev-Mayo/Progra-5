@@ -69,33 +69,6 @@ namespace PagosMovilesWeb.Admin
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvClienteId;
 
         /// <summary>
-        /// lblNumeroCuenta control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNumeroCuenta;
-
-        /// <summary>
-        /// lblAsteriscoNumero control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAsteriscoNumero;
-
-        /// <summary>
-        /// txtNumeroCuenta control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNumeroCuenta;
-
-        /// <summary>
         /// ddlTipoCuenta control.
         /// </summary>
         /// <remarks>

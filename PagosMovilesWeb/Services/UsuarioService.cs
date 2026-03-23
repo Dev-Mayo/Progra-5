@@ -22,7 +22,8 @@ namespace PagosMovilesWeb.Services
         {
             // Buscar en Pagos_Moviles primero (admins)
             var datos = BuscarEnBD(email, _connPagosMoviles, "Usuarios",
-                "CAST(IdUsuario AS VARCHAR)", "Email", "ADMIN");  // ← AGREGAR ESTA LÍNEA
+                "CAST(IdUsuario AS VARCHAR)", "Email", "ADMIN",
+                "Nombre", "Apellido");   // ← AGREGAR ESTA LÍNEA
             if (datos != null) return datos;
 
             // Buscar en CoreBancario (clientes)
