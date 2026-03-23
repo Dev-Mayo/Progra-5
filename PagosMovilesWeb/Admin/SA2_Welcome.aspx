@@ -9,6 +9,5 @@
             Bienvenido,
             <asp:Label ID="lblNombreCompleto" runat="server"></asp:Label>
         </h1>
-        <p>Has ingresado correctamente al sitio administrativo.</p>
     </div>
 </asp:Content>
