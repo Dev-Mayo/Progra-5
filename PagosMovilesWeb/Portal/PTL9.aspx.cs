@@ -47,8 +47,8 @@ namespace PagosMovilesWeb.Portal
 
             decimal monto = decimal.Parse(txtMonto.Text.Trim(), CultureInfo.InvariantCulture);
 
-            string baseUrl = ConfigurationManager.AppSettings["PagosMovilesApiBaseUrl"];
-            string url = baseUrl.TrimEnd('/') + "/transactions/route";
+            string baseUrl = ConfigurationManager.AppSettings["GatewayBaseUrl"];
+            string url = baseUrl.TrimEnd('/') + "/gateway/trans/route";
 
             var body = new
             {
@@ -120,7 +120,7 @@ namespace PagosMovilesWeb.Portal
                         }
                         catch
                         {
-                            MostrarMensaje("Error al procesar la transferencia.", false);
+                            MostrarMensaje("Error al procesar la transferencia.", false); 
                             return;
                         }
                     }

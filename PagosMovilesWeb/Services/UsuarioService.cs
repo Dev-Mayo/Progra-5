@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using System;
+using System.Data.SqlClient;
 using System.Web.Configuration;
 
 namespace PagosMovilesWeb.Services
@@ -63,7 +64,10 @@ namespace PagosMovilesWeb.Services
                     }
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }//Cambio David
             return null;
         }
     }
