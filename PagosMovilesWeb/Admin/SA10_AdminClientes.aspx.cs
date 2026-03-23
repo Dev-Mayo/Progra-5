@@ -29,7 +29,7 @@ namespace PagosMovilesWeb.Admin
             var token = Session["AccessToken"]?.ToString();
             if (!string.IsNullOrEmpty(token))
             {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token); //prueba
             }
             return client;
         }
