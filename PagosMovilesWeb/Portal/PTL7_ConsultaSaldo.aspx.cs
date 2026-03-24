@@ -1,8 +1,9 @@
 using System;
 using System.Configuration;
-using System.IO;
-using System.Net;
-using System.Text;
+using System.Data.SqlClient;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Web.Configuration;
 using Newtonsoft.Json;
 using PagosMovilesWeb.Services;
 
@@ -10,114 +11,96 @@ namespace PagosMovilesWeb.Portal
 {
     public partial class PTL7_ConsultaSaldo : System.Web.UI.Page
     {
+        // ✅ SINGLETON correcto — un solo HttpClient para toda la aplicación
+        private static readonly HttpClient _httpClient = new HttpClient();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             // Portal.master valida sesión y rol CLIENTE/USUARIO
         }
 
-        protected void btnConsultar_Click(object sender, EventArgs e)
+        // ✅ Convierte el cliente_id numérico a la cédula real
+        private string ObtenerIdentificacionPorClienteId(string clienteId)
         {
-            pnlMensaje.Visible  = false;
+            try
+            {
+                string connStr = WebConfigurationManager
+                                    .ConnectionStrings["CoreBancario"].ConnectionString;
+                using (var cn = new SqlConnection(connStr))
+                {
+                    cn.Open();
+                    using (var cmd = new SqlCommand(
+                        "SELECT identificacion FROM cliente WHERE cliente_id = @id", cn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", clienteId);
+                        var result = cmd.ExecuteScalar();
+                        return result?.ToString() ?? string.Empty;
+                    }
+                }
+            }
+            catch { return string.Empty; }
+        }
+
+        // ✅ async void — funciona con Async="true" en el .aspx, sin deadlock
+        protected async void btnConsultar_Click(object sender, EventArgs e)
+        {
+            pnlMensaje.Visible   = false;
             pnlResultado.Visible = false;
 
             string telefono = txtTelefono.Text.Trim();
 
             if (string.IsNullOrWhiteSpace(telefono) || telefono.Length != 8)
             {
-                MostrarMensaje("El número de teléfono debe tener 8 dígitos.", false);
+                MostrarMensaje("El número de teléfono debe contener exactamente 8 dígitos.", false);
                 return;
             }
 
-            // La identificación sale del JWT guardado en sesión
-            string identificacion = SessionHelper.UsuarioId;
+            string identificacion = ObtenerIdentificacionPorClienteId(SessionHelper.UsuarioId);
             if (string.IsNullOrEmpty(identificacion))
             {
-                MostrarMensaje("No se pudo obtener la identificación. Intente iniciar sesión nuevamente.", false);
+                MostrarMensaje("Su sesión no es válida. Por favor inicie sesión nuevamente.", false);
                 return;
             }
 
-            // SRV13: GET /api/accounts/balance?telefono=...&identificacion=...
+            // Capturar token antes del await — HttpContext puede cambiar después
+            string token   = SessionHelper.AccessToken;
             string baseUrl = ConfigurationManager.AppSettings["PagosMovilesApiBaseUrl"];
-            string url     = string.Format("{0}/api/accounts/balance?telefono={1}&identificacion={2}",
-                                baseUrl.TrimEnd('/'),
-                                Uri.EscapeDataString(telefono),
-                                Uri.EscapeDataString(identificacion));
-
-            var request = (HttpWebRequest)WebRequest.Create(url);
-            request.Method = "GET";
-            request.Headers["Authorization"] = "Bearer " + SessionHelper.AccessToken;
+            string url = string.Format("{0}/api/accounts/balance?telefono={1}&identificacion={2}",
+                            baseUrl.TrimEnd('/'),
+                            Uri.EscapeDataString(telefono),
+                            Uri.EscapeDataString(identificacion));
 
             try
             {
-                using (var response = (HttpWebResponse)request.GetResponse())
-                using (var reader   = new StreamReader(response.GetResponseStream()))
+                // ✅ Configurar singleton con el token capturado
+                _httpClient.DefaultRequestHeaders.Authorization = null;
+                if (!string.IsNullOrEmpty(token))
+                    _httpClient.DefaultRequestHeaders.Authorization =
+                        new AuthenticationHeaderValue("Bearer", token);
+
+                // ✅ await real — sin deadlock gracias a Async="true" en el .aspx
+                var response = await _httpClient.GetAsync(url);
+                string body  = await response.Content.ReadAsStringAsync();
+
+                dynamic resp        = JsonConvert.DeserializeObject(body);
+                int     codigo      = (int)(resp.codigo ?? resp.Codigo);
+                string  descripcion = (string)(resp.descripcion ?? resp.Descripcion);
+
+                if (codigo != 0)
                 {
-                    string respJson = reader.ReadToEnd();
-                    dynamic resp    = JsonConvert.DeserializeObject(respJson);
-
-                    int    codigo      = (int)(resp.codigo ?? resp.Codigo);
-                    string descripcion = (string)(resp.descripcion ?? resp.Descripcion);
-
-                    if (codigo != 0)
-                    {
-                        // "Debe enviar los datos completos y válidos"
-                        // "Cliente no asociado a pagos móviles"
-                        MostrarMensaje(descripcion, false);
-                        return;
-                    }
-
-                    // BalanceResponse: numeroCuenta, saldo, telefono, identificacion
-                    lblNumeroCuenta.Text = (string)resp.data.numeroCuenta;
-                    lblSaldo.Text        = ((decimal)resp.data.saldo).ToString("N2");
-                    lblTelefono.Text     = (string)resp.data.telefono;
-
-                    pnlResultado.Visible = true;
-                }
-            }
-            catch (WebException ex)
-            {
-                if (ex.Response != null)
-                {
-                    using (var reader = new StreamReader(ex.Response.GetResponseStream()))
-                    {
-                        try
-                        {
-                            dynamic err  = JsonConvert.DeserializeObject(reader.ReadToEnd());
-                            string  desc = (string)(err.descripcion ?? err.Descripcion ?? err.message);
-                            MostrarMensaje(desc ?? "Error al consultar el saldo.", false);
-                        }
-                        catch { MostrarMensaje("Error al consultar el saldo.", false); }
-                    }
+                    MostrarMensaje(descripcion, false);
                     return;
                 }
-                MostrarMensaje("No se pudo conectar con el servicio. Verifique que la API esté corriendo.", false);
+
+                lblNumeroCuenta.Text = (string)resp.data.numeroCuenta;
+                lblSaldo.Text        = ((decimal)resp.data.saldo).ToString("N2");
+                lblTelefono.Text     = (string)resp.data.telefono;
+                pnlResultado.Visible = true;
             }
-            catch
+            catch (Exception)
             {
-                MostrarMensaje("Ocurrió un error inesperado.", false);
+                MostrarMensaje("No fue posible consultar el saldo en este momento. Intente más tarde.", false);
             }
-        }
-
-        private string ObtenerIdentificacionDelToken()
-        {
-            try
-            {
-                string token    = SessionHelper.AccessToken;
-                string[] partes = token.Split('.');
-                if (partes.Length != 3) return string.Empty;
-
-                string payload = partes[1];
-                int mod = payload.Length % 4;
-                if (mod == 2) payload += "==";
-                else if (mod == 3) payload += "=";
-
-                byte[]  bytes   = Convert.FromBase64String(payload);
-                string  json    = Encoding.UTF8.GetString(bytes);
-                dynamic decoded = JsonConvert.DeserializeObject(json);
-
-                return (string)decoded.id ?? string.Empty;
-            }
-            catch { return string.Empty; }
         }
 
         private void MostrarMensaje(string mensaje, bool esExito)

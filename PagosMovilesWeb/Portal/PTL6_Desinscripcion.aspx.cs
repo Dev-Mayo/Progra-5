@@ -1,8 +1,9 @@
 using System;
-using System.Configuration;
-using System.IO;
-using System.Net;
+using System.Data.SqlClient;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
+using System.Web.Configuration;
 using Newtonsoft.Json;
 using PagosMovilesWeb.Services;
 
@@ -10,141 +11,119 @@ namespace PagosMovilesWeb.Portal
 {
     public partial class PTL6_Desinscripcion : System.Web.UI.Page
     {
+        // ✅ SINGLETON correcto — un solo HttpClient para toda la aplicación
+        // PTL6 usa HTTPS del compañero — HttpClientHandler para ignorar SSL local
+        private static readonly HttpClientHandler _handler = new HttpClientHandler
+        {
+            ServerCertificateCustomValidationCallback = (msg, cert, chain, errors) => true
+        };
+        private static readonly HttpClient _httpClient = new HttpClient(_handler);
+
         protected void Page_Load(object sender, EventArgs e)
         {
             // Portal.master valida sesión y rol CLIENTE/USUARIO
         }
 
-        protected void btnDesinscribir_Click(object sender, EventArgs e)
+        // ✅ Convierte el cliente_id numérico a la cédula real
+        private string ObtenerIdentificacionPorClienteId(string clienteId)
         {
-            pnlMensaje.Visible = false;
+            try
+            {
+                string connStr = WebConfigurationManager
+                                    .ConnectionStrings["CoreBancario"].ConnectionString;
+                using (var cn = new SqlConnection(connStr))
+                {
+                    cn.Open();
+                    using (var cmd = new SqlCommand(
+                        "SELECT identificacion FROM cliente WHERE cliente_id = @id", cn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", clienteId);
+                        var result = cmd.ExecuteScalar();
+                        return result?.ToString() ?? string.Empty;
+                    }
+                }
+            }
+            catch { return string.Empty; }
+        }
+
+        // ✅ async void — funciona con Async="true" en el .aspx, sin deadlock
+        protected async void btnDesinscribir_Click(object sender, EventArgs e)
+        {
+            pnlMensaje.Visible  = false;
+            pnlMensaje.CssClass = "alert alert-danger shadow-sm mb-4";
 
             string telefono = txtTelefono.Text.Trim();
             string cuenta   = txtCuenta.Text.Trim();
 
-            // Validaciones básicas
             if (string.IsNullOrWhiteSpace(telefono) || telefono.Length != 8)
             {
-                MostrarMensaje("El número de teléfono debe tener 8 dígitos.", false);
+                MostrarMensaje("El número de teléfono debe contener exactamente 8 dígitos.", false);
                 return;
             }
             if (string.IsNullOrWhiteSpace(cuenta))
             {
-                MostrarMensaje("Debe ingresar el número de cuenta.", false);
+                MostrarMensaje("Debe ingresar el número de cuenta a desasociar.", false);
                 return;
             }
 
-            
-            string identificacion = SessionHelper.UsuarioId;
+            string identificacion = ObtenerIdentificacionPorClienteId(SessionHelper.UsuarioId);
             if (string.IsNullOrEmpty(identificacion))
             {
-                MostrarMensaje("No se pudo obtener la identificación del usuario. Intente iniciar sesión nuevamente.", false);
+                MostrarMensaje("Su sesión no es válida. Por favor inicie sesión nuevamente.", false);
                 return;
             }
 
-            //  URL del servicio SRV10 del compañero (desinscripción)
-            
-            string url = "https://localhost:7122/auth/cancel-subscription";
+            // Capturar token antes del await
+            string token = SessionHelper.AccessToken;
+            string url   = "https://localhost:7122/auth/cancel-subscription";
 
-            var body = new
+            var bodyObj = new
             {
                 numeroCuenta   = cuenta,
                 identificacion = identificacion,
                 numeroTelefono = telefono
             };
 
-            string json    = JsonConvert.SerializeObject(body);
-            var    request = (HttpWebRequest)WebRequest.Create(url);
-            request.Method      = "POST";
-            request.ContentType = "application/json";
-            request.Headers["Authorization"] = "Bearer " + SessionHelper.AccessToken;
-
-            // Ignorar errores de certificado SSL en desarrollo
-            request.ServerCertificateValidationCallback =
-                (msg, cert, chain, errors) => true;
-
-            using (var sw = new StreamWriter(request.GetRequestStream()))
-            {
-                sw.Write(json);
-                sw.Flush();
-            }
+            string json    = JsonConvert.SerializeObject(bodyObj);
+            var    content = new StringContent(json, Encoding.UTF8, "application/json");
 
             try
             {
-                using (var response = (HttpWebResponse)request.GetResponse())
-                using (var reader   = new StreamReader(response.GetResponseStream()))
+                // ✅ Configurar singleton con el token capturado
+                _httpClient.DefaultRequestHeaders.Authorization = null;
+                if (!string.IsNullOrEmpty(token))
+                    _httpClient.DefaultRequestHeaders.Authorization =
+                        new AuthenticationHeaderValue("Bearer", token);
+
+                // ✅ await real — sin deadlock gracias a Async="true" en el .aspx
+                var response = await _httpClient.PostAsync(url, content);
+                string body  = await response.Content.ReadAsStringAsync();
+
+                dynamic resp        = JsonConvert.DeserializeObject(body);
+                int     codigo      = (int)(resp.codigo ?? resp.Codigo);
+                string  descripcion = (string)(resp.descripcion ?? resp.Descripcion);
+
+                if (codigo == 0)
                 {
-                    string respJson = reader.ReadToEnd();
-                    dynamic resp    = JsonConvert.DeserializeObject(respJson);
-
-                    int    codigo      = (int)(resp.codigo ?? resp.Codigo);
-                    string descripcion = (string)(resp.descripcion ?? resp.Descripcion);
-
-                    if (codigo == 0)
-                    {
-                        // Mensaje exacto SRV10: "Desinscripción realizada"
-                        MostrarMensaje(descripcion, true);
-                        txtTelefono.Text = string.Empty;
-                        txtCuenta.Text   = string.Empty;
-                    }
-                    else
-                    {
-                        // "Datos incorrectos" / "Teléfono no se encuentra afiliado"
-                        MostrarMensaje(descripcion, false);
-                    }
+                    MostrarMensaje(descripcion, true);
+                    txtTelefono.Text = string.Empty;
+                    txtCuenta.Text   = string.Empty;
+                }
+                else
+                {
+                    MostrarMensaje(descripcion, false);
                 }
             }
-            catch (WebException ex)
+            catch (Exception)
             {
-                if (ex.Response != null)
-                {
-                    using (var reader = new StreamReader(ex.Response.GetResponseStream()))
-                    {
-                        try
-                        {
-                            dynamic err  = JsonConvert.DeserializeObject(reader.ReadToEnd());
-                            string  desc = (string)(err.descripcion ?? err.Descripcion ?? err.message);
-                            MostrarMensaje(desc ?? "Error al procesar la solicitud.", false);
-                        }
-                        catch { MostrarMensaje("Error al procesar la solicitud.", false); }
-                    }
-                    return;
-                }
-                MostrarMensaje("No se pudo conectar con el servicio. Intente más tarde.", false);
+                MostrarMensaje("No fue posible procesar la desinscripción en este momento. Intente más tarde.", false);
             }
-            catch
-            {
-                MostrarMensaje("Ocurrió un error inesperado.", false);
-            }
-        }
-
-      
-        private string ObtenerIdentificacionDelToken()
-        {
-            try
-            {
-                string token  = SessionHelper.AccessToken;
-                string[] partes = token.Split('.');
-                if (partes.Length != 3) return string.Empty;
-
-                string payload = partes[1];
-                int mod = payload.Length % 4;
-                if (mod == 2) payload += "==";
-                else if (mod == 3) payload += "=";
-
-                byte[]  bytes   = Convert.FromBase64String(payload);
-                string  json    = Encoding.UTF8.GetString(bytes);
-                dynamic decoded = JsonConvert.DeserializeObject(json);
-
-                return (string)decoded.id ?? string.Empty;
-            }
-            catch { return string.Empty; }
         }
 
         private void MostrarMensaje(string mensaje, bool esExito)
         {
-            pnlMensaje.Visible    = true;
-            pnlMensaje.CssClass   = esExito
+            pnlMensaje.Visible  = true;
+            pnlMensaje.CssClass = esExito
                 ? "alert alert-success shadow-sm mb-4"
                 : "alert alert-danger shadow-sm mb-4";
             lblMensaje.Text = mensaje;
