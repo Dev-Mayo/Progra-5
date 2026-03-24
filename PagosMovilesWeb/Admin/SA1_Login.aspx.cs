@@ -15,7 +15,6 @@ namespace PagosMovilesWeb.Admin
                     Response.Redirect("~/Admin/SA2_Welcome.aspx");
                     return;
                 }
-
                 switch (Request.QueryString["msg"])
                 {
                     case "expirado":
@@ -38,10 +37,10 @@ namespace PagosMovilesWeb.Admin
 
             string email = txtUsuario.Text.Trim();
 
+
             if (BloqueoService.EstaBlockeado(email))
             {
                 pnlBloqueado.Visible = true;
-                btnIngresar.Enabled = false;
                 return;
             }
 
@@ -76,10 +75,10 @@ namespace PagosMovilesWeb.Admin
                 {
                     bool bloqueado = BloqueoService.RegistrarIntentoFallido(email);
 
+
                     if (bloqueado)
                     {
                         pnlBloqueado.Visible = true;
-                        btnIngresar.Enabled = false;
                     }
                     else
                     {
