@@ -1,110 +1,120 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.IO;
-using System.Net;
-using System.Text;
+using System.Data.SqlClient;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
+using System.Web.Configuration;
 using Newtonsoft.Json;
 using PagosMovilesWeb.Services;
+using System.Web.UI;
 
 namespace PagosMovilesWeb.Portal
 {
     public partial class PTL8_UltimosMovimientos : System.Web.UI.Page
     {
+        // SINGLETON
+        private static readonly HttpClient _httpClient = new HttpClient();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             // Portal.master valida sesión y rol CLIENTE/USUARIO
         }
 
+        private string ObtenerCedula(string clienteId)
+        {
+            try
+            {
+                string conn = WebConfigurationManager
+                                .ConnectionStrings["CoreBancario"].ConnectionString;
+                using (var cn = new SqlConnection(conn))
+                {
+                    cn.Open();
+                    using (var cmd = new SqlCommand(
+                        "SELECT identificacion FROM cliente WHERE cliente_id = @id", cn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", clienteId);
+                        var r = cmd.ExecuteScalar();
+                        return r?.ToString() ?? string.Empty;
+                    }
+                }
+            }
+            catch { return string.Empty; }
+        }
+
+        // RegisterAsyncTask — el patrón correcto para async en WebForms
         protected void btnConsultar_Click(object sender, EventArgs e)
         {
-            pnlMensaje.Visible   = false;
+            RegisterAsyncTask(new PageAsyncTask(ConsultarMovimientosAsync));
+        }
+
+        private async Task ConsultarMovimientosAsync()
+        {
+            pnlMensaje.Visible = false;
             pnlResultados.Visible = false;
 
             string telefono = txtTelefono.Text.Trim();
-
             if (string.IsNullOrWhiteSpace(telefono) || telefono.Length != 8)
             {
-                MostrarMensaje("El número de teléfono debe tener 8 dígitos.", false);
+                MostrarMensaje("El número de teléfono debe contener exactamente 8 dígitos.", false);
                 return;
             }
 
-            string identificacion = SessionHelper.UsuarioId;
+            // Capturar sesión ANTES del await
+            string clienteId = SessionHelper.UsuarioId;
+            string token = SessionHelper.AccessToken;
+            string identificacion = ObtenerCedula(clienteId);
+
             if (string.IsNullOrEmpty(identificacion))
             {
-                MostrarMensaje("No se pudo obtener la identificación. Intente iniciar sesión nuevamente.", false);
+                MostrarMensaje("Su sesión no es válida. Por favor inicie sesión nuevamente.", false);
                 return;
             }
 
-            // SRV11: GET /api/accounts/transactions?telefono=...&identificacion=...
             string baseUrl = ConfigurationManager.AppSettings["PagosMovilesApiBaseUrl"];
-            string url     = string.Format("{0}/api/accounts/transactions?telefono={1}&identificacion={2}",
-                                baseUrl.TrimEnd('/'),
-                                Uri.EscapeDataString(telefono),
-                                Uri.EscapeDataString(identificacion));
-
-            var request = (HttpWebRequest)WebRequest.Create(url);
-            request.Method = "GET";
-            request.Headers["Authorization"] = "Bearer " + SessionHelper.AccessToken;
+            string url = string.Format("{0}/api/accounts/transactions?telefono={1}&identificacion={2}",
+                            baseUrl.TrimEnd('/'),
+                            Uri.EscapeDataString(telefono),
+                            Uri.EscapeDataString(identificacion));
 
             try
             {
-                using (var response = (HttpWebResponse)request.GetResponse())
-                using (var reader   = new StreamReader(response.GetResponseStream()))
+                _httpClient.DefaultRequestHeaders.Authorization = null;
+                if (!string.IsNullOrEmpty(token))
+                    _httpClient.DefaultRequestHeaders.Authorization =
+                        new AuthenticationHeaderValue("Bearer", token);
+
+                var response = await _httpClient.GetAsync(url);
+                string body = await response.Content.ReadAsStringAsync();
+
+                dynamic resp = JsonConvert.DeserializeObject(body);
+                int codigo = (int)resp["codigo"];
+                string descripcion = (string)resp["descripcion"];
+
+                if (codigo != 0)
                 {
-                    string respJson = reader.ReadToEnd();
-                    dynamic resp    = JsonConvert.DeserializeObject(respJson);
-
-                    int    codigo      = (int)(resp.codigo ?? resp.Codigo);
-                    string descripcion = (string)(resp.descripcion ?? resp.Descripcion);
-
-                    if (codigo != 0)
-                    {
-                        // "Debe enviar los datos completos y válidos"
-                        // "Cliente no asociado a pagos móviles"
-                        MostrarMensaje(descripcion, false);
-                        return;
-                    }
-
-                    // TransactionResponse: numeroCuenta, telefono, movimientos
-                    lblNumeroCuenta.Text = (string)resp.data.numeroCuenta;
-                    lblTelefono.Text     = (string)resp.data.telefono;
-
-                    var movimientos = JsonConvert.DeserializeObject<List<MovimientoVM>>(
-                        resp.data.movimientos.ToString()
-                    );
-
-                    gvMovimientos.DataSource = movimientos;
-                    gvMovimientos.DataBind();
-
-                    pnlResultados.Visible = true;
-                }
-            }
-            catch (WebException ex)
-            {
-                if (ex.Response != null)
-                {
-                    using (var reader = new StreamReader(ex.Response.GetResponseStream()))
-                    {
-                        try
-                        {
-                            dynamic err  = JsonConvert.DeserializeObject(reader.ReadToEnd());
-                            string  desc = (string)(err.descripcion ?? err.Descripcion ?? err.message);
-                            MostrarMensaje(desc ?? "Error al consultar los movimientos.", false);
-                        }
-                        catch { MostrarMensaje("Error al consultar los movimientos.", false); }
-                    }
+                    MostrarMensaje(descripcion, false);
                     return;
                 }
-                MostrarMensaje("No se pudo conectar con el servicio. Verifique que la API esté corriendo.", false);
+
+                var data = resp["data"];
+                lblNumeroCuenta.Text = (string)data["numeroCuenta"];
+                lblTelefono.Text = (string)data["telefono"];
+
+                var movimientos = JsonConvert.DeserializeObject<List<MovimientoVM>>(
+                    data["movimientos"].ToString());
+
+                gvMovimientos.DataSource = movimientos;
+                gvMovimientos.DataBind();
+                pnlResultados.Visible = true;
             }
-            catch
+            catch (Exception ex)
             {
-                MostrarMensaje("Ocurrió un error inesperado.", false);
+                MostrarMensaje("No fue posible consultar los movimientos en este momento. Intente más tarde.", false);
             }
         }
 
-        // CREDITO = verde con flecha arriba, DEBITO = rojo con flecha abajo
         protected string FormatearTipo(string tipo)
         {
             if (string.IsNullOrEmpty(tipo)) return tipo;
@@ -113,31 +123,9 @@ namespace PagosMovilesWeb.Portal
             return "<span style='color:red;font-weight:bold;'>▼ " + tipo + "</span>";
         }
 
-        private string ObtenerIdentificacionDelToken()
-        {
-            try
-            {
-                string token    = SessionHelper.AccessToken;
-                string[] partes = token.Split('.');
-                if (partes.Length != 3) return string.Empty;
-
-                string payload = partes[1];
-                int mod = payload.Length % 4;
-                if (mod == 2) payload += "==";
-                else if (mod == 3) payload += "=";
-
-                byte[]  bytes   = Convert.FromBase64String(payload);
-                string  json    = Encoding.UTF8.GetString(bytes);
-                dynamic decoded = JsonConvert.DeserializeObject(json);
-
-                return (string)decoded.id ?? string.Empty;
-            }
-            catch { return string.Empty; }
-        }
-
         private void MostrarMensaje(string mensaje, bool esExito)
         {
-            pnlMensaje.Visible  = true;
+            pnlMensaje.Visible = true;
             pnlMensaje.CssClass = esExito
                 ? "alert alert-success shadow-sm mb-4"
                 : "alert alert-danger shadow-sm mb-4";
@@ -147,12 +135,12 @@ namespace PagosMovilesWeb.Portal
 
     public class MovimientoVM
     {
-        public int      movimientoId    { get; set; }
-        public string   tipoMovimiento  { get; set; }
-        public decimal  monto           { get; set; }
-        public decimal  saldoAnterior   { get; set; }
-        public decimal  saldoActual     { get; set; }
-        public string   descripcion     { get; set; }
+        public int movimientoId { get; set; }
+        public string tipoMovimiento { get; set; }
+        public decimal monto { get; set; }
+        public decimal saldoAnterior { get; set; }
+        public decimal saldoActual { get; set; }
+        public string descripcion { get; set; }
         public DateTime fechaMovimiento { get; set; }
     }
 }

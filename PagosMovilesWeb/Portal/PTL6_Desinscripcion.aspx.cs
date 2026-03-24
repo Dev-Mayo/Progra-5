@@ -1,150 +1,133 @@
 using System;
-using System.Configuration;
-using System.IO;
-using System.Net;
+using System.Data.SqlClient;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
+using System.Threading.Tasks;
+using System.Web.Configuration;
 using Newtonsoft.Json;
 using PagosMovilesWeb.Services;
+using System.Web.UI;
 
 namespace PagosMovilesWeb.Portal
 {
     public partial class PTL6_Desinscripcion : System.Web.UI.Page
     {
+        //  SINGLETON con handler para SSL del compañero
+        private static readonly HttpClientHandler _handler = new HttpClientHandler
+        {
+            ServerCertificateCustomValidationCallback = (msg, cert, chain, errors) => true
+        };
+        private static readonly HttpClient _httpClient = new HttpClient(_handler);
+
         protected void Page_Load(object sender, EventArgs e)
         {
             // Portal.master valida sesión y rol CLIENTE/USUARIO
         }
 
-        protected void btnDesinscribir_Click(object sender, EventArgs e)
-        {
-            pnlMensaje.Visible = false;
-
-            string telefono = txtTelefono.Text.Trim();
-            string cuenta   = txtCuenta.Text.Trim();
-
-            // Validaciones básicas
-            if (string.IsNullOrWhiteSpace(telefono) || telefono.Length != 8)
-            {
-                MostrarMensaje("El número de teléfono debe tener 8 dígitos.", false);
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(cuenta))
-            {
-                MostrarMensaje("Debe ingresar el número de cuenta.", false);
-                return;
-            }
-
-            
-            string identificacion = SessionHelper.UsuarioId;
-            if (string.IsNullOrEmpty(identificacion))
-            {
-                MostrarMensaje("No se pudo obtener la identificación del usuario. Intente iniciar sesión nuevamente.", false);
-                return;
-            }
-
-            //  URL del servicio SRV10 del compañero (desinscripción)
-            
-            string url = "https://localhost:7122/auth/cancel-subscription";
-
-            var body = new
-            {
-                numeroCuenta   = cuenta,
-                identificacion = identificacion,
-                numeroTelefono = telefono
-            };
-
-            string json    = JsonConvert.SerializeObject(body);
-            var    request = (HttpWebRequest)WebRequest.Create(url);
-            request.Method      = "POST";
-            request.ContentType = "application/json";
-            request.Headers["Authorization"] = "Bearer " + SessionHelper.AccessToken;
-
-            // Ignorar errores de certificado SSL en desarrollo
-            request.ServerCertificateValidationCallback =
-                (msg, cert, chain, errors) => true;
-
-            using (var sw = new StreamWriter(request.GetRequestStream()))
-            {
-                sw.Write(json);
-                sw.Flush();
-            }
-
-            try
-            {
-                using (var response = (HttpWebResponse)request.GetResponse())
-                using (var reader   = new StreamReader(response.GetResponseStream()))
-                {
-                    string respJson = reader.ReadToEnd();
-                    dynamic resp    = JsonConvert.DeserializeObject(respJson);
-
-                    int    codigo      = (int)(resp.codigo ?? resp.Codigo);
-                    string descripcion = (string)(resp.descripcion ?? resp.Descripcion);
-
-                    if (codigo == 0)
-                    {
-                        // Mensaje exacto SRV10: "Desinscripción realizada"
-                        MostrarMensaje(descripcion, true);
-                        txtTelefono.Text = string.Empty;
-                        txtCuenta.Text   = string.Empty;
-                    }
-                    else
-                    {
-                        // "Datos incorrectos" / "Teléfono no se encuentra afiliado"
-                        MostrarMensaje(descripcion, false);
-                    }
-                }
-            }
-            catch (WebException ex)
-            {
-                if (ex.Response != null)
-                {
-                    using (var reader = new StreamReader(ex.Response.GetResponseStream()))
-                    {
-                        try
-                        {
-                            dynamic err  = JsonConvert.DeserializeObject(reader.ReadToEnd());
-                            string  desc = (string)(err.descripcion ?? err.Descripcion ?? err.message);
-                            MostrarMensaje(desc ?? "Error al procesar la solicitud.", false);
-                        }
-                        catch { MostrarMensaje("Error al procesar la solicitud.", false); }
-                    }
-                    return;
-                }
-                MostrarMensaje("No se pudo conectar con el servicio. Intente más tarde.", false);
-            }
-            catch
-            {
-                MostrarMensaje("Ocurrió un error inesperado.", false);
-            }
-        }
-
-      
-        private string ObtenerIdentificacionDelToken()
+        private string ObtenerCedula(string clienteId)
         {
             try
             {
-                string token  = SessionHelper.AccessToken;
-                string[] partes = token.Split('.');
-                if (partes.Length != 3) return string.Empty;
-
-                string payload = partes[1];
-                int mod = payload.Length % 4;
-                if (mod == 2) payload += "==";
-                else if (mod == 3) payload += "=";
-
-                byte[]  bytes   = Convert.FromBase64String(payload);
-                string  json    = Encoding.UTF8.GetString(bytes);
-                dynamic decoded = JsonConvert.DeserializeObject(json);
-
-                return (string)decoded.id ?? string.Empty;
+                string conn = WebConfigurationManager
+                                .ConnectionStrings["CoreBancario"].ConnectionString;
+                using (var cn = new SqlConnection(conn))
+                {
+                    cn.Open();
+                    using (var cmd = new SqlCommand(
+                        "SELECT identificacion FROM cliente WHERE cliente_id = @id", cn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", clienteId);
+                        var r = cmd.ExecuteScalar();
+                        return r?.ToString() ?? string.Empty;
+                    }
+                }
             }
             catch { return string.Empty; }
         }
 
+        //  RegisterAsyncTask — el patrón correcto para async en WebForms
+        protected void btnDesinscribir_Click(object sender, EventArgs e)
+        {
+            RegisterAsyncTask(new PageAsyncTask(DesinscribirAsync));
+        }
+
+        private async Task DesinscribirAsync()
+        {
+            pnlMensaje.Visible = false;
+            pnlMensaje.CssClass = "alert alert-danger shadow-sm mb-4";
+
+            string telefono = txtTelefono.Text.Trim();
+            string cuenta = txtCuenta.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(telefono) || telefono.Length != 8)
+            {
+                MostrarMensaje("El número de teléfono debe contener exactamente 8 dígitos.", false);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(cuenta))
+            {
+                MostrarMensaje("Debe ingresar el número de cuenta a desasociar.", false);
+                return;
+            }
+
+            // Capturar sesión ANTES del await
+            string clienteId = SessionHelper.UsuarioId;
+            string token = SessionHelper.AccessToken;
+            string identificacion = ObtenerCedula(clienteId);
+
+            if (string.IsNullOrEmpty(identificacion))
+            {
+                MostrarMensaje("Su sesión no es válida. Por favor inicie sesión nuevamente.", false);
+                return;
+            }
+
+            string url = "https://localhost:7122/auth/cancel-subscription";
+
+            var bodyObj = new
+            {
+                numeroCuenta = cuenta,
+                identificacion = identificacion,
+                numeroTelefono = telefono
+            };
+            string json = JsonConvert.SerializeObject(bodyObj);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            try
+            {
+                _httpClient.DefaultRequestHeaders.Authorization = null;
+                if (!string.IsNullOrEmpty(token))
+                    _httpClient.DefaultRequestHeaders.Authorization =
+                        new AuthenticationHeaderValue("Bearer", token);
+
+                var response = await _httpClient.PostAsync(url, content);
+                string body = await response.Content.ReadAsStringAsync();
+
+                dynamic resp = JsonConvert.DeserializeObject(body);
+                int codigo = (int)resp["codigo"];
+                string descripcion = (string)resp["descripcion"];
+
+                if (codigo == 0)
+                {
+                    MostrarMensaje(descripcion, true);
+                    txtTelefono.Text = string.Empty;
+                    txtCuenta.Text = string.Empty;
+                }
+                else
+                {
+                    MostrarMensaje(descripcion, false);
+                }
+            }
+            catch (Exception ex)
+            {
+                MostrarMensaje("No fue posible procesar la desinscripción en este momento. Intente más tarde.", false);
+            }
+        }
+
         private void MostrarMensaje(string mensaje, bool esExito)
         {
-            pnlMensaje.Visible    = true;
-            pnlMensaje.CssClass   = esExito
+            pnlMensaje.Visible = true;
+            pnlMensaje.CssClass = esExito
                 ? "alert alert-success shadow-sm mb-4"
                 : "alert alert-danger shadow-sm mb-4";
             lblMensaje.Text = mensaje;
