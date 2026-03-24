@@ -3,16 +3,17 @@ using System.Data.SqlClient;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web.Configuration;
 using Newtonsoft.Json;
 using PagosMovilesWeb.Services;
+using System.Web.UI;
 
 namespace PagosMovilesWeb.Portal
 {
     public partial class PTL6_Desinscripcion : System.Web.UI.Page
     {
-        // ✅ SINGLETON correcto — un solo HttpClient para toda la aplicación
-        // PTL6 usa HTTPS del compañero — HttpClientHandler para ignorar SSL local
+        // ✅ SINGLETON con handler para SSL del compañero
         private static readonly HttpClientHandler _handler = new HttpClientHandler
         {
             ServerCertificateCustomValidationCallback = (msg, cert, chain, errors) => true
@@ -24,30 +25,34 @@ namespace PagosMovilesWeb.Portal
             // Portal.master valida sesión y rol CLIENTE/USUARIO
         }
 
-        // ✅ Convierte el cliente_id numérico a la cédula real
-        private string ObtenerIdentificacionPorClienteId(string clienteId)
+        private string ObtenerCedula(string clienteId)
         {
             try
             {
-                string connStr = WebConfigurationManager
-                                    .ConnectionStrings["CoreBancario"].ConnectionString;
-                using (var cn = new SqlConnection(connStr))
+                string conn = WebConfigurationManager
+                                .ConnectionStrings["CoreBancario"].ConnectionString;
+                using (var cn = new SqlConnection(conn))
                 {
                     cn.Open();
                     using (var cmd = new SqlCommand(
                         "SELECT identificacion FROM cliente WHERE cliente_id = @id", cn))
                     {
                         cmd.Parameters.AddWithValue("@id", clienteId);
-                        var result = cmd.ExecuteScalar();
-                        return result?.ToString() ?? string.Empty;
+                        var r = cmd.ExecuteScalar();
+                        return r?.ToString() ?? string.Empty;
                     }
                 }
             }
             catch { return string.Empty; }
         }
 
-        // ✅ async void — funciona con Async="true" en el .aspx, sin deadlock
-        protected async void btnDesinscribir_Click(object sender, EventArgs e)
+        // ✅ RegisterAsyncTask — el patrón correcto para async en WebForms
+        protected void btnDesinscribir_Click(object sender, EventArgs e)
+        {
+            RegisterAsyncTask(new PageAsyncTask(DesinscribirAsync));
+        }
+
+        private async Task DesinscribirAsync()
         {
             pnlMensaje.Visible  = false;
             pnlMensaje.CssClass = "alert alert-danger shadow-sm mb-4";
@@ -66,16 +71,18 @@ namespace PagosMovilesWeb.Portal
                 return;
             }
 
-            string identificacion = ObtenerIdentificacionPorClienteId(SessionHelper.UsuarioId);
+            // Capturar sesión ANTES del await
+            string clienteId      = SessionHelper.UsuarioId;
+            string token          = SessionHelper.AccessToken;
+            string identificacion = ObtenerCedula(clienteId);
+
             if (string.IsNullOrEmpty(identificacion))
             {
                 MostrarMensaje("Su sesión no es válida. Por favor inicie sesión nuevamente.", false);
                 return;
             }
 
-            // Capturar token antes del await
-            string token = SessionHelper.AccessToken;
-            string url   = "https://localhost:7122/auth/cancel-subscription";
+            string url = "https://localhost:7122/auth/cancel-subscription";
 
             var bodyObj = new
             {
@@ -83,25 +90,22 @@ namespace PagosMovilesWeb.Portal
                 identificacion = identificacion,
                 numeroTelefono = telefono
             };
-
             string json    = JsonConvert.SerializeObject(bodyObj);
             var    content = new StringContent(json, Encoding.UTF8, "application/json");
 
             try
             {
-                // ✅ Configurar singleton con el token capturado
                 _httpClient.DefaultRequestHeaders.Authorization = null;
                 if (!string.IsNullOrEmpty(token))
                     _httpClient.DefaultRequestHeaders.Authorization =
                         new AuthenticationHeaderValue("Bearer", token);
 
-                // ✅ await real — sin deadlock gracias a Async="true" en el .aspx
-                var response = await _httpClient.PostAsync(url, content);
-                string body  = await response.Content.ReadAsStringAsync();
+                var    response = await _httpClient.PostAsync(url, content);
+                string body     = await response.Content.ReadAsStringAsync();
 
                 dynamic resp        = JsonConvert.DeserializeObject(body);
-                int     codigo      = (int)(resp.codigo ?? resp.Codigo);
-                string  descripcion = (string)(resp.descripcion ?? resp.Descripcion);
+                int     codigo      = (int)resp["codigo"];
+                string  descripcion = (string)resp["descripcion"];
 
                 if (codigo == 0)
                 {
@@ -114,7 +118,7 @@ namespace PagosMovilesWeb.Portal
                     MostrarMensaje(descripcion, false);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MostrarMensaje("No fue posible procesar la desinscripción en este momento. Intente más tarde.", false);
             }

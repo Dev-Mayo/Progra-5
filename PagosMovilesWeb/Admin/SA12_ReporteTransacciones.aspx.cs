@@ -3,25 +3,31 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using PagosMovilesWeb.Services;
+using System.Web.UI;
 
 namespace PagosMovilesWeb.Admin
 {
     public partial class SA12_ReporteTransacciones : System.Web.UI.Page
     {
-        // ✅ SINGLETON correcto — un solo HttpClient para toda la aplicación
+        // ✅ SINGLETON
         private static readonly HttpClient _httpClient = new HttpClient();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Admin.master valida sesión y rol ADMIN
             if (!IsPostBack)
                 txtFecha.Text = DateTime.Today.ToString("yyyy-MM-dd");
         }
 
-        // ✅ async void — funciona con Async="true" en el .aspx, sin deadlock
-        protected async void btnConsultar_Click(object sender, EventArgs e)
+        // ✅ RegisterAsyncTask — el patrón correcto para async en WebForms
+        protected void btnConsultar_Click(object sender, EventArgs e)
+        {
+            RegisterAsyncTask(new PageAsyncTask(ConsultarReporteAsync));
+        }
+
+        private async Task ConsultarReporteAsync()
         {
             pnlMensaje.Visible    = false;
             pnlResultados.Visible = false;
@@ -32,7 +38,7 @@ namespace PagosMovilesWeb.Admin
                 return;
             }
 
-            // Capturar token antes del await
+            // Capturar token ANTES del await
             string token   = SessionHelper.AccessToken;
             string baseUrl = ConfigurationManager.AppSettings["PagosMovilesApiBaseUrl"];
             string url = string.Format("{0}/api/reports/transactions/daily?fecha={1}",
@@ -41,19 +47,17 @@ namespace PagosMovilesWeb.Admin
 
             try
             {
-                // ✅ Configurar singleton con el token capturado
                 _httpClient.DefaultRequestHeaders.Authorization = null;
                 if (!string.IsNullOrEmpty(token))
                     _httpClient.DefaultRequestHeaders.Authorization =
                         new AuthenticationHeaderValue("Bearer", token);
 
-                // ✅ await real — sin deadlock gracias a Async="true" en el .aspx
-                var response = await _httpClient.GetAsync(url);
-                string body  = await response.Content.ReadAsStringAsync();
+                var    response = await _httpClient.GetAsync(url);
+                string body     = await response.Content.ReadAsStringAsync();
 
                 dynamic resp        = JsonConvert.DeserializeObject(body);
-                int     codigo      = (int)(resp.codigo ?? resp.Codigo);
-                string  descripcion = (string)(resp.descripcion ?? resp.Descripcion);
+                int     codigo      = (int)resp["codigo"];
+                string  descripcion = (string)resp["descripcion"];
 
                 if (codigo != 0)
                 {
@@ -61,10 +65,10 @@ namespace PagosMovilesWeb.Admin
                     return;
                 }
 
+                var data = resp["data"];
                 var transacciones = JsonConvert.DeserializeObject<List<TransaccionReporteVM>>(
-                    resp.data.transacciones.ToString()
-                );
-                decimal totalDia = (decimal)resp.data.totalMonto;
+                    data["transacciones"].ToString());
+                decimal totalDia = (decimal)data["totalMonto"];
 
                 gvTransacciones.DataSource = transacciones;
                 gvTransacciones.DataBind();
@@ -73,7 +77,7 @@ namespace PagosMovilesWeb.Admin
                 lblTotalDia.Text        = totalDia.ToString("N2");
                 pnlResultados.Visible   = true;
             }
-            catch (Exception)
+            catch (Exception )
             {
                 MostrarMensaje("No fue posible generar el reporte en este momento. Intente más tarde.", false);
             }

@@ -3,15 +3,17 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using System.Web.Configuration;
 using Newtonsoft.Json;
 using PagosMovilesWeb.Services;
+using System.Web.UI;
 
 namespace PagosMovilesWeb.Portal
 {
     public partial class PTL7_ConsultaSaldo : System.Web.UI.Page
     {
-        // ✅ SINGLETON correcto — un solo HttpClient para toda la aplicación
+        // ✅ SINGLETON
         private static readonly HttpClient _httpClient = new HttpClient();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -19,51 +21,56 @@ namespace PagosMovilesWeb.Portal
             // Portal.master valida sesión y rol CLIENTE/USUARIO
         }
 
-        // ✅ Convierte el cliente_id numérico a la cédula real
-        private string ObtenerIdentificacionPorClienteId(string clienteId)
+        private string ObtenerCedula(string clienteId)
         {
             try
             {
-                string connStr = WebConfigurationManager
-                                    .ConnectionStrings["CoreBancario"].ConnectionString;
-                using (var cn = new SqlConnection(connStr))
+                string conn = WebConfigurationManager
+                                .ConnectionStrings["CoreBancario"].ConnectionString;
+                using (var cn = new SqlConnection(conn))
                 {
                     cn.Open();
                     using (var cmd = new SqlCommand(
                         "SELECT identificacion FROM cliente WHERE cliente_id = @id", cn))
                     {
                         cmd.Parameters.AddWithValue("@id", clienteId);
-                        var result = cmd.ExecuteScalar();
-                        return result?.ToString() ?? string.Empty;
+                        var r = cmd.ExecuteScalar();
+                        return r?.ToString() ?? string.Empty;
                     }
                 }
             }
             catch { return string.Empty; }
         }
 
-        // ✅ async void — funciona con Async="true" en el .aspx, sin deadlock
-        protected async void btnConsultar_Click(object sender, EventArgs e)
+        // ✅ RegisterAsyncTask — el patrón correcto para async en WebForms
+        protected void btnConsultar_Click(object sender, EventArgs e)
+        {
+            RegisterAsyncTask(new PageAsyncTask(ConsultarSaldoAsync));
+        }
+
+        private async Task ConsultarSaldoAsync()
         {
             pnlMensaje.Visible   = false;
             pnlResultado.Visible = false;
 
             string telefono = txtTelefono.Text.Trim();
-
             if (string.IsNullOrWhiteSpace(telefono) || telefono.Length != 8)
             {
                 MostrarMensaje("El número de teléfono debe contener exactamente 8 dígitos.", false);
                 return;
             }
 
-            string identificacion = ObtenerIdentificacionPorClienteId(SessionHelper.UsuarioId);
+            // Capturar sesión ANTES del await
+            string clienteId      = SessionHelper.UsuarioId;
+            string token          = SessionHelper.AccessToken;
+            string identificacion = ObtenerCedula(clienteId);
+
             if (string.IsNullOrEmpty(identificacion))
             {
                 MostrarMensaje("Su sesión no es válida. Por favor inicie sesión nuevamente.", false);
                 return;
             }
 
-            // Capturar token antes del await — HttpContext puede cambiar después
-            string token   = SessionHelper.AccessToken;
             string baseUrl = ConfigurationManager.AppSettings["PagosMovilesApiBaseUrl"];
             string url = string.Format("{0}/api/accounts/balance?telefono={1}&identificacion={2}",
                             baseUrl.TrimEnd('/'),
@@ -72,19 +79,17 @@ namespace PagosMovilesWeb.Portal
 
             try
             {
-                // ✅ Configurar singleton con el token capturado
                 _httpClient.DefaultRequestHeaders.Authorization = null;
                 if (!string.IsNullOrEmpty(token))
                     _httpClient.DefaultRequestHeaders.Authorization =
                         new AuthenticationHeaderValue("Bearer", token);
 
-                // ✅ await real — sin deadlock gracias a Async="true" en el .aspx
-                var response = await _httpClient.GetAsync(url);
-                string body  = await response.Content.ReadAsStringAsync();
+                var    response = await _httpClient.GetAsync(url);
+                string body     = await response.Content.ReadAsStringAsync();
 
                 dynamic resp        = JsonConvert.DeserializeObject(body);
-                int     codigo      = (int)(resp.codigo ?? resp.Codigo);
-                string  descripcion = (string)(resp.descripcion ?? resp.Descripcion);
+                int     codigo      = (int)resp["codigo"];
+                string  descripcion = (string)resp["descripcion"];
 
                 if (codigo != 0)
                 {
@@ -92,12 +97,13 @@ namespace PagosMovilesWeb.Portal
                     return;
                 }
 
-                lblNumeroCuenta.Text = (string)resp.data.numeroCuenta;
-                lblSaldo.Text        = ((decimal)resp.data.saldo).ToString("N2");
-                lblTelefono.Text     = (string)resp.data.telefono;
+                var data = resp["data"];
+                lblNumeroCuenta.Text = (string)data["numeroCuenta"];
+                lblSaldo.Text        = ((decimal)data["saldo"]).ToString("N2");
+                lblTelefono.Text     = (string)data["telefono"];
                 pnlResultado.Visible = true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MostrarMensaje("No fue posible consultar el saldo en este momento. Intente más tarde.", false);
             }
