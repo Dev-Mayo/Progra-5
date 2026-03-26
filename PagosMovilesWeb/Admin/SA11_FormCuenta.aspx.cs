@@ -11,6 +11,9 @@ namespace PagosMovilesWeb.Admin
 {
     public partial class SA11_FormCuenta : System.Web.UI.Page
     {
+        // SINGLETON
+        private static readonly HttpClient _httpClient = new HttpClient();
+
         private readonly string baseUrl = "http://localhost:5227";
 
         protected async void Page_Load(object sender, EventArgs e)
@@ -24,54 +27,81 @@ namespace PagosMovilesWeb.Admin
                 }
                 else
                 {
-                    // Modo CREACIÓN
                     lblTitulo.Text = "Nueva Cuenta";
                     lblSubtitulo.Text = "Complete los datos de la nueva cuenta";
                 }
             }
         }
 
-        private HttpClient GetClient()
-        {
-            var client = new HttpClient();
-            var token = Session["AccessToken"]?.ToString();
-            if (!string.IsNullOrEmpty(token))
-            {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            }
-            return client;
-        }
-
         private async Task<T> GetAsync<T>(string url)
         {
-            using (var client = GetClient())
+            try
             {
-                var response = await client.GetAsync(url);
-                if (!response.IsSuccessStatusCode) return default;
+                var token = Session["AccessToken"]?.ToString();
+                _httpClient.DefaultRequestHeaders.Authorization = null;
+                if (!string.IsNullOrEmpty(token))
+                    _httpClient.DefaultRequestHeaders.Authorization =
+                        new AuthenticationHeaderValue("Bearer", token);
+
+                var response = await _httpClient.GetAsync(url);
+                System.Diagnostics.Debug.WriteLine($"GET {url}: {response.StatusCode}");
+
+                if (!response.IsSuccessStatusCode)
+                    return default;
+
                 var json = await response.Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<T>(json);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"GET {url} error: {ex.Message}");
+                return default;
             }
         }
 
         private async Task<bool> PostAsync<T>(string url, T data)
         {
-            using (var client = GetClient())
+            try
             {
+                var token = Session["AccessToken"]?.ToString();
+                _httpClient.DefaultRequestHeaders.Authorization = null;
+                if (!string.IsNullOrEmpty(token))
+                    _httpClient.DefaultRequestHeaders.Authorization =
+                        new AuthenticationHeaderValue("Bearer", token);
+
                 var json = JsonConvert.SerializeObject(data);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
-                var response = await client.PostAsync(url, content);
+                var response = await _httpClient.PostAsync(url, content);
+                System.Diagnostics.Debug.WriteLine($"POST {url}: {response.StatusCode}");
                 return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"POST {url} error: {ex.Message}");
+                return false;
             }
         }
 
         private async Task<bool> PutAsync<T>(string url, T data)
         {
-            using (var client = GetClient())
+            try
             {
+                var token = Session["AccessToken"]?.ToString();
+                _httpClient.DefaultRequestHeaders.Authorization = null;
+                if (!string.IsNullOrEmpty(token))
+                    _httpClient.DefaultRequestHeaders.Authorization =
+                        new AuthenticationHeaderValue("Bearer", token);
+
                 var json = JsonConvert.SerializeObject(data);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
-                var response = await client.PutAsync(url, content);
+                var response = await _httpClient.PutAsync(url, content);
+                System.Diagnostics.Debug.WriteLine($"PUT {url}: {response.StatusCode}");
                 return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"PUT {url} error: {ex.Message}");
+                return false;
             }
         }
 
@@ -79,7 +109,6 @@ namespace PagosMovilesWeb.Admin
         {
             try
             {
-                // DEBUG
                 System.Diagnostics.Debug.WriteLine($" Edit param recibido: {editParam}");
 
                 string[] partes = editParam.Split('_');
@@ -140,7 +169,6 @@ namespace PagosMovilesWeb.Admin
 
                 if (!string.IsNullOrEmpty(editParam))
                 {
-                    // EDITAR
                     string[] partes = editParam.Split('_');
                     string numeroCuenta = partes[1];
 
@@ -157,7 +185,6 @@ namespace PagosMovilesWeb.Admin
                 }
                 else
                 {
-                    // CREAR
                     cuentaData = new
                     {
                         clienteId = clienteId,
@@ -173,7 +200,6 @@ namespace PagosMovilesWeb.Admin
 
                 if (success)
                 {
-
                     ClientScript.RegisterStartupScript(this.GetType(), "showModal",
                         @"setTimeout(function(){ 
                             var modal = new bootstrap.Modal(document.getElementById('modalSuccess')); 

@@ -17,7 +17,6 @@ namespace PagosMovilesWeb.Portal
                     Response.Redirect("~/Portal/PTL2_Welcome.aspx", false);
                     return;
                 }
-
                 switch (Request.QueryString["msg"])
                 {
                     case "expirado":
@@ -40,10 +39,11 @@ namespace PagosMovilesWeb.Portal
 
             string email = txtUsuario.Text.Trim();
 
+            // CAMBIO: Mostrar mensaje pero NO deshabilitar botón
             if (BloqueoService.EstaBlockeado(email))
             {
                 pnlBloqueado.Visible = true;
-                btnIngresar.Enabled = false;
+                // REMOVIDO: btnIngresar.Enabled = false;
                 return;
             }
 
@@ -78,10 +78,11 @@ namespace PagosMovilesWeb.Portal
                 {
                     bool bloqueado = BloqueoService.RegistrarIntentoFallido(email);
 
+                    // ✅ CAMBIO: Mostrar mensaje pero NO deshabilitar botón
                     if (bloqueado)
                     {
                         pnlBloqueado.Visible = true;
-                        btnIngresar.Enabled = false;
+                        // ❌ REMOVIDO: btnIngresar.Enabled = false;
                     }
                     else
                     {

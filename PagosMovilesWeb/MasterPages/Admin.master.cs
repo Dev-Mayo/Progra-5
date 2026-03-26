@@ -29,7 +29,11 @@ namespace PagosMovilesWeb.MasterPages
 
             SessionHelper.RenovarActividad();
             lblUsuario.Text = SessionHelper.NombreCompleto;
-            ConfigurarMenu();
+
+            if (!IsPostBack)
+            {
+                ConfigurarMenu();
+            }
         }
 
         private void ConfigurarMenu()

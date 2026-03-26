@@ -47,18 +47,6 @@ Inherits="PagosMovilesWeb.Admin.SA11_FormCuenta" %>
             </div>
             
             <div class="col-md-4">
-                <label class="form-label fw-bold">
-                    <asp:Label ID="lblNumeroCuenta" runat="server" Text="Número Cuenta"></asp:Label>
-                    <asp:Label ID="lblAsteriscoNumero" runat="server" CssClass="text-danger" Text="" />
-                </label>
-                <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-credit-card"></i></span>
-                    <asp:TextBox ID="txtNumeroCuenta" runat="server" CssClass="form-control" 
-                                placeholder="Ej: AH00001" MaxLength="20" />
-                </div>
-            </div>
-            
-            <div class="col-md-4">
                 <label class="form-label fw-bold">Tipo de Cuenta <span class="text-danger">*</span></label>
                 <asp:DropDownList ID="ddlTipoCuenta" runat="server" CssClass="form-select">
                     <asp:ListItem Value="" Text="-- Seleccione --"></asp:ListItem>

@@ -13,6 +13,9 @@ namespace PagosMovilesWeb.Admin
 {
     public partial class SA11_AdminCuentas : System.Web.UI.Page
     {
+        // SINGLETON
+        private static readonly HttpClient _httpClient = new HttpClient();
+
         private readonly string baseUrl = "http://localhost:5227";
 
         protected async void Page_Load(object sender, EventArgs e)
@@ -23,63 +26,87 @@ namespace PagosMovilesWeb.Admin
             }
         }
 
-        private HttpClient GetClient()
+        private async Task<List<Cuenta>> GetAsyncList(string url)
         {
-            var client = new HttpClient();
-            var token = Session["AccessToken"]?.ToString();
-            if (!string.IsNullOrEmpty(token))
+            try
             {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                var token = Session["AccessToken"]?.ToString();
+                _httpClient.DefaultRequestHeaders.Authorization = null;
+                if (!string.IsNullOrEmpty(token))
+                    _httpClient.DefaultRequestHeaders.Authorization =
+                        new AuthenticationHeaderValue("Bearer", token);
+
+                var response = await _httpClient.GetAsync(url);
+                System.Diagnostics.Debug.WriteLine($"GET {url}: {response.StatusCode}");
+
+                if (!response.IsSuccessStatusCode)
+                    return null;
+
+                var json = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<List<Cuenta>>(json);
             }
-            return client;
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"GET {url} error: {ex.Message}");
+                return null;
+            }
+        }
+
+        private async Task<bool> DeleteAsync(string url)
+        {
+            try
+            {
+                var token = Session["AccessToken"]?.ToString();
+                _httpClient.DefaultRequestHeaders.Authorization = null;
+                if (!string.IsNullOrEmpty(token))
+                    _httpClient.DefaultRequestHeaders.Authorization =
+                        new AuthenticationHeaderValue("Bearer", token);
+
+                var response = await _httpClient.DeleteAsync(url);
+                System.Diagnostics.Debug.WriteLine($"DELETE {url}: {response.StatusCode}");
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"DELETE {url} error: {ex.Message}");
+                return false;
+            }
         }
 
         private async Task CargarCuentas()
         {
-            using (var client = GetClient())
+            var cuentas = await GetAsyncList($"{baseUrl}/core/accounts");
+
+            if (cuentas != null)
             {
-                var response = await client.GetAsync($"{baseUrl}/core/accounts");
-                if (response.IsSuccessStatusCode)
-                {
-                    var json = await response.Content.ReadAsStringAsync();
-                    var cuentas = JsonConvert.DeserializeObject<List<Cuenta>>(json);
-                    gvCuentas.DataSource = cuentas;
-                    gvCuentas.DataBind();
-                }
+                gvCuentas.DataSource = cuentas;
+                gvCuentas.DataBind();
             }
         }
 
         protected async void btnBuscarCuenta_Click(object sender, EventArgs e)
         {
             string numeroCuenta = txtBuscarCuenta.Text;
-            using (var client = GetClient())
+            var cuentas = await GetAsyncList($"{baseUrl}/core/accounts/Cuenta?NumeroCuenta={numeroCuenta}");
+
+            if (cuentas != null)
             {
-                var response = await client.GetAsync($"{baseUrl}/core/accounts/Cuenta?NumeroCuenta={numeroCuenta}");
-                if (response.IsSuccessStatusCode)
-                {
-                    var json = await response.Content.ReadAsStringAsync();
-                    var cuenta = JsonConvert.DeserializeObject<List<Cuenta>>(json);
-                    gvResultadoBusqueda.DataSource = cuenta;
-                    gvResultadoBusqueda.DataBind();
-                    pnlResultadoBusqueda.Visible = true;
-                }
+                gvResultadoBusqueda.DataSource = cuentas;
+                gvResultadoBusqueda.DataBind();
+                pnlResultadoBusqueda.Visible = true;
             }
         }
 
         protected async void btnBuscarCliente_Click(object sender, EventArgs e)
         {
             string clienteId = txtBuscarCliente.Text;
-            using (var client = GetClient())
+            var cuentas = await GetAsyncList($"{baseUrl}/core/accounts/Cliente?ClienteID={clienteId}");
+
+            if (cuentas != null)
             {
-                var response = await client.GetAsync($"{baseUrl}/core/accounts/Cliente?ClienteID={clienteId}");
-                if (response.IsSuccessStatusCode)
-                {
-                    var json = await response.Content.ReadAsStringAsync();
-                    var cuentas = JsonConvert.DeserializeObject<List<Cuenta>>(json);
-                    gvCuentasCliente.DataSource = cuentas;
-                    gvCuentasCliente.DataBind();
-                    pnlCuentasCliente.Visible = true;
-                }
+                gvCuentasCliente.DataSource = cuentas;
+                gvCuentasCliente.DataBind();
+                pnlCuentasCliente.Visible = true;
             }
         }
 
@@ -100,14 +127,19 @@ namespace PagosMovilesWeb.Admin
 
             System.Diagnostics.Debug.WriteLine($"ELIMINAR: Cliente={clienteId}, Cuenta={numeroCuenta}");
 
-            using (var client = GetClient())
-            {
-                var response = await client.DeleteAsync($"{baseUrl}/core/accounts/{clienteId}/{numeroCuenta}");
-                System.Diagnostics.Debug.WriteLine($" Status: {response.StatusCode}");
-            }
+            string url = $"{baseUrl}/core/accounts/{clienteId}/{numeroCuenta}";
+            bool eliminado = await DeleteAsync(url);
 
-            pnlMensaje.CssClass = "alert alert-success alert-dismissible fade show shadow-sm mb-4";
-            lblMensaje.Text = $"Cuenta <strong>{numeroCuenta}</strong> (Cliente: {clienteId}) eliminada correctamente.";
+            if (eliminado)
+            {
+                pnlMensaje.CssClass = "alert alert-success alert-dismissible fade show shadow-sm mb-4";
+                lblMensaje.Text = $"Cuenta <strong>{numeroCuenta}</strong> (Cliente: {clienteId}) eliminada correctamente.";
+            }
+            else
+            {
+                pnlMensaje.CssClass = "alert alert-danger alert-dismissible fade show shadow-sm mb-4";
+                lblMensaje.Text = $"Error al eliminar cuenta <strong>{numeroCuenta}</strong> (Cliente: {clienteId})";
+            }
             pnlMensaje.Visible = true;
             await CargarCuentas();
         }
