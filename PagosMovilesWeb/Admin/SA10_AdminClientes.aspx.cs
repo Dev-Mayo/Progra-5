@@ -13,6 +13,9 @@ namespace PagosMovilesWeb.Admin
 {
     public partial class SA10_AdminClientes : System.Web.UI.Page
     {
+        // SINGLETON
+        private static readonly HttpClient _httpClient = new HttpClient();
+
         private readonly string baseUrl = "http://localhost:5227";
 
         protected async void Page_Load(object sender, EventArgs e)
@@ -23,47 +26,76 @@ namespace PagosMovilesWeb.Admin
             }
         }
 
-        private HttpClient GetClient()
-        {
-            var client = new HttpClient();  //cambiar esto - usar patron singleton o similar para evitar problemas de socket
-            var token = Session["AccessToken"]?.ToString();
-            if (!string.IsNullOrEmpty(token))
-            {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            }
-            return client;
-        }
-
         private async Task<T> GetAsync<T>(string url)
         {
-            using (HttpClient client = GetClient())
+            try
             {
-                var response = await client.GetAsync(url);
-                if (!response.IsSuccessStatusCode) return default;
+                var token = Session["AccessToken"]?.ToString();
+                _httpClient.DefaultRequestHeaders.Authorization = null;
+                if (!string.IsNullOrEmpty(token))
+                    _httpClient.DefaultRequestHeaders.Authorization =
+                        new AuthenticationHeaderValue("Bearer", token);
+
+                var response = await _httpClient.GetAsync(url);
+                if (!response.IsSuccessStatusCode)
+                {
+                    System.Diagnostics.Debug.WriteLine($"GET {url} failed: {response.StatusCode}");
+                    return default;
+                }
+
                 var json = await response.Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<T>(json);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"GET {url} error: {ex.Message}");
+                return default;
             }
         }
 
         private async Task<bool> PostAsync<T>(string url, T data)
         {
-            using (HttpClient client = GetClient())
+            try
             {
+                var token = Session["AccessToken"]?.ToString();
+                _httpClient.DefaultRequestHeaders.Authorization = null;
+                if (!string.IsNullOrEmpty(token))
+                    _httpClient.DefaultRequestHeaders.Authorization =
+                        new AuthenticationHeaderValue("Bearer", token);
+
                 var json = JsonConvert.SerializeObject(data);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
-                var response = await client.PostAsync(url, content);
+                var response = await _httpClient.PostAsync(url, content);
+                System.Diagnostics.Debug.WriteLine($"POST {url}: {response.StatusCode}");
                 return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"POST {url} error: {ex.Message}");
+                return false;
             }
         }
 
         private async Task<bool> PutAsync<T>(string url, T data)
         {
-            using (HttpClient client = GetClient())
+            try
             {
+                var token = Session["AccessToken"]?.ToString();
+                _httpClient.DefaultRequestHeaders.Authorization = null;
+                if (!string.IsNullOrEmpty(token))
+                    _httpClient.DefaultRequestHeaders.Authorization =
+                        new AuthenticationHeaderValue("Bearer", token);
+
                 var json = JsonConvert.SerializeObject(data);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
-                var response = await client.PutAsync(url, content);
+                var response = await _httpClient.PutAsync(url, content);
+                System.Diagnostics.Debug.WriteLine($"PUT {url}: {response.StatusCode}");
                 return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"PUT {url} error: {ex.Message}");
+                return false;
             }
         }
 
@@ -71,19 +103,22 @@ namespace PagosMovilesWeb.Admin
         {
             try
             {
-                using (HttpClient client = GetClient())
-                {
-                    string url = $"{baseUrl}/core/client/{id}";
-                    System.Diagnostics.Debug.WriteLine($"DELETE: {url}");
+                var token = Session["AccessToken"]?.ToString();
+                _httpClient.DefaultRequestHeaders.Authorization = null;
+                if (!string.IsNullOrEmpty(token))
+                    _httpClient.DefaultRequestHeaders.Authorization =
+                        new AuthenticationHeaderValue("Bearer", token);
 
-                    HttpResponseMessage response = await client.DeleteAsync(url);
-                    string content = await response.Content.ReadAsStringAsync();
+                string url = $"{baseUrl}/core/client/{id}";
+                System.Diagnostics.Debug.WriteLine($"DELETE: {url}");
 
-                    System.Diagnostics.Debug.WriteLine($"Status: {response.StatusCode}");
-                    System.Diagnostics.Debug.WriteLine($"Response: {content}");
+                HttpResponseMessage response = await _httpClient.DeleteAsync(url);
+                string content = await response.Content.ReadAsStringAsync();
 
-                    return response.IsSuccessStatusCode; //hay que implementar mensajes de error en base al status code del api
-                }
+                System.Diagnostics.Debug.WriteLine($"Status: {response.StatusCode}");
+                System.Diagnostics.Debug.WriteLine($"Response: {content}");
+
+                return response.IsSuccessStatusCode;
             }
             catch (Exception ex)
             {
@@ -140,8 +175,7 @@ namespace PagosMovilesWeb.Admin
             if (e.CommandName == "Eliminar")
             {
                 string identificacion = e.CommandArgument.ToString();
-
-                bool eliminado = await DeleteAsync(identificacion);  //
+                bool eliminado = await DeleteAsync(identificacion);
 
                 if (eliminado)
                 {
@@ -176,7 +210,7 @@ namespace PagosMovilesWeb.Admin
         protected async void lnkEliminar_Click(object sender, EventArgs e)
         {
             LinkButton btn = sender as LinkButton;
-            string identificacion = btn.CommandArgument ?? ""; 
+            string identificacion = btn.CommandArgument ?? "";
             System.Diagnostics.Debug.WriteLine($"🔍 Click recibido - ID: '{identificacion}' (Length: {identificacion.Length})");
 
             if (string.IsNullOrEmpty(identificacion))
