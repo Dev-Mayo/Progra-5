@@ -21,26 +21,7 @@ namespace PagosMovilesWeb.Portal
             // Portal.master valida sesión y rol CLIENTE/USUARIO
         }
 
-        private string ObtenerCedula(string clienteId)
-        {
-            try
-            {
-                string conn = WebConfigurationManager
-                                .ConnectionStrings["CoreBancario"].ConnectionString;
-                using (var cn = new SqlConnection(conn))
-                {
-                    cn.Open();
-                    using (var cmd = new SqlCommand(
-                        "SELECT identificacion FROM cliente WHERE cliente_id = @id", cn))
-                    {
-                        cmd.Parameters.AddWithValue("@id", clienteId);
-                        var r = cmd.ExecuteScalar();
-                        return r?.ToString() ?? string.Empty;
-                    }
-                }
-            }
-            catch { return string.Empty; }
-        }
+        
 
         // ✅ RegisterAsyncTask — el patrón correcto para async en WebForms
         protected void btnConsultar_Click(object sender, EventArgs e)
@@ -71,11 +52,20 @@ namespace PagosMovilesWeb.Portal
                 return;
             }
 
-            string baseUrl = ConfigurationManager.AppSettings["PagosMovilesApiBaseUrl"];
+            string baseUrl = ConfigurationManager.AppSettings["GatewayBaseUrl"];
+
+            string url = string.Format(
+                "{0}/gateway/trans/accounts/balance?telefono={1}&identificacion={2}",
+                baseUrl.TrimEnd('/'),
+                Uri.EscapeDataString(telefono),
+                Uri.EscapeDataString(identificacion)
+            );
+
+            /*string baseUrl = ConfigurationManager.AppSettings["PagosMovilesApiBaseUrl"];
             string url = string.Format("{0}/api/accounts/balance?telefono={1}&identificacion={2}",
                             baseUrl.TrimEnd('/'),
                             Uri.EscapeDataString(telefono),
-                            Uri.EscapeDataString(identificacion));
+                            Uri.EscapeDataString(identificacion));*/
 
             try
             {
@@ -108,7 +98,26 @@ namespace PagosMovilesWeb.Portal
                 MostrarMensaje("No fue posible consultar el saldo en este momento. Intente más tarde.", false);
             }
         }
-
+        private string ObtenerCedula(string clienteId)
+        {
+            try
+            {
+                string conn = WebConfigurationManager
+                                .ConnectionStrings["CoreBancario"].ConnectionString;
+                using (var cn = new SqlConnection(conn))
+                {
+                    cn.Open();
+                    using (var cmd = new SqlCommand(
+                        "SELECT identificacion FROM cliente WHERE cliente_id = @id", cn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", clienteId);
+                        var r = cmd.ExecuteScalar();
+                        return r?.ToString() ?? string.Empty;
+                    }
+                }
+            }
+            catch { return string.Empty; }
+        }
         private void MostrarMensaje(string mensaje, bool esExito)
         {
             pnlMensaje.Visible = true;

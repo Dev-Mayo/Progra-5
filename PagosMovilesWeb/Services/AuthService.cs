@@ -40,11 +40,10 @@ namespace PagosMovilesWeb.Services
 
         // *** Cambiar si Diego usa otro puerto ***
 
-        private const string BASE_URL = "https://localhost:7160/";
+        private const string BASE_URL = "https://localhost:7084/";
 
-        // PATRÓN SINGLETON: HttpClient estático reutilizable
+        //<add key="GatewayBaseUrl" value="https://localhost:7084"
 
-        // Se crea UNA SOLA VEZ y se reutiliza para toda la aplicación
 
         private static readonly HttpClient _httpClient = new HttpClient(
 
@@ -84,7 +83,7 @@ namespace PagosMovilesWeb.Services
 
             // Usa el HttpClient estático en lugar de crear uno nuevo
 
-            var response = await _httpClient.PostAsync("api/login", content);
+            var response = await _httpClient.PostAsync("/gateway/auth/login", content);
 
             if ((int)response.StatusCode == 201)
 

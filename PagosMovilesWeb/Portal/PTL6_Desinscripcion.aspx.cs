@@ -25,27 +25,6 @@ namespace PagosMovilesWeb.Portal
             // Portal.master valida sesión y rol CLIENTE/USUARIO
         }
 
-        private string ObtenerCedula(string clienteId)
-        {
-            try
-            {
-                string conn = WebConfigurationManager
-                                .ConnectionStrings["CoreBancario"].ConnectionString;
-                using (var cn = new SqlConnection(conn))
-                {
-                    cn.Open();
-                    using (var cmd = new SqlCommand(
-                        "SELECT identificacion FROM cliente WHERE cliente_id = @id", cn))
-                    {
-                        cmd.Parameters.AddWithValue("@id", clienteId);
-                        var r = cmd.ExecuteScalar();
-                        return r?.ToString() ?? string.Empty;
-                    }
-                }
-            }
-            catch { return string.Empty; }
-        }
-
         //  RegisterAsyncTask — el patrón correcto para async en WebForms
         protected void btnDesinscribir_Click(object sender, EventArgs e)
         {
@@ -123,7 +102,26 @@ namespace PagosMovilesWeb.Portal
                 MostrarMensaje("No fue posible procesar la desinscripción en este momento. Intente más tarde.", false);
             }
         }
-
+        private string ObtenerCedula(string clienteId)
+        {
+            try
+            {
+                string conn = WebConfigurationManager
+                                .ConnectionStrings["CoreBancario"].ConnectionString;
+                using (var cn = new SqlConnection(conn))
+                {
+                    cn.Open();
+                    using (var cmd = new SqlCommand(
+                        "SELECT identificacion FROM cliente WHERE cliente_id = @id", cn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", clienteId);
+                        var r = cmd.ExecuteScalar();
+                        return r?.ToString() ?? string.Empty;
+                    }
+                }
+            }
+            catch { return string.Empty; }
+        }
         private void MostrarMensaje(string mensaje, bool esExito)
         {
             pnlMensaje.Visible = true;
