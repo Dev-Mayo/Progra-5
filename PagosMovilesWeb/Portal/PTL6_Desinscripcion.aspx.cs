@@ -13,7 +13,7 @@ namespace PagosMovilesWeb.Portal
 {
     public partial class PTL6_Desinscripcion : System.Web.UI.Page
     {
-        //  SINGLETON con handler para SSL del compañero
+        
         private static readonly HttpClientHandler _handler = new HttpClientHandler
         {
             ServerCertificateCustomValidationCallback = (msg, cert, chain, errors) => true
@@ -22,10 +22,10 @@ namespace PagosMovilesWeb.Portal
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Portal.master valida sesión y rol CLIENTE/USUARIO
+            
         }
 
-        //  RegisterAsyncTask — el patrón correcto para async en WebForms
+        
         protected void btnDesinscribir_Click(object sender, EventArgs e)
         {
             RegisterAsyncTask(new PageAsyncTask(DesinscribirAsync));
@@ -50,7 +50,7 @@ namespace PagosMovilesWeb.Portal
                 return;
             }
 
-            // Capturar sesión ANTES del await
+            
             string clienteId = SessionHelper.UsuarioId;
             string token = SessionHelper.AccessToken;
             string identificacion = ObtenerCedula(clienteId);

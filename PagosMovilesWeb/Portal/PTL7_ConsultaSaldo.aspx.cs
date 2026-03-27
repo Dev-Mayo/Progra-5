@@ -13,17 +13,17 @@ namespace PagosMovilesWeb.Portal
 {
     public partial class PTL7_ConsultaSaldo : System.Web.UI.Page
     {
-        // ✅ SINGLETON
+        
         private static readonly HttpClient _httpClient = new HttpClient();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Portal.master valida sesión y rol CLIENTE/USUARIO
+            
         }
 
         
 
-        // ✅ RegisterAsyncTask — el patrón correcto para async en WebForms
+        
         protected void btnConsultar_Click(object sender, EventArgs e)
         {
             RegisterAsyncTask(new PageAsyncTask(ConsultarSaldoAsync));
@@ -41,7 +41,7 @@ namespace PagosMovilesWeb.Portal
                 return;
             }
 
-            // Capturar sesión ANTES del await
+            
             string clienteId = SessionHelper.UsuarioId;
             string token = SessionHelper.AccessToken;
             string identificacion = ObtenerCedula(clienteId);

@@ -81,7 +81,7 @@ namespace PagosMovilesWeb.Services
 
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            // Usa el HttpClient estático en lugar de crear uno nuevo
+
 
             var response = await _httpClient.PostAsync("/gateway/auth/login", content);
 
@@ -103,9 +103,7 @@ namespace PagosMovilesWeb.Services
 
         {
 
-            // Usa el HttpClient estático
 
-            // Crear una copia del request con el header Authorization
 
             using (var request = new HttpRequestMessage(HttpMethod.Get, "api/validate"))
 
