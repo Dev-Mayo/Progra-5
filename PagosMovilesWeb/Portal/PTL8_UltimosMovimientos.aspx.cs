@@ -1,14 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data.SqlClient;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
-using System.Web.Configuration;
+using System.Web.UI;
 using Newtonsoft.Json;
 using PagosMovilesWeb.Services;
-using System.Web.UI;
 
 namespace PagosMovilesWeb.Portal
 {
@@ -19,31 +18,29 @@ namespace PagosMovilesWeb.Portal
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Portal.master valida sesión y rol CLIENTE/USUARIO
+            // Portal.master valida sesión y rol CLIENTE/
         }
 
-        private string ObtenerCedula(string clienteId)
+        // Obtiene la identificación llamando al API 
+        private async Task<string> ObtenerIdentificacionAsync(string clienteId, string token)
         {
-            try
-            {
-                string conn = WebConfigurationManager
-                                .ConnectionStrings["CoreBancario"].ConnectionString;
-                using (var cn = new SqlConnection(conn))
-                {
-                    cn.Open();
-                    using (var cmd = new SqlCommand(
-                        "SELECT identificacion FROM cliente WHERE cliente_id = @id", cn))
-                    {
-                        cmd.Parameters.AddWithValue("@id", clienteId);
-                        var r = cmd.ExecuteScalar();
-                        return r?.ToString() ?? string.Empty;
-                    }
-                }
-            }
-            catch { return string.Empty; }
+            string baseUrl = ConfigurationManager.AppSettings["PagosMovilesApiBaseUrl"];
+            string url = string.Format("{0}/api/accounts/cliente-identificacion?clienteId={1}",
+                            baseUrl.TrimEnd('/'),
+                            Uri.EscapeDataString(clienteId));
+
+            _httpClient.DefaultRequestHeaders.Authorization = null;
+            if (!string.IsNullOrEmpty(token))
+                _httpClient.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue("Bearer", token);
+
+            var response = await _httpClient.GetAsync(url);
+            string body = await response.Content.ReadAsStringAsync();
+            dynamic resp = JsonConvert.DeserializeObject(body);
+            return (string)resp["data"] ?? string.Empty;
         }
 
-        // RegisterAsyncTask — el patrón correcto para async en WebForms
+        
         protected void btnConsultar_Click(object sender, EventArgs e)
         {
             RegisterAsyncTask(new PageAsyncTask(ConsultarMovimientosAsync));
@@ -51,7 +48,7 @@ namespace PagosMovilesWeb.Portal
 
         private async Task ConsultarMovimientosAsync()
         {
-            pnlMensaje.Visible    = false;
+            pnlMensaje.Visible = false;
             pnlResultados.Visible = false;
 
             string telefono = txtTelefono.Text.Trim();
@@ -61,17 +58,25 @@ namespace PagosMovilesWeb.Portal
                 return;
             }
 
-            // Capturar sesión ANTES del await
-            string clienteId      = SessionHelper.UsuarioId;
-            string token          = SessionHelper.AccessToken;
-            string identificacion = ObtenerCedula(clienteId);
+            
+            string clienteId = SessionHelper.UsuarioId;
+            string token = SessionHelper.AccessToken;
 
+            if (string.IsNullOrEmpty(clienteId) || string.IsNullOrEmpty(token))
+            {
+                MostrarMensaje("Su sesión no es válida. Por favor inicie sesión nuevamente.", false);
+                return;
+            }
+
+            //  Obtener identificación desde el API
+            string identificacion = await ObtenerIdentificacionAsync(clienteId, token);
             if (string.IsNullOrEmpty(identificacion))
             {
                 MostrarMensaje("Su sesión no es válida. Por favor inicie sesión nuevamente.", false);
                 return;
             }
 
+            // SRV11: GET /api/accounts/transactions?telefono=...&identificacion=...
             string baseUrl = ConfigurationManager.AppSettings["PagosMovilesApiBaseUrl"];
             string url = string.Format("{0}/api/accounts/transactions?telefono={1}&identificacion={2}",
                             baseUrl.TrimEnd('/'),
@@ -85,12 +90,12 @@ namespace PagosMovilesWeb.Portal
                     _httpClient.DefaultRequestHeaders.Authorization =
                         new AuthenticationHeaderValue("Bearer", token);
 
-                var    response = await _httpClient.GetAsync(url);
-                string body     = await response.Content.ReadAsStringAsync();
+                var response = await _httpClient.GetAsync(url);
+                string body = await response.Content.ReadAsStringAsync();
 
-                dynamic resp        = JsonConvert.DeserializeObject(body);
-                int     codigo      = (int)resp["codigo"];
-                string  descripcion = (string)resp["descripcion"];
+                dynamic resp = JsonConvert.DeserializeObject(body);
+                int codigo = (int)resp["codigo"];
+                string descripcion = (string)resp["descripcion"];
 
                 if (codigo != 0)
                 {
@@ -100,7 +105,7 @@ namespace PagosMovilesWeb.Portal
 
                 var data = resp["data"];
                 lblNumeroCuenta.Text = (string)data["numeroCuenta"];
-                lblTelefono.Text     = (string)data["telefono"];
+                lblTelefono.Text = (string)data["telefono"];
 
                 var movimientos = JsonConvert.DeserializeObject<List<MovimientoVM>>(
                     data["movimientos"].ToString());
@@ -125,7 +130,7 @@ namespace PagosMovilesWeb.Portal
 
         private void MostrarMensaje(string mensaje, bool esExito)
         {
-            pnlMensaje.Visible  = true;
+            pnlMensaje.Visible = true;
             pnlMensaje.CssClass = esExito
                 ? "alert alert-success shadow-sm mb-4"
                 : "alert alert-danger shadow-sm mb-4";
@@ -135,12 +140,13 @@ namespace PagosMovilesWeb.Portal
 
     public class MovimientoVM
     {
-        public int      movimientoId    { get; set; }
-        public string   tipoMovimiento  { get; set; }
-        public decimal  monto           { get; set; }
-        public decimal  saldoAnterior   { get; set; }
-        public decimal  saldoActual     { get; set; }
-        public string   descripcion     { get; set; }
+        public int movimientoId { get; set; }
+        public string tipoMovimiento { get; set; }
+        public decimal monto { get; set; }
+        public decimal saldoAnterior { get; set; }
+        public decimal saldoActual { get; set; }
+        public string descripcion { get; set; }
         public DateTime fechaMovimiento { get; set; }
     }
 }
+

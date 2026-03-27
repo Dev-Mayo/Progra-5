@@ -12,7 +12,7 @@ namespace PagosMovilesWeb.Admin
 {
     public partial class SA12_ReporteTransacciones : System.Web.UI.Page
     {
-        // ✅ SINGLETON
+        //SINGLETON
         private static readonly HttpClient _httpClient = new HttpClient();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -21,7 +21,7 @@ namespace PagosMovilesWeb.Admin
                 txtFecha.Text = DateTime.Today.ToString("yyyy-MM-dd");
         }
 
-        // ✅ RegisterAsyncTask — el patrón correcto para async en WebForms
+        // RegisterAsyncTask — el patrón correcto para async en WebForms
         protected void btnConsultar_Click(object sender, EventArgs e)
         {
             RegisterAsyncTask(new PageAsyncTask(ConsultarReporteAsync));
@@ -38,7 +38,7 @@ namespace PagosMovilesWeb.Admin
                 return;
             }
 
-            // Capturar token ANTES del await
+            
             string token   = SessionHelper.AccessToken;
             string baseUrl = ConfigurationManager.AppSettings["PagosMovilesApiBaseUrl"];
             string url = string.Format("{0}/api/reports/transactions/daily?fecha={1}",

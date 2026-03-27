@@ -79,10 +79,10 @@
                 </div>
                 <div class="table-responsive">
                     <asp:GridView ID="gvTransacciones" runat="server"
-                        CssClass="table table-hover table-striped align-middle mb-0"
+                        CssClass="table table-hover align-middle mb-0"
                         AutoGenerateColumns="false"
                         EmptyDataText="No se encontraron transacciones para la fecha indicada.">
-                        <HeaderStyle CssClass="table-dark" />
+                        <HeaderStyle CssClass="fw-bold border-bottom" />
                         <Columns>
                             <asp:BoundField DataField="fecha"
                                 HeaderText="Fecha"
