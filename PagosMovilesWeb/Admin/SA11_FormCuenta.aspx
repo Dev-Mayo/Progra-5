@@ -22,12 +22,6 @@ Inherits="PagosMovilesWeb.Admin.SA11_FormCuenta" %>
             </a>
         </div>
 
-        <!-- ERROR MESSAGE (solo errores) -->
-        <asp:Panel ID="pnlError" runat="server" CssClass="alert alert-danger alert-dismissible fade show shadow-sm mb-4" Visible="false">
-            <i class="bi bi-exclamation-triangle-fill me-2"></i>
-            <asp:Label ID="lblError" runat="server" CssClass="fw-semibold"></asp:Label>
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </asp:Panel>
 
         <!-- FORM -->
         <div class="card border-0 shadow-lg">
@@ -74,27 +68,41 @@ Inherits="PagosMovilesWeb.Admin.SA11_FormCuenta" %>
 </div>
 
     <!-- ✅ MODAL DE ÉXITO -->
-    <div class="modal fade" id="modalSuccess" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal fade" id="modalMensaje" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content border-0 shadow-lg">
-                <div class="modal-header bg-success text-white border-0">
+
+                <!-- HEADER -->
+                <div id="modalHeader" runat="server" class="modal-header bg-success text-white border-0">
                     <h5 class="modal-title fw-bold mb-0">
-                        <i class="bi bi-check-circle-fill me-2"></i>¡Operación Exitosa!
+                        <i id="modalIconHeader" runat="server" class="bi bi-check-circle-fill me-2"></i>
+                        <span id="modalTitle" runat="server">¡Operación Exitosa!</span>
                     </h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
+
+                <!-- BODY -->
                 <div class="modal-body text-center py-4">
-                    <i class="bi bi-check-circle display-1 text-success mb-3 opacity-75"></i>
-                    <h4 class="fw-bold text-success mb-2">
-                        <asp:Label ID="lblModalMensaje" runat="server" Text="Cuenta creada correctamente"></asp:Label>
+                    <i id="modalIconBody" runat="server" class="bi bi-check-circle display-1 text-success mb-3 opacity-75"></i>
+
+                    <h4 id="modalMessageClass" runat="server" class="fw-bold text-success mb-2">
+                        <asp:Label ID="lblModalMensaje" runat="server" Text=""></asp:Label>
                     </h4>
-                    <p class="text-muted mb-0">Redirigiendo a la lista principal...</p>
+
+                    <p id="modalSubText" runat="server" class="text-muted mb-0">
+                        Redirigiendo a la lista principal...
+                    </p>
                 </div>
+
+                <!-- FOOTER -->
                 <div class="modal-footer border-0 justify-content-center">
-                    <a href="SA11_AdminCuentas.aspx" class="btn btn-success btn-lg px-4 shadow-sm">
+                    <a href="SA11_AdminCuentas.aspx" 
+                       id="btnModalAccion" runat="server"
+                       class="btn btn-success btn-lg px-4 shadow-sm">
                         <i class="bi bi-list-ul me-2"></i>Volver a Lista
                     </a>
                 </div>
+
             </div>
         </div>
     </div>
