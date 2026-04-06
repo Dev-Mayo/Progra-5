@@ -1,5 +1,6 @@
 using System;
 using System.Configuration;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -12,7 +13,7 @@ namespace PagosMovilesWeb.Portal
 {
     public partial class PTL6_Desinscripcion : System.Web.UI.Page
     {
-        //  SINGLETON 
+        // SINGLETON
         private static readonly HttpClientHandler _handler = new HttpClientHandler
         {
             ServerCertificateCustomValidationCallback = (msg, cert, chain, errors) => true
@@ -21,17 +22,19 @@ namespace PagosMovilesWeb.Portal
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Portal.master valida sesión y rol CLIENTE/USUARIO
+            
         }
 
-        // Obtiene la identificación llamando al API 
-        private async Task<string> ObtenerIdentificacionAsync(string clienteId, string token)
+      
+        private class ApiResponse
         {
-            string baseUrl = ConfigurationManager.AppSettings["PagosMovilesApiBaseUrl"];
-            string url = string.Format("{0}/api/accounts/cliente-identificacion?clienteId={1}",
-                            baseUrl.TrimEnd('/'),
-                            Uri.EscapeDataString(clienteId));
+            public int codigo { get; set; }
+            public string descripcion { get; set; }
+        }
 
+        // (GET): llama a la API y devuelve (ok, mensaje, data) 
+        private async Task<(bool ok, string mensaje, dynamic data)> LlamarApiGetAsync(string url, string token)
+        {
             _httpClient.DefaultRequestHeaders.Authorization = null;
             if (!string.IsNullOrEmpty(token))
                 _httpClient.DefaultRequestHeaders.Authorization =
@@ -39,10 +42,83 @@ namespace PagosMovilesWeb.Portal
 
             var response = await _httpClient.GetAsync(url);
             string body = await response.Content.ReadAsStringAsync();
-            dynamic resp = JsonConvert.DeserializeObject(body);
-            return (string)resp["data"] ?? string.Empty;
+
+            // 401 — sesión inválida o token expirado
+            if (response.StatusCode == HttpStatusCode.Unauthorized)
+                return (false, "Su sesión no es válida. Por favor inicie sesión nuevamente.", null);
+
+            var resp = JsonConvert.DeserializeObject<ApiResponse>(body);
+
+            // 400 — datos incompletos o inválidos
+            if (response.StatusCode == HttpStatusCode.BadRequest)
+                return (false, resp.descripcion, null);
+
+            // 404 — cliente no encontrado
+            if (response.StatusCode == HttpStatusCode.NotFound)
+                return (false, resp.descripcion, null);
+
+            // 500 — error interno del servidor
+            if (response.StatusCode == HttpStatusCode.InternalServerError)
+                return (false, resp.descripcion, null);
+
+            // 200 — éxito
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                dynamic fullResp = JsonConvert.DeserializeObject(body);
+                return (true, resp.descripcion, fullResp["data"]);
+            }
+
+            return (false, resp.descripcion, null);
         }
 
+        
+        private async Task<(bool ok, string mensaje)> LlamarApiPostAsync(string url, string token, StringContent content)
+        {
+            _httpClient.DefaultRequestHeaders.Authorization = null;
+            if (!string.IsNullOrEmpty(token))
+                _httpClient.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue("Bearer", token);
+
+            var response = await _httpClient.PostAsync(url, content);
+            string body = await response.Content.ReadAsStringAsync();
+
+            // 401 — sesión inválida o token expirado
+            if (response.StatusCode == HttpStatusCode.Unauthorized)
+                return (false, "Su sesión no es válida. Por favor inicie sesión nuevamente.");
+
+            var resp = JsonConvert.DeserializeObject<ApiResponse>(body);
+
+            // 400 — datos incompletos o inválidos
+            if (response.StatusCode == HttpStatusCode.BadRequest)
+                return (false, resp.descripcion);
+
+            // 404 — cliente no encontrado
+            if (response.StatusCode == HttpStatusCode.NotFound)
+                return (false, resp.descripcion);
+
+            // 500 — error interno del servidor
+            if (response.StatusCode == HttpStatusCode.InternalServerError)
+                return (false, resp.descripcion);
+
+            // 200 — éxito
+            if (response.StatusCode == HttpStatusCode.OK)
+                return (true, resp.descripcion);
+
+            return (false, resp.descripcion);
+        }
+
+        
+        private async Task<string> ObtenerIdentificacionAsync(string clienteId, string token)
+        {
+            string baseUrl = ConfigurationManager.AppSettings["PagosMovilesApiBaseUrl"];
+            string url = string.Format("{0}/api/accounts/cliente-identificacion?clienteId={1}",
+                            baseUrl.TrimEnd('/'),
+                            Uri.EscapeDataString(clienteId));
+
+            var (ok, _, data) = await LlamarApiGetAsync(url, token);
+            if (!ok || data == null) return string.Empty;
+            return (string)data ?? string.Empty;
+        }
 
         protected void btnDesinscribir_Click(object sender, EventArgs e)
         {
@@ -78,7 +154,7 @@ namespace PagosMovilesWeb.Portal
                 return;
             }
 
-            // Obtener identificación desde el API 
+            // Obtener identificación desde el API
             string identificacion = await ObtenerIdentificacionAsync(clienteId, token);
             if (string.IsNullOrEmpty(identificacion))
             {
@@ -86,7 +162,7 @@ namespace PagosMovilesWeb.Portal
                 return;
             }
 
-            // SRV10 del compañero Geancarlo
+            // SRV10 Geancarlo (puerto 7122)
             string url = "https://localhost:7122/auth/cancel-subscription";
 
             var bodyObj = new
@@ -100,31 +176,23 @@ namespace PagosMovilesWeb.Portal
 
             try
             {
-                _httpClient.DefaultRequestHeaders.Authorization = null;
-                if (!string.IsNullOrEmpty(token))
-                    _httpClient.DefaultRequestHeaders.Authorization =
-                        new AuthenticationHeaderValue("Bearer", token);
+                // ── Llamada (POST) 
+                var (ok, mensaje) = await LlamarApiPostAsync(url, token, content);
 
-                var response = await _httpClient.PostAsync(url, content);
-                string body = await response.Content.ReadAsStringAsync();
-
-                dynamic resp = JsonConvert.DeserializeObject(body);
-                int codigo = (int)resp["codigo"];
-                string descripcion = (string)resp["descripcion"];
-
-                if (codigo == 0)
+                if (ok)
                 {
-                    MostrarMensaje(descripcion, true);
+                    MostrarMensaje(mensaje, true);
                     txtTelefono.Text = string.Empty;
                     txtCuenta.Text = string.Empty;
                 }
                 else
                 {
-                    MostrarMensaje(descripcion, false);
+                    MostrarMensaje(mensaje, false);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
+                // Solo si la API de Geancarlo está completamente apagada
                 MostrarMensaje("No fue posible procesar la desinscripción en este momento. Intente más tarde.", false);
             }
         }

@@ -1,8 +1,8 @@
 using System;
 using System.Configuration;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI;
 using Newtonsoft.Json;
@@ -15,19 +15,16 @@ namespace PagosMovilesWeb.Portal
         // SINGLETON
         private static readonly HttpClient _httpClient = new HttpClient();
 
-        protected void Page_Load(object sender, EventArgs e)
+       
+        private class ApiResponse
         {
-            // Portal.master valida sesión y rol CLIENTE/USUARIO
+            public int codigo { get; set; }
+            public string descripcion { get; set; }
         }
 
-        //  Obtiene la identificación llamando al API 
-        private async Task<string> ObtenerIdentificacionAsync(string clienteId, string token)
+        
+        private async Task<(bool ok, string mensaje, dynamic data)> LlamarApiAsync(string url, string token)
         {
-            string baseUrl = ConfigurationManager.AppSettings["PagosMovilesApiBaseUrl"];
-            string url = string.Format("{0}/api/accounts/cliente-identificacion?clienteId={1}",
-                            baseUrl.TrimEnd('/'),
-                            Uri.EscapeDataString(clienteId));
-
             _httpClient.DefaultRequestHeaders.Authorization = null;
             if (!string.IsNullOrEmpty(token))
                 _httpClient.DefaultRequestHeaders.Authorization =
@@ -35,29 +32,93 @@ namespace PagosMovilesWeb.Portal
 
             var response = await _httpClient.GetAsync(url);
             string body = await response.Content.ReadAsStringAsync();
-            dynamic resp = JsonConvert.DeserializeObject(body);
-            return (string)resp["data"] ?? string.Empty;
+
+            // 401 — sesión inválida o token expirado
+            if (response.StatusCode == HttpStatusCode.Unauthorized)
+                return (false, "Su sesión no es válida. Por favor inicie sesión nuevamente.", null);
+
+            var resp = JsonConvert.DeserializeObject<ApiResponse>(body);
+
+            // 400 — datos incompletos o inválidos
+            if (response.StatusCode == HttpStatusCode.BadRequest)
+                return (false, resp.descripcion, null);
+
+            // 404 — cliente no encontrado
+            if (response.StatusCode == HttpStatusCode.NotFound)
+                return (false, resp.descripcion, null);
+
+            // 500 — error interno del servidor
+            if (response.StatusCode == HttpStatusCode.InternalServerError)
+                return (false, resp.descripcion, null);
+
+            // 200 — éxito
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                dynamic fullResp = JsonConvert.DeserializeObject(body);
+                return (true, resp.descripcion, fullResp["data"]);
+            }
+
+            return (false, resp.descripcion, null);
         }
 
-     
+        
+        private async Task<string> ObtenerIdentificacionAsync(string clienteId, string token)
+        {
+            string baseUrl = ConfigurationManager.AppSettings["PagosMovilesApiBaseUrl"];
+            string url = string.Format("{0}/api/accounts/cliente-identificacion?clienteId={1}",
+                            baseUrl.TrimEnd('/'),
+                            Uri.EscapeDataString(clienteId));
+
+            var (ok, _, data) = await LlamarApiAsync(url, token);
+            if (!ok || data == null) return string.Empty;
+            return (string)data ?? string.Empty;
+        }
+
+      
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                string telQS = Request.QueryString["telefono"];
+
+                if (!string.IsNullOrEmpty(telQS))
+                {
+                    txtTelefono.Text = telQS;
+                    RegisterAsyncTask(new PageAsyncTask(async () => await ConsultarSaldoAsync(telQS)));
+                }
+            }
+        }
+
+        
         protected void btnConsultar_Click(object sender, EventArgs e)
         {
-            RegisterAsyncTask(new PageAsyncTask(ConsultarSaldoAsync));
-        }
-
-        private async Task ConsultarSaldoAsync()
-        {
-            pnlMensaje.Visible = false;
-            pnlResultado.Visible = false;
-
             string telefono = txtTelefono.Text.Trim();
-            if (string.IsNullOrWhiteSpace(telefono) || telefono.Length != 8)
+
+            
+            if (string.IsNullOrWhiteSpace(telefono))
+            {
+                MostrarMensaje("Debe enviar los datos completos y válidos", false);
+                return;
+            }
+
+            
+            if (telefono.Length != 8)
             {
                 MostrarMensaje("El número de teléfono debe contener exactamente 8 dígitos.", false);
                 return;
             }
 
-           
+            
+            Response.Redirect(Request.Url.AbsolutePath + "?telefono=" + telefono);
+        }
+
+        
+        private async Task ConsultarSaldoAsync(string telefono)
+        {
+            pnlMensaje.Visible = false;
+            pnlResultado.Visible = false;
+
+            // Capturar sesión ANTES del await
             string clienteId = SessionHelper.UsuarioId;
             string token = SessionHelper.AccessToken;
 
@@ -67,7 +128,7 @@ namespace PagosMovilesWeb.Portal
                 return;
             }
 
-            //  Obtener identificación desde el API 
+            // Obtener identificación desde el API
             string identificacion = await ObtenerIdentificacionAsync(clienteId, token);
             if (string.IsNullOrEmpty(identificacion))
             {
@@ -84,31 +145,25 @@ namespace PagosMovilesWeb.Portal
 
             try
             {
-                _httpClient.DefaultRequestHeaders.Authorization = null;
-                if (!string.IsNullOrEmpty(token))
-                    _httpClient.DefaultRequestHeaders.Authorization =
-                        new AuthenticationHeaderValue("Bearer", token);
+                
+                var (ok, mensaje, data) = await LlamarApiAsync(url, token);
 
-                var response = await _httpClient.GetAsync(url);
-                string body = await response.Content.ReadAsStringAsync();
-
-                dynamic resp = JsonConvert.DeserializeObject(body);
-                int codigo = (int)resp["codigo"];
-                string descripcion = (string)resp["descripcion"];
-
-                if (codigo != 0)
+                if (!ok)
                 {
-                    MostrarMensaje(descripcion, false);
+                    MostrarMensaje(mensaje, false);
                     return;
                 }
 
-                var data = resp["data"];
+                // 200 — mostramos los datos exitosamente
                 lblNumeroCuenta.Text = (string)data["numeroCuenta"];
                 lblSaldo.Text = ((decimal)data["saldo"]).ToString("N2");
                 lblTelefono.Text = (string)data["telefono"];
                 pnlResultado.Visible = true;
+
+                // Mensaje "Consulta exitosa" (viene de la API)
+                MostrarMensaje(mensaje, true);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MostrarMensaje("No fue posible consultar el saldo en este momento. Intente más tarde.", false);
             }
