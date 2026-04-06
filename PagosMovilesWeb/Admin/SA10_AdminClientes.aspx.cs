@@ -13,7 +13,7 @@ namespace PagosMovilesWeb.Admin
 {
     public partial class SA10_AdminClientes : System.Web.UI.Page
     {
-        // SINGLETON
+
         private static readonly HttpClient _httpClient = new HttpClient();
 
         private readonly string baseUrl = "http://localhost:5227";
@@ -26,57 +26,66 @@ namespace PagosMovilesWeb.Admin
             }
         }
 
-        private async Task<T> GetAsync<T>(string url)
+        private async Task<(T data, string error)> GetAsync<T>(string url)
         {
             try
             {
                 var token = Session["AccessToken"]?.ToString();
                 _httpClient.DefaultRequestHeaders.Authorization = null;
+
                 if (!string.IsNullOrEmpty(token))
                     _httpClient.DefaultRequestHeaders.Authorization =
                         new AuthenticationHeaderValue("Bearer", token);
 
                 var response = await _httpClient.GetAsync(url);
+                var json = await response.Content.ReadAsStringAsync();
+
                 if (!response.IsSuccessStatusCode)
                 {
-                    System.Diagnostics.Debug.WriteLine($"GET {url} failed: {response.StatusCode}");
-                    return default;
+                    var apiError = JsonConvert.DeserializeObject<ApiError>(json);
+                    return (default, apiError?.detail ?? apiError?.title ?? "Revise los criterios de busqueda");
                 }
 
-                var json = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<T>(json);
+                return (JsonConvert.DeserializeObject<T>(json), null);
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"GET {url} error: {ex.Message}");
-                return default;
+                return (default, ex.Message);
             }
         }
 
-        private async Task<bool> PostAsync<T>(string url, T data)
+        private async Task<(bool success, string error)> PostAsync<T>(string url, T data)
         {
             try
             {
                 var token = Session["AccessToken"]?.ToString();
                 _httpClient.DefaultRequestHeaders.Authorization = null;
+
                 if (!string.IsNullOrEmpty(token))
                     _httpClient.DefaultRequestHeaders.Authorization =
                         new AuthenticationHeaderValue("Bearer", token);
 
                 var json = JsonConvert.SerializeObject(data);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
+
                 var response = await _httpClient.PostAsync(url, content);
-                System.Diagnostics.Debug.WriteLine($"POST {url}: {response.StatusCode}");
-                return response.IsSuccessStatusCode;
+                var responseContent = await response.Content.ReadAsStringAsync();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    var apiError = JsonConvert.DeserializeObject<ApiError>(responseContent);
+                    return (false, apiError?.detail ?? apiError?.title);
+                }
+
+                return (true, null);
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"POST {url} error: {ex.Message}");
-                return false;
+                return (false, ex.Message);
             }
         }
 
-        private async Task<bool> PutAsync<T>(string url, T data)
+        private async Task<(bool success, string error)> PutAsync<T>(string url, T data)
         {
             try
             {
@@ -88,48 +97,70 @@ namespace PagosMovilesWeb.Admin
 
                 var json = JsonConvert.SerializeObject(data);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
+
                 var response = await _httpClient.PutAsync(url, content);
-                System.Diagnostics.Debug.WriteLine($"PUT {url}: {response.StatusCode}");
-                return response.IsSuccessStatusCode;
+                var responseContent = await response.Content.ReadAsStringAsync();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    var apiError = JsonConvert.DeserializeObject<ApiError>(responseContent);
+                    return (false, apiError?.detail ?? apiError?.title);
+                }
+
+                return (true, null);
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"PUT {url} error: {ex.Message}");
-                return false;
+                return (false, ex.Message);
             }
         }
 
-        private async Task<bool> DeleteAsync(string id)
+        private async Task<(bool success, string error)> DeleteAsync(string id)
         {
             try
             {
                 var token = Session["AccessToken"]?.ToString();
                 _httpClient.DefaultRequestHeaders.Authorization = null;
+
                 if (!string.IsNullOrEmpty(token))
                     _httpClient.DefaultRequestHeaders.Authorization =
                         new AuthenticationHeaderValue("Bearer", token);
 
                 string url = $"{baseUrl}/core/client/{id}";
-                System.Diagnostics.Debug.WriteLine($"DELETE: {url}");
+                var response = await _httpClient.DeleteAsync(url);
+                var content = await response.Content.ReadAsStringAsync();
 
-                HttpResponseMessage response = await _httpClient.DeleteAsync(url);
-                string content = await response.Content.ReadAsStringAsync();
+                if (!response.IsSuccessStatusCode)
+                {
+                    var apiError = JsonConvert.DeserializeObject<ApiError>(content);
+                    return (false, apiError?.detail ?? apiError?.title);
+                }
 
-                System.Diagnostics.Debug.WriteLine($"Status: {response.StatusCode}");
-                System.Diagnostics.Debug.WriteLine($"Response: {content}");
-
-                return response.IsSuccessStatusCode;
+                return (true, null);
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error DELETE: {ex.Message}");
-                return false;
+                return (false, ex.Message);
             }
         }
 
         private async Task CargarClientes()
         {
-            var clientes = await GetAsync<List<Cliente>>($"{baseUrl}/core/client");
+            var result = await GetAsync<List<Cliente>>($"{baseUrl}/core/client");
+
+            if (result.error != null)
+            {
+                pnlMensaje.CssClass = "alert alert-danger";
+                lblMensaje.Text = result.error;
+                pnlMensaje.Visible = true;
+
+                gvClientes.DataSource = null;
+                gvClientes.DataBind();
+                lblTotalClientes.Text = "0";
+                return;
+            }
+
+            var clientes = result.data;
 
             if (clientes != null)
             {
@@ -153,21 +184,35 @@ namespace PagosMovilesWeb.Admin
                 return;
             }
 
-            var clientes = await GetAsync<List<Cliente>>(
+            var result = await GetAsync<List<Cliente>>(
                 $"{baseUrl}/core/client/Cliente?identificacion={identificacion}");
+
+            if (result.error != null)
+            {
+                pnlMensaje.CssClass = "alert alert-danger";
+                lblMensaje.Text = result.error;
+                pnlMensaje.Visible = true;
+
+                gvResultadoBusqueda.DataSource = null;
+                gvResultadoBusqueda.DataBind();
+                pnlResultados.Visible = true;
+                return;
+            }
+
+            var clientes = result.data;
 
             if (clientes != null && clientes.Count > 0)
             {
                 gvResultadoBusqueda.DataSource = clientes;
                 gvResultadoBusqueda.DataBind();
-                pnlResultados.Visible = true;
             }
             else
             {
                 gvResultadoBusqueda.DataSource = null;
                 gvResultadoBusqueda.DataBind();
-                pnlResultados.Visible = true;
             }
+
+            pnlResultados.Visible = true;
         }
 
         protected async void gvClientes_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -175,20 +220,20 @@ namespace PagosMovilesWeb.Admin
             if (e.CommandName == "Eliminar")
             {
                 string identificacion = e.CommandArgument.ToString();
-                bool eliminado = await DeleteAsync(identificacion);
+                var result = await DeleteAsync(identificacion);
 
-                if (eliminado)
+                if (result.success)
                 {
-                    pnlMensaje.Visible = true;
+                    pnlMensaje.CssClass = "alert alert-success";
                     lblMensaje.Text = $"Cliente {identificacion} eliminado correctamente.";
-                    await CargarClientes();
                 }
                 else
                 {
-                    pnlMensaje.CssClass = "alert alert-danger shadow-sm mb-4";
-                    lblMensaje.Text = $"Error al eliminar cliente {identificacion}";
-                    pnlMensaje.Visible = true;
+                    pnlMensaje.CssClass = "alert alert-danger";
+                    lblMensaje.Text = result.error;
                 }
+
+                pnlMensaje.Visible = true;
             }
         }
 
@@ -211,7 +256,7 @@ namespace PagosMovilesWeb.Admin
         {
             LinkButton btn = sender as LinkButton;
             string identificacion = btn.CommandArgument ?? "";
-            System.Diagnostics.Debug.WriteLine($"🔍 Click recibido - ID: '{identificacion}' (Length: {identificacion.Length})");
+            System.Diagnostics.Debug.WriteLine($" Click recibido - ID: '{identificacion}' (Length: {identificacion.Length})");
 
             if (string.IsNullOrEmpty(identificacion))
             {
@@ -221,21 +266,26 @@ namespace PagosMovilesWeb.Admin
                 return;
             }
 
-            bool eliminado = await DeleteAsync(identificacion);
+            var result = await DeleteAsync(identificacion);
 
-            if (eliminado)
+            if (result.success)
             {
-                pnlMensaje.CssClass = "alert alert-success alert-dismissible fade show shadow-sm mb-4";
-                lblMensaje.Text = $"Cliente <strong>{identificacion}</strong> eliminado correctamente.";
-                pnlMensaje.Visible = true;
-                await CargarClientes();
+                pnlMensaje.CssClass = "alert alert-success";
+                lblMensaje.Text = $"Cliente {identificacion} eliminado correctamente.";
             }
             else
             {
-                pnlMensaje.CssClass = "alert alert-danger alert-dismissible fade show shadow-sm mb-4";
-                lblMensaje.Text = $"Error al eliminar cliente <strong>{identificacion}</strong>";
-                pnlMensaje.Visible = true;
+                pnlMensaje.CssClass = "alert alert-danger";
+                lblMensaje.Text = result.error;
             }
+
+            pnlMensaje.Visible = true;
         }
+    }
+    public class ApiError
+    {
+        public string title { get; set; }
+        public int status { get; set; }
+        public string detail { get; set; }
     }
 }

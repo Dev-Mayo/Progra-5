@@ -39,42 +39,97 @@ namespace PagosMovilesWeb.Admin
             return client;
         }
 
-        private async Task<T> GetAsync<T>(string url)
+        private async Task<(T data, string error)> GetAsync<T>(string url)
         {
-            using (var client = GetClient())
+            try
             {
-                var response = await client.GetAsync(url);
-                if (!response.IsSuccessStatusCode) return default;
-                var json = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<T>(json);
+                using (var client = GetClient())
+                {
+                    var response = await client.GetAsync(url);
+                    var json = await response.Content.ReadAsStringAsync();
+
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        var apiError = JsonConvert.DeserializeObject<ApiError>(json);
+                        return (default, apiError?.detail ?? apiError?.title ?? "El cliente o cuenta buscado no existe o se encuentra inactivo");
+                    }
+
+                    return (JsonConvert.DeserializeObject<T>(json), null);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (default, ex.Message);
             }
         }
 
-        private async Task<bool> PostAsync<T>(string url, T data)
+        private async Task<(bool success, string error)> PostAsync<T>(string url, T data)
         {
-            using (var client = GetClient())
+            try
             {
-                var json = JsonConvert.SerializeObject(data);
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
-                var response = await client.PostAsync(url, content);
-                return response.IsSuccessStatusCode;
+                using (var client = GetClient())
+                {
+                    var json = JsonConvert.SerializeObject(data);
+                    var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                    var response = await client.PostAsync(url, content);
+                    var responseContent = await response.Content.ReadAsStringAsync();
+
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        var apiError = JsonConvert.DeserializeObject<ApiError>(responseContent);
+                        return (false, apiError?.detail ?? apiError?.title ?? "Error al crear el cliente, verifique la informacion ingresada");
+                    }
+
+                    return (true, null);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (false, ex.Message);
             }
         }
 
-        private async Task<bool> PutAsync<T>(string url, T data)
+        private async Task<(bool success, string error)> PutAsync<T>(string url, T data)
         {
-            using (var client = GetClient())
+            try
             {
-                var json = JsonConvert.SerializeObject(data);
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
-                var response = await client.PutAsync(url, content);
-                return response.IsSuccessStatusCode;
+                using (var client = GetClient())
+                {
+                    var json = JsonConvert.SerializeObject(data);
+                    var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                    var response = await client.PutAsync(url, content);
+                    var responseContent = await response.Content.ReadAsStringAsync();
+
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        var apiError = JsonConvert.DeserializeObject<ApiError>(responseContent);
+                        return (false, apiError?.detail ?? apiError?.title ?? "Error desconocido");
+                    }
+
+                    return (true, null);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (false, ex.Message);
             }
         }
 
         private async Task CargarCliente(string identificacion)
         {
-            var clientes = await GetAsync<List<Cliente>>($"{baseUrl}/core/client/Cliente?identificacion={identificacion}");
+            var result = await GetAsync<List<Cliente>>(
+                $"{baseUrl}/core/client/Cliente?identificacion={identificacion}");
+
+            if (result.error != null)
+            {
+                lblModalMensaje.Text = result.error;
+                return;
+            }
+
+            var clientes = result.data;
+
             if (clientes != null && clientes.Count > 0)
             {
                 var cliente = clientes[0];
@@ -102,28 +157,46 @@ namespace PagosMovilesWeb.Admin
                 contrasena = txtContrasena.Text
             };
 
-            bool success;
             string editId = Request.QueryString["edit"];
+
+            (bool success, string error) result;
 
             if (!string.IsNullOrEmpty(editId))
             {
-                success = await PutAsync($"{baseUrl}/core/client", cliente);
-                lblModalMensaje.Text = "Cliente actualizado correctamente";
+                result = await PutAsync($"{baseUrl}/core/client", cliente);
             }
             else
             {
-                success = await PostAsync($"{baseUrl}/core/client", cliente);
-                lblModalMensaje.Text = "Cliente creado correctamente";
+                result = await PostAsync($"{baseUrl}/core/client", cliente);
             }
 
-            if (success)
+            if (result.success)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "showModal",
-                    @"setTimeout(function(){ 
-                        var modal = new bootstrap.Modal(document.getElementById('modalSuccess')); 
-                        modal.show(); 
-                    }, 500);", true);
+                modalHeader.Attributes["class"] = "modal-header bg-success text-white";
+                modalTitle.InnerText = "Éxito";
+                lblModalMensaje.Text = "Cliente guardado correctamente";
             }
+            else
+            {
+                modalHeader.Attributes["class"] = "modal-header bg-danger text-white border-0";
+                modalIconHeader.Attributes["class"] = "bi bi-exclamation-triangle-fill me-2";
+                modalTitle.InnerText = "Error";
+
+                modalIconBody.Attributes["class"] = "bi bi-exclamation-triangle display-1 text-danger mb-3 opacity-75";
+
+                modalMessageClass.Attributes["class"] = "fw-bold mb-2 text-danger";
+
+                lblModalMensaje.Text = result.error;
+                modalSubText.InnerText = "Por favor intente nuevamente";
+
+                btnModalAccion.Attributes["class"] = "btn btn-danger btn-lg px-4 shadow-sm";
+            }
+
+            ClientScript.RegisterStartupScript(this.GetType(), "showModal",
+                @"setTimeout(function(){ 
+                    var modal = new bootstrap.Modal(document.getElementById('modalMensaje')); 
+                    modal.show(); 
+                }, 300);", true);
         }
     }
 }

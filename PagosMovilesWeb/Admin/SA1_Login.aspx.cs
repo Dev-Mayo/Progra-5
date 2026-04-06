@@ -35,8 +35,11 @@ namespace PagosMovilesWeb.Admin
         {
             if (!Page.IsValid) return;
 
-            string email = txtUsuario.Text.Trim();
+            // Ocultar mensajes anteriores
+            pnlMensaje.Visible = false;
+            pnlBloqueado.Visible = false;
 
+            string email = txtUsuario.Text.Trim();
 
             if (BloqueoService.EstaBlockeado(email))
             {
@@ -44,56 +47,42 @@ namespace PagosMovilesWeb.Admin
                 return;
             }
 
-            try
+            // Recibir tupla del LoginAsync
+            var (success, data, errorMessage) = await AuthService.LoginAsync(email, txtPassword.Text.Trim());
+
+            if (success)
             {
-                var resultado = await AuthService.LoginAsync(
-                    email, txtPassword.Text.Trim());
+                var datos = UsuarioService.ObtenerDatos(email);
 
-                if (resultado != null)
+                // Verificar que sea ADMIN
+                if (datos == null || datos.Rol != "ADMIN")
                 {
-                    var datos = UsuarioService.ObtenerDatos(email);
+                    MostrarMensaje("Usuario y/o contraseña incorrectos.", "danger");
+                    return;
+                }
 
-                    // Verificar que sea ADMIN
-                    if (datos == null || datos.Rol != "ADMIN")
-                    {
-                        MostrarMensaje(
-                            "Usuario y/o contraseña incorrectos.", "danger");
-                        return;
-                    }
+                BloqueoService.ResetearIntentos(email);
 
-                    BloqueoService.ResetearIntentos(email);
+                Session["AccessToken"] = data.access_token;
+                Session["UsuarioId"] = datos.Id;
+                Session["NombreCompleto"] = datos.NombreCompleto;
+                Session["Rol"] = "ADMIN";
+                Session["UltimaActividad"] = DateTime.Now;
 
-                    Session["AccessToken"] = resultado.access_token;
-                    Session["UsuarioId"] = datos.Id;
-                    Session["NombreCompleto"] = datos.NombreCompleto;
-                    Session["Rol"] = "ADMIN";
-                    Session["UltimaActividad"] = DateTime.Now;
+                Response.Redirect("~/Admin/SA2_Welcome.aspx", false);
+            }
+            else
+            {
+                bool bloqueado = BloqueoService.RegistrarIntentoFallido(email);
 
-                    Response.Redirect("~/Admin/SA2_Welcome.aspx", false);
+                if (bloqueado)
+                {
+                    pnlBloqueado.Visible = true;
                 }
                 else
                 {
-                    bool bloqueado = BloqueoService.RegistrarIntentoFallido(email);
-
-
-                    if (bloqueado)
-                    {
-                        pnlBloqueado.Visible = true;
-                    }
-                    else
-                    {
-                        MostrarMensaje(
-                            "Usuario y/o contraseña incorrectos.", "danger");
-                    }
+                    MostrarMensaje(errorMessage, "danger");
                 }
-            }
-            catch (Exception ex)
-            {
-                MostrarMensaje(
-                    "Error al conectar con el servicio. Intente de nuevo.",
-                    "danger");
-                System.Diagnostics.Debug.WriteLine(
-                    $"[SA1 Login Error] {ex.Message}");
             }
         }
 

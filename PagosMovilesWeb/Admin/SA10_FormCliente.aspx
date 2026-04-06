@@ -18,30 +18,39 @@ Inherits="PagosMovilesWeb.Admin.SA10_FormCliente" %>
         </nav>
 
         <!-- SUCCESS MODAL -->
-        <div class="modal fade" id="modalSuccess" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0 shadow-lg">
-                    <div class="modal-header bg-success text-white border-0">
-                        <h5 class="modal-title fw-bold mb-0">
-                            <i class="bi bi-check-circle-fill me-2"></i>¡Operación Exitosa!
-                        </h5>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body text-center py-4">
-                        <i class="bi bi-check-circle display-1 text-success mb-3 opacity-75"></i>
-                        <h4 class="fw-bold text-success mb-2">
-                            <asp:Label ID="lblModalMensaje" runat="server" Text="Cliente creado correctamente"></asp:Label>
-                        </h4>
-                        <p class="text-muted mb-0">Redirigiendo a la lista principal...</p>
-                    </div>
-                    <div class="modal-footer border-0 justify-content-center">
-                        <a href="SA10_AdminClientes.aspx" class="btn btn-success btn-lg px-4 shadow-sm">
-                            <i class="bi bi-list-ul me-2"></i>Volver a Lista
-                        </a>
-                    </div>
-                </div>
+        <div class="modal fade" id="modalMensaje" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg">
+
+            <div id="modalHeader" runat="server" class="modal-header bg-success text-white border-0">
+                <h5 class="modal-title fw-bold mb-0">
+                    <i id="modalIconHeader" runat="server" class="bi bi-check-circle-fill me-2"></i>
+                    <span id="modalTitle" runat="server">¡Operación Exitosa!</span>
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
+
+            <div class="modal-body text-center py-4">
+                <i id="modalIconBody" runat="server" class="bi bi-check-circle display-1 text-success mb-3 opacity-75"></i>
+
+                <h4 id="modalMessageClass" runat="server" class="fw-bold text-success mb-2">
+                    <asp:Label ID="lblModalMensaje" runat="server" Text=""></asp:Label>
+                </h4>
+
+                <p id="modalSubText" runat="server" class="text-muted mb-0">
+                    Redirigiendo a la lista principal...
+                </p>
+            </div>
+
+            <div class="modal-footer border-0 justify-content-center">
+                <a href="SA10_AdminClientes.aspx" class="btn btn-success btn-lg px-4 shadow-sm" id="btnModalAccion" runat="server">
+                    <i class="bi bi-list-ul me-2"></i>Volver a Lista
+                </a>
+            </div>
+
         </div>
+    </div>
+</div>
 
         <!-- FORM CARD -->
         <div class="row justify-content-center">
