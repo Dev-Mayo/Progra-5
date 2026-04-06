@@ -34,7 +34,7 @@ Inherits="PagosMovilesWeb.Portal.PTL9_Transfer" %>
                     <label class="form-label fw-semibold">Teléfono origen</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="bi bi-phone"></i></span>
-                        <asp:TextBox ID="txtTelefonoOrigen" runat="server" CssClass="form-control" MaxLength="8" />
+                        <asp:TextBox ID="txtTelefonoOrigen" runat="server" CssClass="form-control" />
                     </div>
                 </div>
 
@@ -47,7 +47,7 @@ Inherits="PagosMovilesWeb.Portal.PTL9_Transfer" %>
                     <label class="form-label fw-semibold">Teléfono destino</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="bi bi-phone-fill"></i></span>
-                        <asp:TextBox ID="txtTelefonoDestino" runat="server" CssClass="form-control" MaxLength="8" />
+                        <asp:TextBox ID="txtTelefonoDestino" runat="server" CssClass="form-control" />
                     </div>
                 </div>
 
@@ -61,7 +61,7 @@ Inherits="PagosMovilesWeb.Portal.PTL9_Transfer" %>
 
                 <div class="col-12">
                     <label class="form-label fw-semibold">Descripción</label>
-                    <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control" MaxLength="25" />
+                    <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control" />
                 </div>
 
                 <div class="col-12">

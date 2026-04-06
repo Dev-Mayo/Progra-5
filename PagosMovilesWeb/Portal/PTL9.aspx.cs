@@ -3,7 +3,9 @@ using System.Configuration;
 using System.Globalization;
 using System.IO;
 using System.Net;
+using System.Text;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using PagosMovilesWeb.Services;
 
 namespace PagosMovilesWeb.Portal
@@ -18,8 +20,6 @@ namespace PagosMovilesWeb.Portal
                 return;
             }
 
-           
-
             if (!IsPostBack)
             {
                 txtNombreOrigen.Text = SessionHelper.NombreCompleto;
@@ -32,70 +32,43 @@ namespace PagosMovilesWeb.Portal
             pnlMensaje.Visible = false;
             lblMensaje.Text = string.Empty;
 
-            string errorValidacion = ValidarFormulario();
-            if (!string.IsNullOrWhiteSpace(errorValidacion))
-            {
-                MostrarMensaje(errorValidacion, false);
-                return;
-            }
-
             if (string.IsNullOrWhiteSpace(SessionHelper.AccessToken))
             {
-                MostrarMensaje("No hay token en sesión.", false);
+                MostrarMensaje("No autorizado.", false);
                 return;
             }
-
-            decimal monto = decimal.Parse(txtMonto.Text.Trim(), CultureInfo.InvariantCulture);
 
             string baseUrl = ConfigurationManager.AppSettings["GatewayBaseUrl"];
             string url = baseUrl.TrimEnd('/') + "/gateway/trans/route";
 
-            var body = new
-            {
-                TelefonoOrigen = txtTelefonoOrigen.Text.Trim(),
-                NombreOrigen = txtNombreOrigen.Text.Trim(),
-                TelefonoDestino = txtTelefonoDestino.Text.Trim(),
-                Monto = monto,
-                Descripcion = txtDescripcion.Text.Trim(),
-                EntidadDestino = txtEntidadDestino.Text.Trim()
-            };
-
-            string json = JsonConvert.SerializeObject(body);
+            string json = ConstruirJsonSolicitud();
 
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "POST";
             request.ContentType = "application/json";
+            request.Accept = "application/json";
             request.Headers["Authorization"] = "Bearer " + SessionHelper.AccessToken;
-
-            using (var streamWriter = new StreamWriter(request.GetRequestStream()))
-            {
-                streamWriter.Write(json);
-                streamWriter.Flush();
-            }
 
             try
             {
+                using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+                {
+                    streamWriter.Write(json);
+                    streamWriter.Flush();
+                }
+
                 using (var response = (HttpWebResponse)request.GetResponse())
                 using (var reader = new StreamReader(response.GetResponseStream()))
                 {
                     string respuestaJson = reader.ReadToEnd();
+                    string mensaje = ObtenerMensajeDesdeRespuesta(response.StatusCode, respuestaJson);
 
-                    dynamic respuesta = JsonConvert.DeserializeObject(respuestaJson);
+                    MostrarMensaje(mensaje, response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.Created);
 
-                    int codigo = respuesta.codigo != null ? (int)respuesta.codigo : (int)respuesta.Codigo;
-                    string descripcion = respuesta.descripcion != null
-                        ? (string)respuesta.descripcion
-                        : (string)respuesta.Descripcion;
-
-                    if (codigo == 0)
+                    if (response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.Created)
                     {
-                        MostrarMensaje(descripcion, true);
                         LimpiarFormulario();
                         txtNombreOrigen.Text = SessionHelper.NombreCompleto;
-                    }
-                    else
-                    {
-                        MostrarMensaje(descripcion, false);
                     }
                 }
             }
@@ -103,94 +76,147 @@ namespace PagosMovilesWeb.Portal
             {
                 if (ex.Response != null)
                 {
-                    using (var reader = new StreamReader(ex.Response.GetResponseStream()))
+                    var httpResponse = (HttpWebResponse)ex.Response;
+
+                    using (var reader = new StreamReader(httpResponse.GetResponseStream()))
                     {
                         string errorJson = reader.ReadToEnd();
-
-                        try
-                        {
-                            dynamic error = JsonConvert.DeserializeObject(errorJson);
-
-                            string descripcion = error.descripcion != null
-                                ? (string)error.descripcion
-                                : (string)error.Descripcion;
-
-                            MostrarMensaje(descripcion, false);
-                            return;
-                        }
-                        catch
-                        {
-                            MostrarMensaje("Error al procesar la transferencia.", false); 
-                            return;
-                        }
+                        string mensaje = ObtenerMensajeDesdeRespuesta(httpResponse.StatusCode, errorJson);
+                        MostrarMensaje(mensaje, false);
+                        return;
                     }
                 }
 
                 MostrarMensaje("No se pudo conectar con el servicio de transferencias.", false);
             }
+            catch (Exception ex)
+            {
+                MostrarMensaje("Ocurrió un error inesperado: " + ex.Message, false);
+            }
+        }
+
+        private string ConstruirJsonSolicitud()
+        {
+            var payload = new JObject();
+
+            payload["TelefonoOrigen"] = txtTelefonoOrigen.Text.Trim();
+            payload["NombreOrigen"] = txtNombreOrigen.Text.Trim();
+            payload["TelefonoDestino"] = txtTelefonoDestino.Text.Trim();
+            payload["Descripcion"] = txtDescripcion.Text.Trim();
+            payload["EntidadDestino"] = string.IsNullOrWhiteSpace(txtEntidadDestino.Text)
+                ? null
+                : JToken.FromObject(txtEntidadDestino.Text.Trim());
+
+            string montoTexto = txtMonto.Text.Trim();
+            decimal monto;
+
+            if (decimal.TryParse(montoTexto, NumberStyles.Any, CultureInfo.InvariantCulture, out monto) ||
+                decimal.TryParse(montoTexto, NumberStyles.Any, new CultureInfo("es-CR"), out monto))
+            {
+                payload["Monto"] = JToken.FromObject(monto);
+            }
+            else if (string.IsNullOrWhiteSpace(montoTexto))
+            {
+                payload["Monto"] = null;
+            }
+            else
+            {
+                payload["Monto"] = JToken.FromObject(montoTexto);
+            }
+
+            return payload.ToString(Formatting.None);
+        }
+
+        private string ObtenerMensajeDesdeRespuesta(HttpStatusCode statusCode, string cuerpo)
+        {
+            string mensajeJson = ExtraerMensajeJson(cuerpo);
+
+            if (!string.IsNullOrWhiteSpace(mensajeJson))
+                return mensajeJson;
+
+            switch (statusCode)
+            {
+                case HttpStatusCode.BadRequest:
+                    return "Debe revisar los datos enviados.";
+                case HttpStatusCode.Unauthorized:
+                    return "No autorizado.";
+                case HttpStatusCode.NotFound:
+                    return "Recurso no encontrado.";
+                case HttpStatusCode.InternalServerError:
+                    return "Ocurrió un error interno al procesar la transferencia.";
+                case HttpStatusCode.GatewayTimeout:
+                    return "El servicio tardó demasiado en responder.";
+                default:
+                    return "No fue posible procesar la transferencia.";
+            }
+        }
+
+        private string ExtraerMensajeJson(string cuerpo)
+        {
+            if (string.IsNullOrWhiteSpace(cuerpo))
+                return string.Empty;
+
+            try
+            {
+                var token = JToken.Parse(cuerpo);
+
+                if (token.Type != JTokenType.Object)
+                    return cuerpo;
+
+                var obj = (JObject)token;
+
+                string descripcion = ObtenerValorTexto(obj, "descripcion", "Descripcion");
+                if (!string.IsNullOrWhiteSpace(descripcion))
+                    return descripcion;
+
+                string detail = ObtenerValorTexto(obj, "detail", "Detail");
+                if (!string.IsNullOrWhiteSpace(detail))
+                    return detail;
+
+                string title = ObtenerValorTexto(obj, "title", "Title");
+                if (!string.IsNullOrWhiteSpace(title))
+                    return title;
+
+                var errors = obj["errors"] ?? obj["Errors"];
+                if (errors != null && errors.Type == JTokenType.Object)
+                {
+                    var erroresObj = (JObject)errors;
+                    foreach (var propiedad in erroresObj.Properties())
+                    {
+                        if (propiedad.Value != null && propiedad.Value.Type == JTokenType.Array)
+                        {
+                            foreach (var item in propiedad.Value)
+                            {
+                                string mensaje = item.ToString();
+                                if (!string.IsNullOrWhiteSpace(mensaje))
+                                    return mensaje;
+                            }
+                        }
+                    }
+                }
+
+                return cuerpo;
+            }
             catch
             {
-                MostrarMensaje("Ocurrió un error inesperado.", false);
+                return cuerpo;
             }
         }
 
-        private string ValidarFormulario()
+        private string ObtenerValorTexto(JObject obj, params string[] propiedades)
         {
-            if (string.IsNullOrWhiteSpace(txtTelefonoOrigen.Text))
-                return "Debe ingresar el teléfono origen.";
-
-            if (!EsTelefonoValido(txtTelefonoOrigen.Text.Trim()))
-                return "El teléfono origen debe tener 8 dígitos numéricos.";
-
-            if (string.IsNullOrWhiteSpace(txtNombreOrigen.Text))
-                return "Debe existir un nombre origen.";
-
-            if (string.IsNullOrWhiteSpace(txtTelefonoDestino.Text))
-                return "Debe ingresar el teléfono destino.";
-
-            if (!EsTelefonoValido(txtTelefonoDestino.Text.Trim()))
-                return "El teléfono destino debe tener 8 dígitos numéricos.";
-
-            if (txtTelefonoOrigen.Text.Trim() == txtTelefonoDestino.Text.Trim())
-                return "El teléfono origen y destino no pueden ser iguales.";
-
-            if (string.IsNullOrWhiteSpace(txtMonto.Text))
-                return "Debe ingresar el monto.";
-
-            decimal monto;
-            if (!decimal.TryParse(txtMonto.Text.Trim(), NumberStyles.Any, CultureInfo.InvariantCulture, out monto))
+            foreach (string propiedad in propiedades)
             {
-                if (!decimal.TryParse(txtMonto.Text.Trim(), NumberStyles.Any, new CultureInfo("es-CR"), out monto))
-                    return "El monto no es válido.";
+                var valor = obj[propiedad];
+                if (valor != null)
+                {
+                    string texto = valor.ToString().Trim();
+                    if (!string.IsNullOrWhiteSpace(texto))
+                        return texto;
+                }
             }
-
-            if (monto <= 0)
-                return "El monto debe ser mayor a 0.";
-
-            if (monto > 100000)
-                return "El monto no debe ser superior a 100.000.";
-
-            if (string.IsNullOrWhiteSpace(txtDescripcion.Text))
-                return "Debe ingresar la descripción.";
-
-            if (txtDescripcion.Text.Trim().Length > 25)
-                return "La descripción no puede superar 25 caracteres.";
 
             return string.Empty;
-        }
-
-        private bool EsTelefonoValido(string telefono)
-        {
-            if (telefono.Length != 8)
-                return false;
-
-            foreach (char c in telefono)
-            {
-                if (!char.IsDigit(c))
-                    return false;
-            }
-
-            return true;
         }
 
         private void MostrarMensaje(string mensaje, bool esExito)
@@ -200,7 +226,7 @@ namespace PagosMovilesWeb.Portal
                 ? "alert alert-success shadow-sm mb-4"
                 : "alert alert-danger shadow-sm mb-4";
 
-            lblMensaje.Text = mensaje;
+            lblMensaje.Text = Server.HtmlEncode(mensaje);
         }
 
         private void LimpiarFormulario()
